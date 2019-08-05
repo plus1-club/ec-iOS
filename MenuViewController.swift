@@ -60,7 +60,6 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-        
     }
 }
 
@@ -68,6 +67,8 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemMenuArray.count
     }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as? MenuCollectionViewCell{
@@ -78,14 +79,14 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
             itemCell.layer.borderWidth = 1
             itemCell.layer.cornerRadius = 5
             
-            
-            
-            
             return itemCell
         }
         return UICollectionViewCell()
     }
     
-    
+    /*func collectionView(collectioView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemPath indexPath: NSIndexPath) -> CGSize{
+        let size = CGSize(width: 145, height: 90)
+        return size
+    }*/
     
 }
