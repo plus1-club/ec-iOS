@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		844D3C4D22F337D20059F81B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D3C4C22F337D20059F81B /* Button.swift */; };
+		8469347E22F870E100F85D12 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469347D22F870E100F85D12 /* MenuCollectionViewCell.swift */; };
+		8469348222F8793300F85D12 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469348122F8793300F85D12 /* Menu.swift */; };
+		8469348622F8C68400F85D12 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8469348522F8C68400F85D12 /* MenuViewController.swift */; };
 		E21E16AD22F1DA42006D9B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E16AC22F1DA42006D9B43 /* AppDelegate.swift */; };
 		E21E16AF22F1DA42006D9B43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E16AE22F1DA42006D9B43 /* ViewController.swift */; };
 		E21E16B222F1DA42006D9B43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21E16B022F1DA42006D9B43 /* Main.storyboard */; };
@@ -37,6 +40,9 @@
 
 /* Begin PBXFileReference section */
 		844D3C4C22F337D20059F81B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Button.swift; path = ../Button.swift; sourceTree = "<group>"; };
+		8469347D22F870E100F85D12 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		8469348122F8793300F85D12 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		8469348522F8C68400F85D12 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = SOURCE_ROOT; };
 		E21E16A922F1DA42006D9B43 /* ec-electric.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ec-electric.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21E16AC22F1DA42006D9B43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E21E16AE22F1DA42006D9B43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +84,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8469347C22F8709700F85D12 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8469347D22F870E100F85D12 /* MenuCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8469348022F8791F00F85D12 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8469348122F8793300F85D12 /* Menu.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E21E16A022F1DA42006D9B43 = {
 			isa = PBXGroup;
 			children = (
@@ -101,8 +123,11 @@
 		E21E16AB22F1DA42006D9B43 /* ec-electric */ = {
 			isa = PBXGroup;
 			children = (
+				8469348022F8791F00F85D12 /* Model */,
+				8469347C22F8709700F85D12 /* View */,
 				E21E16AC22F1DA42006D9B43 /* AppDelegate.swift */,
 				E21E16AE22F1DA42006D9B43 /* ViewController.swift */,
+				8469348522F8C68400F85D12 /* MenuViewController.swift */,
 				844D3C4C22F337D20059F81B /* Button.swift */,
 				E21E16B022F1DA42006D9B43 /* Main.storyboard */,
 				E21E16B622F1DA43006D9B43 /* Assets.xcassets */,
@@ -265,10 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8469348222F8793300F85D12 /* Menu.swift in Sources */,
 				E21E16AF22F1DA42006D9B43 /* ViewController.swift in Sources */,
 				E21E16B522F1DA42006D9B43 /* ec_electric.xcdatamodeld in Sources */,
+				8469348622F8C68400F85D12 /* MenuViewController.swift in Sources */,
 				E21E16AD22F1DA42006D9B43 /* AppDelegate.swift in Sources */,
 				844D3C4D22F337D20059F81B /* Button.swift in Sources */,
+				8469347E22F870E100F85D12 /* MenuCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
