@@ -10,11 +10,11 @@ import UIKit
 
 class MenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
     
-    let imageArray = [UIImage(named: "cart"), UIImage(named: "orders"), UIImage(named: "annul"), UIImage(named: "nepodtv"), UIImage(named: "check_existence"), UIImage(named: "reserves"), UIImage(named: "history"), UIImage(named: "make_order")]
+    let imageArray = [UIImage(named: "check_existence"), UIImage(named: "make_order"), UIImage(named: "cart"), UIImage(named: "nepodtv"), UIImage(named: "reserves"), UIImage(named: "orders"), UIImage(named: "annul"), UIImage(named: "history")]
     
     let nameArray = ["Проверка наличия товара", "Сделать заказ", "Корзина", "Неподтвержденные заказы" ,"Резервы", "Заказы", "Анулированные и просроченные счета", "История отгрузок"]
     
-    let arrayOfIds = ["label1", "label2", "orders", "orders", "orders", "label2", "label1", "label2"]
+    let arrayOfIds = ["label1", "label2", "orders", "orders", "orders", "orders", "label1", "label2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
