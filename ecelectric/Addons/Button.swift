@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class Button: UIButton {
     
     @IBInspectable var borderWidth: CGFloat = 0.0 {
