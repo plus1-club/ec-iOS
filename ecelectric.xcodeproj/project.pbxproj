@@ -13,22 +13,15 @@
 		84172AF223029C9F008FA9EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84172AF123029C9F008FA9EE /* Assets.xcassets */; };
 		84172AF523029C9F008FA9EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84172AF323029C9F008FA9EE /* LaunchScreen.storyboard */; };
 		84172AFD23029E6B008FA9EE /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172AFC23029E6B008FA9EE /* MenuCollectionViewCell.swift */; };
-		84172B052302BD79008FA9EE /* ecelectircTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172B042302BD79008FA9EE /* ecelectircTests.swift */; };
-		84172B132302BDBC008FA9EE /* ecelectircUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172B122302BDBC008FA9EE /* ecelectircUITests.swift */; };
+		84172B132302BDBC008FA9EE /* ecelectricUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172B122302BDBC008FA9EE /* ecelectricUITests.swift */; };
 		84172B202302C1C0008FA9EE /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172B1F2302C1C0008FA9EE /* Button.swift */; };
 		84172B222302C6AE008FA9EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172B212302C6AE008FA9EE /* ViewController.swift */; };
 		84931BCB2302E033009501B6 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCA2302E033009501B6 /* OrderTableViewCell.swift */; };
 		84931BCD2302E1F3009501B6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCC2302E1F3009501B6 /* OrderViewController.swift */; };
+		84F888432309E6FD00F38085 /* ecelectricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F888422309E6FD00F38085 /* ecelectricTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		84172B072302BD79008FA9EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 84172ADF23029C9A008FA9EE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 84172AE623029C9A008FA9EE;
-			remoteInfo = ecelectirc;
-		};
 		84172B152302BDBC008FA9EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84172ADF23029C9A008FA9EE /* Project object */;
@@ -36,10 +29,17 @@
 			remoteGlobalIDString = 84172AE623029C9A008FA9EE;
 			remoteInfo = ecelectirc;
 		};
+		84F888452309E6FD00F38085 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84172ADF23029C9A008FA9EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84172AE623029C9A008FA9EE;
+			remoteInfo = ecelectric;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		84172AE723029C9A008FA9EE /* ecelectirc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ecelectirc.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84172AE723029C9A008FA9EE /* ecelectric.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ecelectric.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84172AEA23029C9A008FA9EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84172AEC23029C9A008FA9EE /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		84172AEF23029C9A008FA9EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -47,27 +47,20 @@
 		84172AF423029C9F008FA9EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84172AF623029C9F008FA9EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84172AFC23029E6B008FA9EE /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
-		84172B022302BD79008FA9EE /* ecelectircTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecelectircTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		84172B042302BD79008FA9EE /* ecelectircTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecelectircTests.swift; sourceTree = "<group>"; };
-		84172B062302BD79008FA9EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84172B102302BDBC008FA9EE /* ecelectircUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecelectircUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		84172B122302BDBC008FA9EE /* ecelectircUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecelectircUITests.swift; sourceTree = "<group>"; };
+		84172B102302BDBC008FA9EE /* ecelectricUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecelectricUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84172B122302BDBC008FA9EE /* ecelectricUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecelectricUITests.swift; sourceTree = "<group>"; };
 		84172B142302BDBC008FA9EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84172B1F2302C1C0008FA9EE /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		84172B212302C6AE008FA9EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84931BCA2302E033009501B6 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		84931BCC2302E1F3009501B6 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		84F888402309E6FD00F38085 /* ecelectricTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecelectricTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84F888422309E6FD00F38085 /* ecelectricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecelectricTests.swift; sourceTree = "<group>"; };
+		84F888442309E6FD00F38085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		84172AE423029C9A008FA9EE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		84172AFF2302BD79008FA9EE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -81,6 +74,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84F8883D2309E6FD00F38085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -88,8 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				84172AE923029C9A008FA9EE /* ecelectric */,
-				84172B032302BD79008FA9EE /* ecelectircTests */,
-				84172B112302BDBC008FA9EE /* ecelectircUITests */,
+				84172B112302BDBC008FA9EE /* ecelectricUITests */,
+				84F888412309E6FD00F38085 /* ecelectricTests */,
 				84172AE823029C9A008FA9EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,9 +97,9 @@
 		84172AE823029C9A008FA9EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84172AE723029C9A008FA9EE /* ecelectirc.app */,
-				84172B022302BD79008FA9EE /* ecelectircTests.xctest */,
-				84172B102302BDBC008FA9EE /* ecelectircUITests.xctest */,
+				84172AE723029C9A008FA9EE /* ecelectric.app */,
+				84172B102302BDBC008FA9EE /* ecelectricUITests.xctest */,
+				84F888402309E6FD00F38085 /* ecelectricTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,22 +120,13 @@
 			path = ecelectric;
 			sourceTree = "<group>";
 		};
-		84172B032302BD79008FA9EE /* ecelectircTests */ = {
+		84172B112302BDBC008FA9EE /* ecelectricUITests */ = {
 			isa = PBXGroup;
 			children = (
-				84172B042302BD79008FA9EE /* ecelectircTests.swift */,
-				84172B062302BD79008FA9EE /* Info.plist */,
-			);
-			path = ecelectircTests;
-			sourceTree = "<group>";
-		};
-		84172B112302BDBC008FA9EE /* ecelectircUITests */ = {
-			isa = PBXGroup;
-			children = (
-				84172B122302BDBC008FA9EE /* ecelectircUITests.swift */,
+				84172B122302BDBC008FA9EE /* ecelectricUITests.swift */,
 				84172B142302BDBC008FA9EE /* Info.plist */,
 			);
-			path = ecelectircUITests;
+			path = ecelectricUITests;
 			sourceTree = "<group>";
 		};
 		84172B1A2302C081008FA9EE /* Controllers */ = {
@@ -164,12 +155,21 @@
 			path = Addons;
 			sourceTree = "<group>";
 		};
+		84F888412309E6FD00F38085 /* ecelectricTests */ = {
+			isa = PBXGroup;
+			children = (
+				84F888422309E6FD00F38085 /* ecelectricTests.swift */,
+				84F888442309E6FD00F38085 /* Info.plist */,
+			);
+			path = ecelectricTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84172AE623029C9A008FA9EE /* ecelectirc */ = {
+		84172AE623029C9A008FA9EE /* ecelectric */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84172AF923029C9F008FA9EE /* Build configuration list for PBXNativeTarget "ecelectirc" */;
+			buildConfigurationList = 84172AF923029C9F008FA9EE /* Build configuration list for PBXNativeTarget "ecelectric" */;
 			buildPhases = (
 				84172AE323029C9A008FA9EE /* Sources */,
 				84172AE423029C9A008FA9EE /* Frameworks */,
@@ -179,32 +179,14 @@
 			);
 			dependencies = (
 			);
-			name = ecelectirc;
+			name = ecelectric;
 			productName = TestCollectionView;
-			productReference = 84172AE723029C9A008FA9EE /* ecelectirc.app */;
+			productReference = 84172AE723029C9A008FA9EE /* ecelectric.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84172B012302BD79008FA9EE /* ecelectircTests */ = {
+		84172B0F2302BDBC008FA9EE /* ecelectricUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84172B092302BD79008FA9EE /* Build configuration list for PBXNativeTarget "ecelectircTests" */;
-			buildPhases = (
-				84172AFE2302BD79008FA9EE /* Sources */,
-				84172AFF2302BD79008FA9EE /* Frameworks */,
-				84172B002302BD79008FA9EE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				84172B082302BD79008FA9EE /* PBXTargetDependency */,
-			);
-			name = ecelectircTests;
-			productName = ecelectircTests;
-			productReference = 84172B022302BD79008FA9EE /* ecelectircTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		84172B0F2302BDBC008FA9EE /* ecelectircUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 84172B172302BDBC008FA9EE /* Build configuration list for PBXNativeTarget "ecelectircUITests" */;
+			buildConfigurationList = 84172B172302BDBC008FA9EE /* Build configuration list for PBXNativeTarget "ecelectricUITests" */;
 			buildPhases = (
 				84172B0C2302BDBC008FA9EE /* Sources */,
 				84172B0D2302BDBC008FA9EE /* Frameworks */,
@@ -215,10 +197,28 @@
 			dependencies = (
 				84172B162302BDBC008FA9EE /* PBXTargetDependency */,
 			);
-			name = ecelectircUITests;
+			name = ecelectricUITests;
 			productName = ecelectircUITests;
-			productReference = 84172B102302BDBC008FA9EE /* ecelectircUITests.xctest */;
+			productReference = 84172B102302BDBC008FA9EE /* ecelectricUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		84F8883F2309E6FD00F38085 /* ecelectricTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84F888472309E6FD00F38085 /* Build configuration list for PBXNativeTarget "ecelectricTests" */;
+			buildPhases = (
+				84F8883C2309E6FD00F38085 /* Sources */,
+				84F8883D2309E6FD00F38085 /* Frameworks */,
+				84F8883E2309E6FD00F38085 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84F888462309E6FD00F38085 /* PBXTargetDependency */,
+			);
+			name = ecelectricTests;
+			productName = ecelectricTests1;
+			productReference = 84F888402309E6FD00F38085 /* ecelectricTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -233,17 +233,17 @@
 					84172AE623029C9A008FA9EE = {
 						CreatedOnToolsVersion = 10.3;
 					};
-					84172B012302BD79008FA9EE = {
+					84172B0F2302BDBC008FA9EE = {
 						CreatedOnToolsVersion = 10.3;
 						TestTargetID = 84172AE623029C9A008FA9EE;
 					};
-					84172B0F2302BDBC008FA9EE = {
+					84F8883F2309E6FD00F38085 = {
 						CreatedOnToolsVersion = 10.3;
 						TestTargetID = 84172AE623029C9A008FA9EE;
 					};
 				};
 			};
-			buildConfigurationList = 84172AE223029C9A008FA9EE /* Build configuration list for PBXProject "ecelectirc" */;
+			buildConfigurationList = 84172AE223029C9A008FA9EE /* Build configuration list for PBXProject "ecelectric" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -256,9 +256,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				84172AE623029C9A008FA9EE /* ecelectirc */,
-				84172B012302BD79008FA9EE /* ecelectircTests */,
-				84172B0F2302BDBC008FA9EE /* ecelectircUITests */,
+				84172AE623029C9A008FA9EE /* ecelectric */,
+				84F8883F2309E6FD00F38085 /* ecelectricTests */,
+				84172B0F2302BDBC008FA9EE /* ecelectricUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -274,14 +274,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84172B002302BD79008FA9EE /* Resources */ = {
+		84172B0E2302BDBC008FA9EE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84172B0E2302BDBC008FA9EE /* Resources */ = {
+		84F8883E2309E6FD00F38085 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,34 +305,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84172AFE2302BD79008FA9EE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				84172B052302BD79008FA9EE /* ecelectircTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		84172B0C2302BDBC008FA9EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84172B132302BDBC008FA9EE /* ecelectircUITests.swift in Sources */,
+				84172B132302BDBC008FA9EE /* ecelectricUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84F8883C2309E6FD00F38085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84F888432309E6FD00F38085 /* ecelectricTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		84172B082302BD79008FA9EE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 84172AE623029C9A008FA9EE /* ecelectirc */;
-			targetProxy = 84172B072302BD79008FA9EE /* PBXContainerItemProxy */;
-		};
 		84172B162302BDBC008FA9EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84172AE623029C9A008FA9EE /* ecelectirc */;
+			target = 84172AE623029C9A008FA9EE /* ecelectric */;
 			targetProxy = 84172B152302BDBC008FA9EE /* PBXContainerItemProxy */;
+		};
+		84F888462309E6FD00F38085 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84172AE623029C9A008FA9EE /* ecelectric */;
+			targetProxy = 84F888452309E6FD00F38085 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -477,12 +477,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HK44KZPRS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectric;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectric123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -494,53 +495,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HK44KZPRS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectric;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectric123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		84172B0A2302BD79008FA9EE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ecelectircTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectircTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ecelectirc.app/ecelectirc";
-			};
-			name = Debug;
-		};
-		84172B0B2302BD79008FA9EE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ecelectircTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectircTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ecelectirc.app/ecelectirc";
 			};
 			name = Release;
 		};
@@ -580,10 +544,50 @@
 			};
 			name = Release;
 		};
+		84F888482309E6FD00F38085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HK44KZPRS3;
+				INFOPLIST_FILE = ecelectricTests1/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectricTests1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ecelectric.app/ecelectric";
+			};
+			name = Debug;
+		};
+		84F888492309E6FD00F38085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HK44KZPRS3;
+				INFOPLIST_FILE = ecelectricTests1/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectricTests1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ecelectric.app/ecelectric";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84172AE223029C9A008FA9EE /* Build configuration list for PBXProject "ecelectirc" */ = {
+		84172AE223029C9A008FA9EE /* Build configuration list for PBXProject "ecelectric" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84172AF723029C9F008FA9EE /* Debug */,
@@ -592,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84172AF923029C9F008FA9EE /* Build configuration list for PBXNativeTarget "ecelectirc" */ = {
+		84172AF923029C9F008FA9EE /* Build configuration list for PBXNativeTarget "ecelectric" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84172AFA23029C9F008FA9EE /* Debug */,
@@ -601,20 +605,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84172B092302BD79008FA9EE /* Build configuration list for PBXNativeTarget "ecelectircTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				84172B0A2302BD79008FA9EE /* Debug */,
-				84172B0B2302BD79008FA9EE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		84172B172302BDBC008FA9EE /* Build configuration list for PBXNativeTarget "ecelectircUITests" */ = {
+		84172B172302BDBC008FA9EE /* Build configuration list for PBXNativeTarget "ecelectricUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84172B182302BDBC008FA9EE /* Debug */,
 				84172B192302BDBC008FA9EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84F888472309E6FD00F38085 /* Build configuration list for PBXNativeTarget "ecelectricTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84F888482309E6FD00F38085 /* Debug */,
+				84F888492309E6FD00F38085 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
