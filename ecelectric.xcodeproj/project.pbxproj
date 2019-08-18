@@ -19,6 +19,8 @@
 		84931BCB2302E033009501B6 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCA2302E033009501B6 /* OrderTableViewCell.swift */; };
 		84931BCD2302E1F3009501B6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCC2302E1F3009501B6 /* OrderViewController.swift */; };
 		84F888432309E6FD00F38085 /* ecelectricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F888422309E6FD00F38085 /* ecelectricTests.swift */; };
+		84F8884B2309EE5F00F38085 /* NepodtvTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */; };
+		84F8884D2309F0B100F38085 /* NepodtvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884C2309F0B100F38085 /* NepodtvViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		84F888402309E6FD00F38085 /* ecelectricTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecelectricTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F888422309E6FD00F38085 /* ecelectricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecelectricTests.swift; sourceTree = "<group>"; };
 		84F888442309E6FD00F38085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NepodtvTableViewCell.swift; sourceTree = "<group>"; };
+		84F8884C2309F0B100F38085 /* NepodtvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NepodtvViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				84172AE923029C9A008FA9EE /* ecelectric */,
-				84172B112302BDBC008FA9EE /* ecelectricUITests */,
 				84F888412309E6FD00F38085 /* ecelectricTests */,
+				84172B112302BDBC008FA9EE /* ecelectricUITests */,
 				84172AE823029C9A008FA9EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -134,6 +138,7 @@
 			children = (
 				84172AEC23029C9A008FA9EE /* MenuViewController.swift */,
 				84931BCC2302E1F3009501B6 /* OrderViewController.swift */,
+				84F8884C2309F0B100F38085 /* NepodtvViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 			children = (
 				84172AFC23029E6B008FA9EE /* MenuCollectionViewCell.swift */,
 				84931BCA2302E033009501B6 /* OrderTableViewCell.swift */,
+				84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -295,6 +301,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F8884B2309EE5F00F38085 /* NepodtvTableViewCell.swift in Sources */,
+				84F8884D2309F0B100F38085 /* NepodtvViewController.swift in Sources */,
 				84931BCB2302E033009501B6 /* OrderTableViewCell.swift in Sources */,
 				84172B222302C6AE008FA9EE /* ViewController.swift in Sources */,
 				84172AED23029C9A008FA9EE /* MenuViewController.swift in Sources */,
