@@ -11,6 +11,7 @@ import UIKit
 class MenuViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var arrayOfIds = ["orders", "orders", "orders", "orders", "orders", "orders", "orders", "orders"]
     var itemMenuArray: [Menu] = {
         var blankMenu = Menu()
         blankMenu.imageName = "check_existence"
@@ -60,6 +61,7 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
+        self.collectionView.delegate = self
     }
 }
 
@@ -84,9 +86,13 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
         return UICollectionViewCell()
     }
     
-    /*func collectionView(collectioView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemPath indexPath: NSIndexPath) -> CGSize{
-        let size = CGSize(width: 145, height: 90)
-        return size
-    }*/
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let name = arrayOfIds[indexPath.row]
+        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
+        self.navigationController?.pushViewController(viewController!, animated: true)
+        
+    }
     
 }
