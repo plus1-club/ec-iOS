@@ -18,6 +18,7 @@
 		84172B222302C6AE008FA9EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172B212302C6AE008FA9EE /* ViewController.swift */; };
 		84931BCB2302E033009501B6 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCA2302E033009501B6 /* OrderTableViewCell.swift */; };
 		84931BCD2302E1F3009501B6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCC2302E1F3009501B6 /* OrderViewController.swift */; };
+		84B5C169230D795900D776A2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5C168230D795900D776A2 /* SWRevealViewController.m */; };
 		84F888432309E6FD00F38085 /* ecelectricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F888422309E6FD00F38085 /* ecelectricTests.swift */; };
 		84F8884B2309EE5F00F38085 /* NepodtvTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */; };
 		84F8884D2309F0B100F38085 /* NepodtvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884C2309F0B100F38085 /* NepodtvViewController.swift */; };
@@ -56,6 +57,9 @@
 		84172B212302C6AE008FA9EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84931BCA2302E033009501B6 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		84931BCC2302E1F3009501B6 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		84B5C166230D795800D776A2 /* ecelectric-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ecelectric-Bridging-Header.h"; sourceTree = "<group>"; };
+		84B5C167230D795900D776A2 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		84B5C168230D795900D776A2 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		84F888402309E6FD00F38085 /* ecelectricTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecelectricTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F888422309E6FD00F38085 /* ecelectricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecelectricTests.swift; sourceTree = "<group>"; };
 		84F888442309E6FD00F38085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +161,9 @@
 			isa = PBXGroup;
 			children = (
 				84172B1F2302C1C0008FA9EE /* Button.swift */,
+				84B5C167230D795900D776A2 /* SWRevealViewController.h */,
+				84B5C168230D795900D776A2 /* SWRevealViewController.m */,
+				84B5C166230D795800D776A2 /* ecelectric-Bridging-Header.h */,
 			);
 			path = Addons;
 			sourceTree = "<group>";
@@ -238,6 +245,7 @@
 				TargetAttributes = {
 					84172AE623029C9A008FA9EE = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
 					};
 					84172B0F2302BDBC008FA9EE = {
 						CreatedOnToolsVersion = 10.3;
@@ -308,6 +316,7 @@
 				84172AED23029C9A008FA9EE /* MenuViewController.swift in Sources */,
 				84931BCD2302E1F3009501B6 /* OrderViewController.swift in Sources */,
 				84172AFD23029E6B008FA9EE /* MenuCollectionViewCell.swift in Sources */,
+				84B5C169230D795900D776A2 /* SWRevealViewController.m in Sources */,
 				84172AEB23029C9A008FA9EE /* AppDelegate.swift in Sources */,
 				84172B202302C1C0008FA9EE /* Button.swift in Sources */,
 			);
@@ -484,6 +493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HK44KZPRS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
@@ -493,6 +503,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectric123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ecelectric/Addons/ecelectric-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -502,6 +514,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HK44KZPRS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
@@ -511,6 +524,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iSamTech.ecelectric123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ecelectric/Addons/ecelectric-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -10,6 +10,9 @@ import UIKit
 
 class MenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
     
+    
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     let imageArray = [UIImage(named: "check_existence"), UIImage(named: "make_order"), UIImage(named: "cart"), UIImage(named: "nepodtv"), UIImage(named: "reserves"), UIImage(named: "orders"), UIImage(named: "annul"), UIImage(named: "history")]
     
     let nameArray = ["Проверка наличия товара", "Сделать заказ", "Корзина", "Неподтвержденные заказы" ,"Резервы", "Заказы", "Анулированные и просроченные счета", "История отгрузок"]
@@ -19,9 +22,21 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        sideMenu()
     }
 
-
+    func sideMenu() {
+        
+        if revealViewController() != nil {
+            menuButton.target = revealViewController()
+            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+            revealViewController().rightViewRevealWidth = 275
+            
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArray.count
     }

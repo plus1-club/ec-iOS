@@ -10,6 +10,7 @@ import UIKit
 
 class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     @IBOutlet weak var orderTableView: UITableView!
     
@@ -22,7 +23,18 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         orderTableView.delegate = self
         orderTableView.dataSource = self
+        sideMenu()
+    }
+    
+    func sideMenu() {
         
+        if revealViewController() != nil {
+            menuButton.target = revealViewController()
+            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+            revealViewController().rightViewRevealWidth = 275
+            
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

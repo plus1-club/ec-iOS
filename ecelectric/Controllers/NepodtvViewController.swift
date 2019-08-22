@@ -12,6 +12,7 @@ class NepodtvViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var nepodtvTableView: UITableView!
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     let invoiceNumberNepodtv = [("Счет № 756503 от 27 марта 2019"), ("Счет № 75358 от 27 марта 2019"), ("Счет № 737303 от 27 марта 2019"), ("Счет № 736947 от 27 марта 2019"), ("Счет № 758673 от 27 марта 2019")]
     let invoiceAmountNepodtv = [("Сумма: 7 970,98"), ("Сумма: 6 172,76"), ("Сумма: 8 817,87"), ("Сумма: 27 967,00"), ("Сумма: 356,73")]
@@ -22,8 +23,20 @@ class NepodtvViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         nepodtvTableView.delegate = self
         nepodtvTableView.dataSource = self
-        
+        sideMenu()
     }
+    
+    func sideMenu() {
+        
+        if revealViewController() != nil {
+            menuButton.target = revealViewController()
+            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+            revealViewController().rightViewRevealWidth = 275
+            
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
