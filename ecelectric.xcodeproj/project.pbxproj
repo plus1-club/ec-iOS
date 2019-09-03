@@ -18,7 +18,6 @@
 		84172B222302C6AE008FA9EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172B212302C6AE008FA9EE /* ViewController.swift */; };
 		84931BCB2302E033009501B6 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCA2302E033009501B6 /* OrderTableViewCell.swift */; };
 		84931BCD2302E1F3009501B6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCC2302E1F3009501B6 /* OrderViewController.swift */; };
-		84B0FC9F231E9FB700BD8013 /* ToDeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B0FC9E231E9FB700BD8013 /* ToDeleteViewController.swift */; };
 		84EF429D230ED0D100A402C8 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF429C230ED0D100A402C8 /* SWRevealViewController.m */; };
 		84F888432309E6FD00F38085 /* ecelectricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F888422309E6FD00F38085 /* ecelectricTests.swift */; };
 		84F8884B2309EE5F00F38085 /* NepodtvTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */; };
@@ -58,7 +57,6 @@
 		84172B212302C6AE008FA9EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84931BCA2302E033009501B6 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		84931BCC2302E1F3009501B6 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
-		84B0FC9E231E9FB700BD8013 /* ToDeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDeleteViewController.swift; sourceTree = "<group>"; };
 		84B5C166230D795800D776A2 /* ecelectric-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ecelectric-Bridging-Header.h"; sourceTree = "<group>"; };
 		84EF429C230ED0D100A402C8 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		84EF429E230ED14500A402C8 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 				84172AFC23029E6B008FA9EE /* MenuCollectionViewCell.swift */,
 				84931BCA2302E033009501B6 /* OrderTableViewCell.swift */,
 				84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */,
-				84B0FC9E231E9FB700BD8013 /* ToDeleteViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,7 +317,6 @@
 				84931BCD2302E1F3009501B6 /* OrderViewController.swift in Sources */,
 				84172AFD23029E6B008FA9EE /* MenuCollectionViewCell.swift in Sources */,
 				84EF429D230ED0D100A402C8 /* SWRevealViewController.m in Sources */,
-				84B0FC9F231E9FB700BD8013 /* ToDeleteViewController.swift in Sources */,
 				84172AEB23029C9A008FA9EE /* AppDelegate.swift in Sources */,
 				84172B202302C1C0008FA9EE /* Button.swift in Sources */,
 			);
