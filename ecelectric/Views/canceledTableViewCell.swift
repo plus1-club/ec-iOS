@@ -1,25 +1,21 @@
 //
-//  OrderTableViewCell.swift
-//  ecelectirc
+//  canceledTableViewCell.swift
+//  ecelectric
 //
-//  Created by Sam on 13/08/2019.
+//  Created by Sam on 11/09/2019.
 //  Copyright © 2019 Samir Azizov. All rights reserved.
 //
 
 import UIKit
 
-class OrderTableViewCell: UITableViewCell {
+class canceledTableViewCell: UITableViewCell {
 
     @IBOutlet weak var invoiceNumber1: UILabel!
     @IBOutlet weak var invoiceAmount1: UILabel!
     @IBOutlet weak var invoiceStatus1: UILabel!
     
-    @IBAction func invoice(_ sender: Any) {
+    @IBAction func invoiceDetail(_ sender: Any) {
     }
-    @IBAction func inoviceDetail(_ sender: Any) {
-    }
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

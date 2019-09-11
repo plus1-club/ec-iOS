@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProverkaSegViewController: UIViewController {
+class checkByRequest: UIViewController {
 
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
