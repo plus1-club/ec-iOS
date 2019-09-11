@@ -1,5 +1,5 @@
 //
-//  shippedTableViewCell.swift
+//  reservedTableViewCell.swift
 //  ecelectric
 //
 //  Created by Sam on 11/09/2019.
@@ -8,17 +8,15 @@
 
 import UIKit
 
-class shippedTableViewCell: UITableViewCell {
+class reservedTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var invoiceNumber1: UILabel!
     @IBOutlet weak var invoiceAmount1: UILabel!
-    @IBOutlet weak var waybillNumber1: UILabel!
     
     @IBAction func invoice(_ sender: Any) {
     }
-    
-    
+    @IBAction func inoviceDetail(_ sender: Any) {
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -19,11 +19,13 @@
 		8455DEF62328873F005FC055 /* orderByRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455DEF52328873F005FC055 /* orderByRequestViewController.swift */; };
 		8455DEF8232893B6005FC055 /* сanceledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455DEF7232893B6005FC055 /* сanceledViewController.swift */; };
 		8473E1602328A64300D394A0 /* canceledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8473E15F2328A64300D394A0 /* canceledTableViewCell.swift */; };
-		84879283232155EE006CBC17 /* checkByRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84879282232155EE006CBC17 /* checkByRequest.swift */; };
+		84879283232155EE006CBC17 /* checkByRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84879282232155EE006CBC17 /* checkByRequestViewController.swift */; };
 		84931BCB2302E033009501B6 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCA2302E033009501B6 /* OrderTableViewCell.swift */; };
 		84931BCD2302E1F3009501B6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84931BCC2302E1F3009501B6 /* OrderViewController.swift */; };
 		84DAD4FA2328D7B5000F691B /* shippedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAD4F92328D7B5000F691B /* shippedTableViewCell.swift */; };
 		84DAD4FE2328D886000F691B /* shippedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAD4FD2328D886000F691B /* shippedViewController.swift */; };
+		84DAD5002328E17A000F691B /* reservedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAD4FF2328E17A000F691B /* reservedViewController.swift */; };
+		84DAD5022328E265000F691B /* reservedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAD5012328E265000F691B /* reservedTableViewCell.swift */; };
 		84EF429D230ED0D100A402C8 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF429C230ED0D100A402C8 /* SWRevealViewController.m */; };
 		84F888432309E6FD00F38085 /* ecelectricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F888422309E6FD00F38085 /* ecelectricTests.swift */; };
 		84F8884B2309EE5F00F38085 /* NepodtvTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */; };
@@ -64,12 +66,14 @@
 		8455DEF52328873F005FC055 /* orderByRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderByRequestViewController.swift; sourceTree = "<group>"; };
 		8455DEF7232893B6005FC055 /* сanceledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "сanceledViewController.swift"; sourceTree = "<group>"; };
 		8473E15F2328A64300D394A0 /* canceledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = canceledTableViewCell.swift; sourceTree = "<group>"; };
-		84879282232155EE006CBC17 /* checkByRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkByRequest.swift; sourceTree = "<group>"; };
+		84879282232155EE006CBC17 /* checkByRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkByRequestViewController.swift; sourceTree = "<group>"; };
 		84931BCA2302E033009501B6 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		84931BCC2302E1F3009501B6 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		84B5C166230D795800D776A2 /* ecelectric-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ecelectric-Bridging-Header.h"; sourceTree = "<group>"; };
 		84DAD4F92328D7B5000F691B /* shippedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shippedTableViewCell.swift; sourceTree = "<group>"; };
 		84DAD4FD2328D886000F691B /* shippedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shippedViewController.swift; sourceTree = "<group>"; };
+		84DAD4FF2328E17A000F691B /* reservedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reservedViewController.swift; sourceTree = "<group>"; };
+		84DAD5012328E265000F691B /* reservedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reservedTableViewCell.swift; sourceTree = "<group>"; };
 		84EF429C230ED0D100A402C8 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		84EF429E230ED14500A402C8 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		84F888402309E6FD00F38085 /* ecelectricTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecelectricTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,10 +159,11 @@
 				84172AEC23029C9A008FA9EE /* MenuViewController.swift */,
 				84931BCC2302E1F3009501B6 /* OrderViewController.swift */,
 				84F8884C2309F0B100F38085 /* NepodtvViewController.swift */,
-				84879282232155EE006CBC17 /* checkByRequest.swift */,
+				84879282232155EE006CBC17 /* checkByRequestViewController.swift */,
 				8455DEF52328873F005FC055 /* orderByRequestViewController.swift */,
 				8455DEF7232893B6005FC055 /* сanceledViewController.swift */,
 				84DAD4FD2328D886000F691B /* shippedViewController.swift */,
+				84DAD4FF2328E17A000F691B /* reservedViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 				84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */,
 				8473E15F2328A64300D394A0 /* canceledTableViewCell.swift */,
 				84DAD4F92328D7B5000F691B /* shippedTableViewCell.swift */,
+				84DAD5012328E265000F691B /* reservedTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,7 +336,9 @@
 				8455DEF62328873F005FC055 /* orderByRequestViewController.swift in Sources */,
 				8455DEF8232893B6005FC055 /* сanceledViewController.swift in Sources */,
 				84DAD4FE2328D886000F691B /* shippedViewController.swift in Sources */,
+				84DAD5002328E17A000F691B /* reservedViewController.swift in Sources */,
 				84F8884B2309EE5F00F38085 /* NepodtvTableViewCell.swift in Sources */,
+				84DAD5022328E265000F691B /* reservedTableViewCell.swift in Sources */,
 				84F8884D2309F0B100F38085 /* NepodtvViewController.swift in Sources */,
 				8473E1602328A64300D394A0 /* canceledTableViewCell.swift in Sources */,
 				84931BCB2302E033009501B6 /* OrderTableViewCell.swift in Sources */,
@@ -342,7 +350,7 @@
 				84EF429D230ED0D100A402C8 /* SWRevealViewController.m in Sources */,
 				84172AEB23029C9A008FA9EE /* AppDelegate.swift in Sources */,
 				84172B202302C1C0008FA9EE /* Button.swift in Sources */,
-				84879283232155EE006CBC17 /* checkByRequest.swift in Sources */,
+				84879283232155EE006CBC17 /* checkByRequestViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

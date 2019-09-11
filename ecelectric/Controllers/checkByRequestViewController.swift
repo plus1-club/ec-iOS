@@ -8,7 +8,7 @@
 
 import UIKit
 
-class checkByRequest: UIViewController {
+class checkByRequestViewController: UIViewController {
 
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
