@@ -17,7 +17,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     let nameArray = ["Проверка наличия товара", "Сделать заказ", "Корзина", "Неподтвержденные заказы" ,"Резервы", "Заказы", "Анулированные и просроченные счета", "История отгрузок"]
     
-    let arrayOfIds = ["proverka", "orderByRequest", "orders", "nepodtv", "reserved", "orders", "сanceled", "shipped"]
+    let arrayOfIds = ["proverka", "orderByRequest", "requestTable", "nepodtv", "reserved", "orders", "сanceled", "shipped"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
