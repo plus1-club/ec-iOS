@@ -18,47 +18,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="esv-P3-Q4z">
-                                <rect key="frame" x="20" y="142" width="335" height="451"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="esv-P3-Q4z">
+                                <rect key="frame" x="7" y="163" width="361" height="446"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kBK-IK-sxS">
-                                    <size key="itemSize" width="145" height="90"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="13" minimumInteritemSpacing="0.0" id="kBK-IK-sxS">
+                                    <size key="itemSize" width="180" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCell" id="yN3-3n-0rI" customClass="MenuCollectionViewCell" customModule="EC_online" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="145" height="90"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="145" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-kv-ahO">
-                                                    <rect key="frame" x="0.0" y="54" width="145" height="36"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-kv-ahO">
+                                                    <rect key="frame" x="0.2966075988429111" y="55.601026669621149" width="179.84193654826336" height="45.314503697200216"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="o5T-pC-HRD"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lfp-xN-0i0">
-                                                    <rect key="frame" x="48.5" y="3" width="48" height="47"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfp-xN-0i0">
+                                                    <rect key="frame" x="66" y="3.5" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="NeO-kv-ahO" firstAttribute="leading" secondItem="yN3-3n-0rI" secondAttribute="leading" id="13W-oC-Wb6"/>
-                                            <constraint firstAttribute="trailing" secondItem="NeO-kv-ahO" secondAttribute="trailing" id="9JF-Si-jUF"/>
-                                            <constraint firstItem="lfp-xN-0i0" firstAttribute="leading" secondItem="yN3-3n-0rI" secondAttribute="leadingMargin" constant="40.440505028640018" id="Npo-6h-meu"/>
-                                            <constraint firstItem="NeO-kv-ahO" firstAttribute="top" secondItem="yN3-3n-0rI" secondAttribute="top" constant="54" id="RWJ-g3-3iC"/>
-                                            <constraint firstItem="lfp-xN-0i0" firstAttribute="top" secondItem="NeO-kv-ahO" secondAttribute="bottom" constant="-87" id="cs1-i3-O6Z"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="lfp-xN-0i0" secondAttribute="bottom" constant="32" id="fsh-Fj-J2Z"/>
-                                            <constraint firstItem="NeO-kv-ahO" firstAttribute="centerX" secondItem="lfp-xN-0i0" secondAttribute="centerX" id="kZi-09-898"/>
-                                        </constraints>
+                                        <size key="customSize" width="180" height="100"/>
                                         <connections>
                                             <outlet property="imgImage" destination="lfp-xN-0i0" id="a9E-0E-BLE"/>
                                             <outlet property="lblImageName" destination="NeO-kv-ahO" id="uhg-5n-mD2"/>
@@ -70,11 +62,13 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vT4-ef-BFg"/>
                                 </connections>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="XoI-Ul-kMS">
-                                <rect key="frame" x="86" y="71" width="202.00000000000006" height="62"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="XoI-Ul-kMS">
+                                <rect key="frame" x="86" y="76" width="202.00000000000006" height="62"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wf6-ZV-Zs3" customClass="Button" customModule="EC_online" customModuleProvider="target">
-                                <rect key="frame" x="86" y="601" width="202" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wf6-ZV-Zs3" customClass="Button" customModule="EC_online" customModuleProvider="target">
+                                <rect key="frame" x="86" y="616" width="202" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Выйти">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,18 +90,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="esv-P3-Q4z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2MJ-KQ-XFy"/>
-                            <constraint firstItem="XoI-Ul-kMS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="7" id="6HA-IR-Zog"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wf6-ZV-Zs3" secondAttribute="trailing" constant="87" id="Dey-gm-Onh"/>
-                            <constraint firstItem="XoI-Ul-kMS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="86" id="Dlu-CB-fq5"/>
-                            <constraint firstItem="Wf6-ZV-Zs3" firstAttribute="top" secondItem="esv-P3-Q4z" secondAttribute="bottom" constant="8" id="FKR-jx-4ya"/>
-                            <constraint firstItem="esv-P3-Q4z" firstAttribute="top" secondItem="XoI-Ul-kMS" secondAttribute="bottom" constant="9" id="Zc9-KP-1bA"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wf6-ZV-Zs3" secondAttribute="bottom" constant="36" id="ebT-NB-tU8"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XoI-Ul-kMS" secondAttribute="trailing" constant="87" id="f7O-0y-EPL"/>
-                            <constraint firstItem="Wf6-ZV-Zs3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="86" id="k3q-ZQ-siX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="esv-P3-Q4z" secondAttribute="trailing" constant="20" id="wUQ-iL-CrK"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Меню" id="9nT-Ke-gn9">
@@ -123,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3319" y="-184"/>
+            <point key="canvasLocation" x="3317.5999999999999" y="-184.85757121439281"/>
         </scene>
         <!--Неподтвержденные заказы-->
         <scene sceneID="PUy-8I-dv8">
@@ -204,7 +186,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Неподтвержденные заказы" id="rGQ-Dl-tVD">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="pUF-Ad-Hbh"/>
-                        <barButtonItem key="leftBarButtonItem" title="Меню" id="1hb-de-veV">
+                        <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="1hb-de-veV">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="Kqp-H9-pWs"/>
                             </connections>
@@ -297,19 +279,11 @@
                                                         <action selector="inoviceDetail:" destination="mDP-lj-B0J" eventType="touchUpInside" id="FO9-3f-V6a"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMM-9d-Nxj">
-                                                    <rect key="frame" x="231" y="4" width="129" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="invoiceAmount1" destination="nRI-hC-WcV" id="elU-2I-mck"/>
                                             <outlet property="invoiceNumber1" destination="Aac-HE-KKU" id="d6Y-FO-TC4"/>
-                                            <outlet property="invoiceStatus1" destination="NMM-9d-Nxj" id="BZv-oe-bQM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -329,7 +303,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Заказы" id="auK-dY-fwm">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="01U-rb-sWi"/>
-                        <barButtonItem key="leftBarButtonItem" title="Меню" id="JRk-f4-ILA">
+                        <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="JRk-f4-ILA">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="jQB-yd-frg"/>
                             </connections>
@@ -353,8 +327,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyY-Px-F1M" customClass="Button" customModule="EC_online" customModuleProvider="target">
-                                <rect key="frame" x="87" y="393" width="202" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyY-Px-F1M" customClass="Button" customModule="EC_online" customModuleProvider="target">
+                                <rect key="frame" x="86" y="418" width="202" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Войти">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -374,37 +349,26 @@
                                     <segue destination="8FB-he-onr" kind="show" id="LvE-Ve-zaT"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="jtu-uL-kGd">
-                                <rect key="frame" x="86" y="71" width="202.00000000000006" height="62"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="jtu-uL-kGd">
+                                <rect key="frame" x="51" y="65" width="273" height="106"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9d-VK-SvE">
-                                <rect key="frame" x="87" y="336" width="202" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9d-VK-SvE">
+                                <rect key="frame" x="87" y="354" width="202" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W40-nf-5lP">
-                                <rect key="frame" x="87" y="289" width="202" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W40-nf-5lP">
+                                <rect key="frame" x="87" y="293" width="202" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="W40-nf-5lP" firstAttribute="leading" secondItem="EwV-Zl-aCJ" secondAttribute="leading" constant="87" id="487-Fj-YqR"/>
-                            <constraint firstItem="P9d-VK-SvE" firstAttribute="leading" secondItem="EwV-Zl-aCJ" secondAttribute="leading" constant="87" id="6d8-Uv-N3i"/>
-                            <constraint firstItem="jtu-uL-kGd" firstAttribute="top" secondItem="EwV-Zl-aCJ" secondAttribute="top" constant="7" id="841-1C-qyA"/>
-                            <constraint firstItem="EwV-Zl-aCJ" firstAttribute="trailing" secondItem="jtu-uL-kGd" secondAttribute="trailing" constant="87" id="BZt-Z0-Rwb"/>
-                            <constraint firstItem="EwV-Zl-aCJ" firstAttribute="trailing" secondItem="tyY-Px-F1M" secondAttribute="trailing" constant="86" id="FUG-hS-2uR"/>
-                            <constraint firstItem="EwV-Zl-aCJ" firstAttribute="trailing" secondItem="P9d-VK-SvE" secondAttribute="trailing" constant="86" id="KPa-Sf-pSX"/>
-                            <constraint firstItem="tyY-Px-F1M" firstAttribute="leading" secondItem="EwV-Zl-aCJ" secondAttribute="leading" constant="87" id="LzL-eX-ygo"/>
-                            <constraint firstItem="jtu-uL-kGd" firstAttribute="leading" secondItem="EwV-Zl-aCJ" secondAttribute="leading" constant="86" id="PWJ-wl-sMW"/>
-                            <constraint firstItem="W40-nf-5lP" firstAttribute="top" secondItem="jtu-uL-kGd" secondAttribute="bottom" constant="156" id="bt8-hh-Q0T"/>
-                            <constraint firstItem="EwV-Zl-aCJ" firstAttribute="trailing" secondItem="W40-nf-5lP" secondAttribute="trailing" constant="86" id="lMK-2x-Ivl"/>
-                            <constraint firstItem="P9d-VK-SvE" firstAttribute="top" secondItem="W40-nf-5lP" secondAttribute="bottom" constant="17" id="qNu-oS-5bT"/>
-                            <constraint firstItem="tyY-Px-F1M" firstAttribute="top" secondItem="P9d-VK-SvE" secondAttribute="bottom" constant="27" id="x5f-fP-y69"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="EwV-Zl-aCJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Логин" id="emR-Re-ONn"/>
@@ -414,7 +378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZo-6E-ALZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="142" y="-186"/>
+            <point key="canvasLocation" x="141.59999999999999" y="-186.65667166416793"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Am-VW-cn1">
@@ -731,7 +695,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Проверка наличия товара" id="iwh-ea-dSc">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="uwf-uQ-O6h"/>
-                        <barButtonItem key="leftBarButtonItem" title="Меню" id="wGC-VA-i5q">
+                        <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="wGC-VA-i5q">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="4bf-1d-W5J"/>
                             </connections>
@@ -1053,7 +1017,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Сделать заказ" id="CjZ-cW-z80">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="efI-Ah-Equ"/>
-                        <barButtonItem key="leftBarButtonItem" title="Меню" id="vK4-HN-AbC">
+                        <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="vK4-HN-AbC">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="NYq-2f-MLH"/>
                             </connections>
@@ -1359,19 +1323,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4CM-Kc-ce7">
-                                                    <rect key="frame" x="14" y="22" width="129" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="invoiceAmount1" destination="KPF-6Z-Hdf" id="lk7-Bw-gvR"/>
                                             <outlet property="invoiceNumber1" destination="FDy-CD-eTp" id="QdA-od-AeF"/>
-                                            <outlet property="invoiceStatus1" destination="4CM-Kc-ce7" id="8Vd-o7-tCR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1391,7 +1347,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Аннулированные счета" id="yuG-Mc-Z5G">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="qOk-ep-eUw"/>
-                        <barButtonItem key="leftBarButtonItem" title="Меню" id="K14-Gw-PcM">
+                        <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="K14-Gw-PcM">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="hJe-D9-DMa"/>
                             </connections>
@@ -1512,7 +1468,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="История отгрузок" id="hsm-jL-5Sy">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="sJv-zW-ii3"/>
-                        <barButtonItem key="leftBarButtonItem" title="Меню" id="tI6-bX-EBs">
+                        <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="tI6-bX-EBs">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="VdZ-Zd-aic"/>
                             </connections>
@@ -1647,7 +1603,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Резервы" id="yR3-mj-JwQ">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="L1V-Y7-oHk"/>
-                        <barButtonItem key="leftBarButtonItem" title="Меню" id="Ojt-Me-49k">
+                        <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="Ojt-Me-49k">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="Ura-dF-Dwv"/>
                             </connections>
@@ -1821,7 +1777,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Корзина" id="6cq-c2-TKS">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="mRz-qU-52D"/>
-                        <barButtonItem key="leftBarButtonItem" title="Меню" id="1qm-sf-Vlk">
+                        <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="1qm-sf-Vlk">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="wty-sB-Uv3"/>
                             </connections>
@@ -1861,6 +1817,7 @@
         <image name=" " width="16" height="16"/>
         <image name="Menu Filled-50" width="24" height="24"/>
         <image name="icons8-back-48" width="48" height="48"/>
+        <image name="outline_home_black_36pt" width="36" height="36"/>
         <image name="splash" width="253" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
@@ -1868,6 +1825,6 @@
         <segue reference="owd-A9-qiO"/>
         <segue reference="Ux2-1H-IFX"/>
         <segue reference="BK0-Mc-QQa"/>
-        <segue reference="wty-sB-Uv3"/>
+        <segue reference="NYq-2f-MLH"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -19,7 +19,6 @@ class canceledViewController: UIViewController, UITableViewDelegate, UITableView
     
     let invoiceNumber1 = [("Счет № 756503 от 27 марта 2019"), ("Счет № 75358 от 27 марта 2019"), ("Счет № 737303 от 27 марта 2019"), ("Счет № 736947 от 27 марта 2019"), ("Счет № 758673 от 27 марта 2019")]
     let invoiceAmount1 = [("Сумма: 7 970,98"), ("Сумма: 6 172,76"), ("Сумма: 8 817,87"), ("Сумма: 27 967,00"), ("Сумма: 356,73")]
-    let invoiceStatus1 = [("просрочен"), ("аннулирован"), ("просрочен"), ("аннулирован"), ("аннулирован")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +51,6 @@ class canceledViewController: UIViewController, UITableViewDelegate, UITableView
         let canceledCell = tableView.dequeueReusableCell(withIdentifier: "canceledCell", for: indexPath as IndexPath) as! canceledTableViewCell
         canceledCell.invoiceNumber1.text = self.invoiceNumber1[indexPath.row]
         canceledCell.invoiceAmount1.text = self.invoiceAmount1[indexPath.row]
-        canceledCell.invoiceStatus1.text = self.invoiceStatus1[indexPath.row]
         
         return canceledCell
 }

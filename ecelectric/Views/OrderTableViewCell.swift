@@ -12,7 +12,6 @@ class OrderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var invoiceNumber1: UILabel!
     @IBOutlet weak var invoiceAmount1: UILabel!
-    @IBOutlet weak var invoiceStatus1: UILabel!
     
     @IBAction func invoice(_ sender: Any) {
     }
