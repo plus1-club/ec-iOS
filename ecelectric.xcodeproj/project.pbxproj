@@ -52,7 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		84172AE723029C9A008FA9EE /* ecelectric.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ecelectric.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84172AE723029C9A008FA9EE /* EC-online.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EC-online.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84172AEA23029C9A008FA9EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84172AEC23029C9A008FA9EE /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		84172AEF23029C9A008FA9EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		84172AF423029C9F008FA9EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84172AF623029C9F008FA9EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84172AFC23029E6B008FA9EE /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
-		84172B102302BDBC008FA9EE /* ecelectricUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecelectricUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84172B102302BDBC008FA9EE /* EC-onlineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EC-onlineUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84172B122302BDBC008FA9EE /* ecelectricUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecelectricUITests.swift; sourceTree = "<group>"; };
 		84172B142302BDBC008FA9EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84172B1F2302C1C0008FA9EE /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		84DAD5052328F8E6000F691B /* requestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = requestTableViewController.swift; sourceTree = "<group>"; };
 		84EF429C230ED0D100A402C8 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		84EF429E230ED14500A402C8 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		84F888402309E6FD00F38085 /* ecelectricTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ecelectricTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84F888402309E6FD00F38085 /* EC-onlineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EC-onlineTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F888422309E6FD00F38085 /* ecelectricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecelectricTests.swift; sourceTree = "<group>"; };
 		84F888442309E6FD00F38085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NepodtvTableViewCell.swift; sourceTree = "<group>"; };
@@ -125,9 +125,9 @@
 		84172AE823029C9A008FA9EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84172AE723029C9A008FA9EE /* ecelectric.app */,
-				84172B102302BDBC008FA9EE /* ecelectricUITests.xctest */,
-				84F888402309E6FD00F38085 /* ecelectricTests.xctest */,
+				84172AE723029C9A008FA9EE /* EC-online.app */,
+				84172B102302BDBC008FA9EE /* EC-onlineUITests.xctest */,
+				84F888402309E6FD00F38085 /* EC-onlineTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,9 +210,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84172AE623029C9A008FA9EE /* ecelectric */ = {
+		84172AE623029C9A008FA9EE /* EC-online */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84172AF923029C9F008FA9EE /* Build configuration list for PBXNativeTarget "ecelectric" */;
+			buildConfigurationList = 84172AF923029C9F008FA9EE /* Build configuration list for PBXNativeTarget "EC-online" */;
 			buildPhases = (
 				84172AE323029C9A008FA9EE /* Sources */,
 				84172AE423029C9A008FA9EE /* Frameworks */,
@@ -222,14 +222,14 @@
 			);
 			dependencies = (
 			);
-			name = ecelectric;
+			name = "EC-online";
 			productName = TestCollectionView;
-			productReference = 84172AE723029C9A008FA9EE /* ecelectric.app */;
+			productReference = 84172AE723029C9A008FA9EE /* EC-online.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84172B0F2302BDBC008FA9EE /* ecelectricUITests */ = {
+		84172B0F2302BDBC008FA9EE /* EC-onlineUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84172B172302BDBC008FA9EE /* Build configuration list for PBXNativeTarget "ecelectricUITests" */;
+			buildConfigurationList = 84172B172302BDBC008FA9EE /* Build configuration list for PBXNativeTarget "EC-onlineUITests" */;
 			buildPhases = (
 				84172B0C2302BDBC008FA9EE /* Sources */,
 				84172B0D2302BDBC008FA9EE /* Frameworks */,
@@ -240,14 +240,14 @@
 			dependencies = (
 				84172B162302BDBC008FA9EE /* PBXTargetDependency */,
 			);
-			name = ecelectricUITests;
+			name = "EC-onlineUITests";
 			productName = ecelectircUITests;
-			productReference = 84172B102302BDBC008FA9EE /* ecelectricUITests.xctest */;
+			productReference = 84172B102302BDBC008FA9EE /* EC-onlineUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		84F8883F2309E6FD00F38085 /* ecelectricTests */ = {
+		84F8883F2309E6FD00F38085 /* EC-onlineTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84F888472309E6FD00F38085 /* Build configuration list for PBXNativeTarget "ecelectricTests" */;
+			buildConfigurationList = 84F888472309E6FD00F38085 /* Build configuration list for PBXNativeTarget "EC-onlineTests" */;
 			buildPhases = (
 				84F8883C2309E6FD00F38085 /* Sources */,
 				84F8883D2309E6FD00F38085 /* Frameworks */,
@@ -258,9 +258,9 @@
 			dependencies = (
 				84F888462309E6FD00F38085 /* PBXTargetDependency */,
 			);
-			name = ecelectricTests;
+			name = "EC-onlineTests";
 			productName = ecelectricTests1;
-			productReference = 84F888402309E6FD00F38085 /* ecelectricTests.xctest */;
+			productReference = 84F888402309E6FD00F38085 /* EC-onlineTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -300,9 +300,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				84172AE623029C9A008FA9EE /* ecelectric */,
-				84F8883F2309E6FD00F38085 /* ecelectricTests */,
-				84172B0F2302BDBC008FA9EE /* ecelectricUITests */,
+				84172AE623029C9A008FA9EE /* EC-online */,
+				84F8883F2309E6FD00F38085 /* EC-onlineTests */,
+				84172B0F2302BDBC008FA9EE /* EC-onlineUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -383,12 +383,12 @@
 /* Begin PBXTargetDependency section */
 		84172B162302BDBC008FA9EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84172AE623029C9A008FA9EE /* ecelectric */;
+			target = 84172AE623029C9A008FA9EE /* EC-online */;
 			targetProxy = 84172B152302BDBC008FA9EE /* PBXContainerItemProxy */;
 		};
 		84F888462309E6FD00F38085 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84172AE623029C9A008FA9EE /* ecelectric */;
+			target = 84172AE623029C9A008FA9EE /* EC-online */;
 			targetProxy = 84F888452309E6FD00F38085 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -658,7 +658,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84172AF923029C9F008FA9EE /* Build configuration list for PBXNativeTarget "ecelectric" */ = {
+		84172AF923029C9F008FA9EE /* Build configuration list for PBXNativeTarget "EC-online" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84172AFA23029C9F008FA9EE /* Debug */,
@@ -667,7 +667,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84172B172302BDBC008FA9EE /* Build configuration list for PBXNativeTarget "ecelectricUITests" */ = {
+		84172B172302BDBC008FA9EE /* Build configuration list for PBXNativeTarget "EC-onlineUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84172B182302BDBC008FA9EE /* Debug */,
@@ -676,7 +676,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84F888472309E6FD00F38085 /* Build configuration list for PBXNativeTarget "ecelectricTests" */ = {
+		84F888472309E6FD00F38085 /* Build configuration list for PBXNativeTarget "EC-onlineTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84F888482309E6FD00F38085 /* Debug */,

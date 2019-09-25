@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "84172AE623029C9A008FA9EE"
-               BuildableName = "ecelectric.app"
-               BlueprintName = "ecelectric"
+               BuildableName = "EC-online.app"
+               BlueprintName = "EC-online"
                ReferencedContainer = "container:ecelectric.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "84F8883F2309E6FD00F38085"
-               BuildableName = "ecelectricTests.xctest"
-               BlueprintName = "ecelectricTests"
+               BuildableName = "EC-onlineTests.xctest"
+               BlueprintName = "EC-onlineTests"
                ReferencedContainer = "container:ecelectric.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84172AE623029C9A008FA9EE"
-            BuildableName = "ecelectric.app"
-            BlueprintName = "ecelectric"
+            BuildableName = "EC-online.app"
+            BlueprintName = "EC-online"
             ReferencedContainer = "container:ecelectric.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84172AE623029C9A008FA9EE"
-            BuildableName = "ecelectric.app"
-            BlueprintName = "ecelectric"
+            BuildableName = "EC-online.app"
+            BlueprintName = "EC-online"
             ReferencedContainer = "container:ecelectric.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -84,8 +84,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84172AE623029C9A008FA9EE"
-            BuildableName = "ecelectric.app"
-            BlueprintName = "ecelectric"
+            BuildableName = "EC-online.app"
+            BlueprintName = "EC-online"
             ReferencedContainer = "container:ecelectric.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

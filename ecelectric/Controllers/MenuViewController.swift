@@ -13,7 +13,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    let imageArray = [UIImage(named: "check_existence"), UIImage(named: "make_order"), UIImage(named: "cart"), UIImage(named: "nepodtv"), UIImage(named: "reserves"), UIImage(named: "orders"), UIImage(named: "annul"), UIImage(named: "history")]
+    let imageArray = [UIImage(named: "request"), UIImage(named: "order"), UIImage(named: "basket"), UIImage(named: "unconfirmed"), UIImage(named: "reserved"), UIImage(named: "ordered"), UIImage(named: "canceled"), UIImage(named: "shipped")]
     
     let nameArray = ["Проверка наличия товара", "Сделать заказ", "Корзина", "Неподтвержденные заказы" ,"Резервы", "Заказы", "Анулированные и просроченные счета", "История отгрузок"]
     
