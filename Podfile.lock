@@ -1,0 +1,16 @@
+PODS:
+  - iLoader (1.0.2)
+
+DEPENDENCIES:
+  - iLoader
+
+SPEC REPOS:
+  trunk:
+    - iLoader
+
+SPEC CHECKSUMS:
+  iLoader: ef405e3c459e15df4f26fed2834f57bb262f67aa
+
+PODFILE CHECKSUM: c87dedb718f1fb07f869d95d42dd4e6fe73ef5c4
+
+COCOAPODS: 1.8.3

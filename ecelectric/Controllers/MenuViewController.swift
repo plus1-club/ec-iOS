@@ -25,6 +25,24 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         sideMenu()
     }
 
+    @IBAction func logoutTapped(_ sender: UIButton) {
+        if let app = UIApplication.shared.delegate as? AppDelegate, let window = app.window {
+            
+            EcElectirc.shared.user.logout(successBlock: {
+            
+                Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.ID)
+                Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.PASSWORD)
+                Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.synchronize()
+                
+                window.rootViewController = self.storyboard?.instantiateInitialViewController()
+                window.makeKeyAndVisible()
+            }) { (error) in
+                Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            }
+            
+        }
+    }
+    
     func sideMenu() {
         
         if revealViewController() != nil {
