@@ -50,7 +50,11 @@ class User {
                         }
                     }
             }
-            
+            else {
+                DispatchQueue.main.async {
+                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                }
+            }
 
 
         }) { (error) in
@@ -95,7 +99,11 @@ class User {
                         }
                     }
             }
-            
+            else {
+                DispatchQueue.main.async {
+                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                }
+            }
 
 
         }) { (error) in

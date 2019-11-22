@@ -7,6 +7,8 @@ target 'EC-online' do
 
   # Pods for EC-online
   pod 'iLoader'
+  pod 'IQKeyboardManagerSwift'
+
   target 'EC-onlineTests' do
     inherit! :search_paths
     # Pods for testing

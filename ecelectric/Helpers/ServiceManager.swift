@@ -30,17 +30,20 @@ class ServiceManager: NSObject {
             
             var headers = [
                 "content-type": "application/json",
-                "cache-control": "no-cache"
+                "Accept": "application/json",
+                "cache-control": "no-cache",
             ]
             
             if Utilities.isValidString(str: EcElectirc.shared.user.token) {
-                headers["Authorization"] = EcElectirc.shared.user.token
+                headers["user_token"] = EcElectirc.shared.user.token
             }
-            print("Authorization TOKEN : \(EcElectirc.shared.user.token)")
+            
+            print("headers : \(headers)")
             
             
             do {
                 print("Service URL : \(serviceURL)")
+                print("Service METHOD : \(requestType)")
                 
                 var postData : Data? = nil
                 if parameters != nil {

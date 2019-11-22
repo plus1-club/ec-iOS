@@ -13,8 +13,10 @@ class requestTableViewCell: UITableViewCell {
     @IBOutlet weak var invoiceNumber1: UILabel!
     @IBOutlet weak var invoiceAmount1: UILabel!
     @IBOutlet weak var itemPrice1: UILabel!
+    @IBOutlet weak var qty: UITextField!
     
     @IBOutlet weak var circleIcon: UILabel!
+    @IBOutlet weak var deleteItem: UIButton!
     
     
     override func awakeFromNib() {
