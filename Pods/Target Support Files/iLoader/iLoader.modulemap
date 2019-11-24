@@ -1,0 +1,6 @@
+framework module iLoader {
+  umbrella header "iLoader-umbrella.h"
+
+  export *
+  module * { export * }
+}

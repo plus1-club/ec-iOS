@@ -1,0 +1,6 @@
+framework module Pods_EC_online_EC_onlineUITests {
+  umbrella header "Pods-EC-online-EC-onlineUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

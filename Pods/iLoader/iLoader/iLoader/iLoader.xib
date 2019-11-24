@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SanFranciscoDisplay-Bold.otf">
+            <string>SanFranciscoDisplay-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iLoader" customModule="iLoader" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="rHF-we-2Co" id="5qa-E8-tJO"/>
+                <outlet property="containerView" destination="PDS-Sx-jdM" id="nD9-OQ-o0D"/>
+                <outlet property="mainActivityIndicatorView" destination="8js-y0-THu" id="k4c-md-Sdh"/>
+                <outlet property="nslcTitleLabelLeading" destination="3dK-vv-1zd" id="XHK-aD-yoa"/>
+                <outlet property="nslcTitleLabelTrailing" destination="Cpw-bH-ayz" id="Gng-fU-jx9"/>
+                <outlet property="titleLabel" destination="DOv-1L-8WC" id="g8u-xA-JSj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="8js-y0-THu">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="PDS-Sx-jdM">
+                    <rect key="frame" x="136.5" y="429.5" width="141" height="47"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rHF-we-2Co">
+                            <rect key="frame" x="10" y="5" width="37" height="37"/>
+                            <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOv-1L-8WC">
+                            <rect key="frame" x="55" y="13.5" width="76" height="20"/>
+                            <fontDescription key="fontDescription" name="SanFranciscoDisplay-Bold" family="San Francisco Display" pointSize="17"/>
+                            <color key="textColor" red="1" green="0.83921568629999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="DOv-1L-8WC" firstAttribute="leading" secondItem="rHF-we-2Co" secondAttribute="trailing" constant="8" id="3dK-vv-1zd"/>
+                        <constraint firstAttribute="trailing" secondItem="DOv-1L-8WC" secondAttribute="trailing" constant="10" id="Cpw-bH-ayz"/>
+                        <constraint firstItem="rHF-we-2Co" firstAttribute="top" secondItem="NNn-xD-ARu" secondAttribute="top" constant="5" id="ULb-mU-4v2"/>
+                        <constraint firstItem="DOv-1L-8WC" firstAttribute="centerY" secondItem="PDS-Sx-jdM" secondAttribute="centerY" id="dhe-RR-7ma"/>
+                        <constraint firstItem="rHF-we-2Co" firstAttribute="centerY" secondItem="NNn-xD-ARu" secondAttribute="centerY" id="hHo-Th-ItV"/>
+                        <constraint firstItem="NNn-xD-ARu" firstAttribute="bottom" secondItem="rHF-we-2Co" secondAttribute="bottom" constant="5" id="nPg-sh-S8f"/>
+                        <constraint firstItem="rHF-we-2Co" firstAttribute="leading" secondItem="NNn-xD-ARu" secondAttribute="leading" constant="10" id="pq9-NJ-rH1"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="NNn-xD-ARu"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="PDS-Sx-jdM" firstAttribute="centerX" secondItem="dB7-rH-8qR" secondAttribute="centerX" id="Ccj-QG-D2y"/>
+                <constraint firstItem="PDS-Sx-jdM" firstAttribute="centerY" secondItem="dB7-rH-8qR" secondAttribute="centerY" id="Ln2-z2-uVE"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="dB7-rH-8qR"/>
+        </view>
+    </objects>
+</document>
