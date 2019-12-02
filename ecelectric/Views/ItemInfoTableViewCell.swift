@@ -1,18 +1,21 @@
 //
-//  canceledTableViewCell.swift
-//  ecelectric
+//  ItemInfoTableViewCell.swift
+//  EC-online
 //
-//  Created by Sam on 11/09/2019.
+//  Created by Dhaval Dobariya on 29/11/19.
 //  Copyright © 2019 Samir Azizov. All rights reserved.
 //
 
 import UIKit
 
-class canceledTableViewCell: UITableViewCell {
+class ItemInfoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var invoiceNumber1: UILabel!
-    @IBOutlet weak var invoiceAmount1: UILabel!
-    @IBOutlet weak var invoiceDetailsButton: Button!
+    static let cellIdentifier = "itemsTableCell"
+    
+    @IBOutlet weak var isSelectedItem: UIButton!
+    @IBOutlet weak var qty: UITextField!
+    @IBOutlet weak var stockStatus: UILabel!
+    @IBOutlet weak var productName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

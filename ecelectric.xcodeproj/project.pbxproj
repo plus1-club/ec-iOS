@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0066FB85D02CFF10E3178784 /* Pods_EC_online.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1A240A50E161017C5BC93BE /* Pods_EC_online.framework */; };
-		35D65FE05D4F79DC328F7279 /* Pods_EC_online_EC_onlineUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5AE8AFB7C5BAE229C3BD6F /* Pods_EC_online_EC_onlineUITests.framework */; };
+		71F01F7091CCD1BD4D7C033B /* Pods_EC_online.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205A556B2F843013B4182F0A /* Pods_EC_online.framework */; };
 		7F3548D4237F99F8009772D3 /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3548D3237F99F8009772D3 /* Bucket.swift */; };
+		7F3C525C23913AD900EA9373 /* ItemInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C525B23913AD900EA9373 /* ItemInfoTableViewCell.swift */; };
+		7F51B6702390D374009580AA /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51B66F2390D374009580AA /* Invoice.swift */; };
+		7F51B6722390E613009580AA /* UnconfirmedOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51B6712390E613009580AA /* UnconfirmedOrderDetailsViewController.swift */; };
+		7F51B6742390EAD4009580AA /* UnconfirmedOrderDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51B6732390EAD4009580AA /* UnconfirmedOrderDetailsTableViewCell.swift */; };
+		7F51B6762390EFA7009580AA /* InvoiceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51B6752390EFA7009580AA /* InvoiceDetails.swift */; };
 		7F7F3A8F237B9B2E001BFFC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F3A8E237B9B2E001BFFC9 /* User.swift */; };
 		7F7F3A92237B9C76001BFFC9 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F3A91237B9C76001BFFC9 /* ServiceManager.swift */; };
 		7F7F3A94237B9CA0001BFFC9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F3A93237B9CA0001BFFC9 /* NetworkManager.swift */; };
@@ -17,6 +21,9 @@
 		7F7F3A98237B9D83001BFFC9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F3A97237B9D83001BFFC9 /* Utilities.swift */; };
 		7F7F3A9A237B9E05001BFFC9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F3A99237B9E05001BFFC9 /* Constants.swift */; };
 		7F7F3A9C237BAB12001BFFC9 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F3A9B237BAB12001BFFC9 /* SideMenuTableViewController.swift */; };
+		7F8B3EAA239111EA007CE49B /* CanceledOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8B3EA9239111EA007CE49B /* CanceledOrderDetailsViewController.swift */; };
+		7F8B3EAC239118D1007CE49B /* CanceledOrderDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8B3EAB239118D1007CE49B /* CanceledOrderDetailsTableViewCell.swift */; };
+		7F8B3EAE2391250C007CE49B /* DownloadExcelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8B3EAD2391250C007CE49B /* DownloadExcelViewController.swift */; };
 		7F9F72492386B76E0019E5FC /* CheckTheAvailibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9F72482386B76E0019E5FC /* CheckTheAvailibilityViewController.swift */; };
 		7F9F724B2386C3FC0019E5FC /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9F724A2386C3FC0019E5FC /* ItemListViewController.swift */; };
 		84172AEB23029C9A008FA9EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172AEA23029C9A008FA9EE /* AppDelegate.swift */; };
@@ -45,7 +52,8 @@
 		84F888432309E6FD00F38085 /* ecelectricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F888422309E6FD00F38085 /* ecelectricTests.swift */; };
 		84F8884B2309EE5F00F38085 /* NepodtvTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */; };
 		84F8884D2309F0B100F38085 /* NepodtvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884C2309F0B100F38085 /* NepodtvViewController.swift */; };
-		A03EAEFFBFC91FAA743B19E5 /* Pods_EC_onlineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D501FF903324CD54154BBEF /* Pods_EC_onlineTests.framework */; };
+		C0C3EBEF80814FFB87358C7B /* Pods_EC_online_EC_onlineUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD64AE54C0BDD257B164B /* Pods_EC_online_EC_onlineUITests.framework */; };
+		D8919F9FCCA8BD058979C26E /* Pods_EC_onlineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83B508AE36FD7673962E622 /* Pods_EC_onlineTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,10 +74,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		49351D6CF2D0D459719CBC8B /* Pods-EC-onlineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-onlineTests.release.xcconfig"; path = "Target Support Files/Pods-EC-onlineTests/Pods-EC-onlineTests.release.xcconfig"; sourceTree = "<group>"; };
-		62FFDDFB3C3B9C1B0CD3A901 /* Pods-EC-online-EC-onlineUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online-EC-onlineUITests.release.xcconfig"; path = "Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests.release.xcconfig"; sourceTree = "<group>"; };
-		74898E624BCCEC40E72C94BF /* Pods-EC-online.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online.debug.xcconfig"; path = "Target Support Files/Pods-EC-online/Pods-EC-online.debug.xcconfig"; sourceTree = "<group>"; };
+		13512E54EF415E654328C703 /* Pods-EC-onlineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-onlineTests.debug.xcconfig"; path = "Target Support Files/Pods-EC-onlineTests/Pods-EC-onlineTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2048F390DB217D81D68DEC37 /* Pods-EC-online-EC-onlineUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online-EC-onlineUITests.release.xcconfig"; path = "Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests.release.xcconfig"; sourceTree = "<group>"; };
+		205A556B2F843013B4182F0A /* Pods_EC_online.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EC_online.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28EA46A5FBB33EF0109BAC34 /* Pods-EC-online.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online.debug.xcconfig"; path = "Target Support Files/Pods-EC-online/Pods-EC-online.debug.xcconfig"; sourceTree = "<group>"; };
+		4FD9BC3E144AC8452E4D078E /* Pods-EC-online-EC-onlineUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online-EC-onlineUITests.debug.xcconfig"; path = "Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7F3548D3237F99F8009772D3 /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
+		7F3C525B23913AD900EA9373 /* ItemInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoTableViewCell.swift; sourceTree = "<group>"; };
+		7F51B66F2390D374009580AA /* Invoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
+		7F51B6712390E613009580AA /* UnconfirmedOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnconfirmedOrderDetailsViewController.swift; sourceTree = "<group>"; };
+		7F51B6732390EAD4009580AA /* UnconfirmedOrderDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnconfirmedOrderDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		7F51B6752390EFA7009580AA /* InvoiceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceDetails.swift; sourceTree = "<group>"; };
 		7F7F3A8E237B9B2E001BFFC9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7F7F3A91237B9C76001BFFC9 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		7F7F3A93237B9CA0001BFFC9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -77,6 +92,9 @@
 		7F7F3A97237B9D83001BFFC9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		7F7F3A99237B9E05001BFFC9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F7F3A9B237BAB12001BFFC9 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		7F8B3EA9239111EA007CE49B /* CanceledOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanceledOrderDetailsViewController.swift; sourceTree = "<group>"; };
+		7F8B3EAB239118D1007CE49B /* CanceledOrderDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanceledOrderDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		7F8B3EAD2391250C007CE49B /* DownloadExcelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadExcelViewController.swift; sourceTree = "<group>"; };
 		7F9F72482386B76E0019E5FC /* CheckTheAvailibilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTheAvailibilityViewController.swift; sourceTree = "<group>"; };
 		7F9F724A2386C3FC0019E5FC /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		84172AE723029C9A008FA9EE /* EC-online.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EC-online.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,12 +131,10 @@
 		84F888442309E6FD00F38085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NepodtvTableViewCell.swift; sourceTree = "<group>"; };
 		84F8884C2309F0B100F38085 /* NepodtvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NepodtvViewController.swift; sourceTree = "<group>"; };
-		8A980273B78074541F3CB878 /* Pods-EC-onlineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-onlineTests.debug.xcconfig"; path = "Target Support Files/Pods-EC-onlineTests/Pods-EC-onlineTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8D501FF903324CD54154BBEF /* Pods_EC_onlineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EC_onlineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1A240A50E161017C5BC93BE /* Pods_EC_online.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EC_online.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C97417EB7FC4BA62670D91E9 /* Pods-EC-online-EC-onlineUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online-EC-onlineUITests.debug.xcconfig"; path = "Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		CB735C4898CCFEAFAA87D692 /* Pods-EC-online.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online.release.xcconfig"; path = "Target Support Files/Pods-EC-online/Pods-EC-online.release.xcconfig"; sourceTree = "<group>"; };
-		CC5AE8AFB7C5BAE229C3BD6F /* Pods_EC_online_EC_onlineUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EC_online_EC_onlineUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3A5B6A1D2AE46934D3B8E00 /* Pods-EC-onlineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-onlineTests.release.xcconfig"; path = "Target Support Files/Pods-EC-onlineTests/Pods-EC-onlineTests.release.xcconfig"; sourceTree = "<group>"; };
+		BF4FD64AE54C0BDD257B164B /* Pods_EC_online_EC_onlineUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EC_online_EC_onlineUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F83B508AE36FD7673962E622 /* Pods_EC_onlineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EC_onlineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAF8595110669052DF5A0708 /* Pods-EC-online.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online.release.xcconfig"; path = "Target Support Files/Pods-EC-online/Pods-EC-online.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0066FB85D02CFF10E3178784 /* Pods_EC_online.framework in Frameworks */,
+				71F01F7091CCD1BD4D7C033B /* Pods_EC_online.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35D65FE05D4F79DC328F7279 /* Pods_EC_online_EC_onlineUITests.framework in Frameworks */,
+				C0C3EBEF80814FFB87358C7B /* Pods_EC_online_EC_onlineUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A03EAEFFBFC91FAA743B19E5 /* Pods_EC_onlineTests.framework in Frameworks */,
+				D8919F9FCCA8BD058979C26E /* Pods_EC_onlineTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,24 +168,14 @@
 		155230002850882E707E3C82 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				74898E624BCCEC40E72C94BF /* Pods-EC-online.debug.xcconfig */,
-				CB735C4898CCFEAFAA87D692 /* Pods-EC-online.release.xcconfig */,
-				C97417EB7FC4BA62670D91E9 /* Pods-EC-online-EC-onlineUITests.debug.xcconfig */,
-				62FFDDFB3C3B9C1B0CD3A901 /* Pods-EC-online-EC-onlineUITests.release.xcconfig */,
-				8A980273B78074541F3CB878 /* Pods-EC-onlineTests.debug.xcconfig */,
-				49351D6CF2D0D459719CBC8B /* Pods-EC-onlineTests.release.xcconfig */,
+				28EA46A5FBB33EF0109BAC34 /* Pods-EC-online.debug.xcconfig */,
+				FAF8595110669052DF5A0708 /* Pods-EC-online.release.xcconfig */,
+				4FD9BC3E144AC8452E4D078E /* Pods-EC-online-EC-onlineUITests.debug.xcconfig */,
+				2048F390DB217D81D68DEC37 /* Pods-EC-online-EC-onlineUITests.release.xcconfig */,
+				13512E54EF415E654328C703 /* Pods-EC-onlineTests.debug.xcconfig */,
+				A3A5B6A1D2AE46934D3B8E00 /* Pods-EC-onlineTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		22F1535A6BFAE0C436E81573 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A1A240A50E161017C5BC93BE /* Pods_EC_online.framework */,
-				CC5AE8AFB7C5BAE229C3BD6F /* Pods_EC_online_EC_onlineUITests.framework */,
-				8D501FF903324CD54154BBEF /* Pods_EC_onlineTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7F7F3A8D237B9AB9001BFFC9 /* Models */ = {
@@ -177,6 +183,8 @@
 			children = (
 				7F7F3A8E237B9B2E001BFFC9 /* User.swift */,
 				7F3548D3237F99F8009772D3 /* Bucket.swift */,
+				7F51B66F2390D374009580AA /* Invoice.swift */,
+				7F51B6752390EFA7009580AA /* InvoiceDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,7 +209,7 @@
 				84172B112302BDBC008FA9EE /* ecelectricUITests */,
 				84172AE823029C9A008FA9EE /* Products */,
 				155230002850882E707E3C82 /* Pods */,
-				22F1535A6BFAE0C436E81573 /* Frameworks */,
+				A4442A2E1C8550F246C702F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,15 +256,18 @@
 				84172AEC23029C9A008FA9EE /* MenuViewController.swift */,
 				84931BCC2302E1F3009501B6 /* OrderViewController.swift */,
 				84F8884C2309F0B100F38085 /* NepodtvViewController.swift */,
+				7F51B6712390E613009580AA /* UnconfirmedOrderDetailsViewController.swift */,
+				8455DEF7232893B6005FC055 /* сanceledViewController.swift */,
+				7F8B3EA9239111EA007CE49B /* CanceledOrderDetailsViewController.swift */,
+				84DAD4FF2328E17A000F691B /* reservedViewController.swift */,
 				84879282232155EE006CBC17 /* checkByRequestViewController.swift */,
 				8455DEF52328873F005FC055 /* orderByRequestViewController.swift */,
-				8455DEF7232893B6005FC055 /* сanceledViewController.swift */,
 				84DAD4FD2328D886000F691B /* shippedViewController.swift */,
-				84DAD4FF2328E17A000F691B /* reservedViewController.swift */,
 				84DAD5052328F8E6000F691B /* requestTableViewController.swift */,
 				84BDB393235647580014C6F2 /* orderDetailsViewController.swift */,
 				7F7F3A9B237BAB12001BFFC9 /* SideMenuTableViewController.swift */,
 				7F9F72482386B76E0019E5FC /* CheckTheAvailibilityViewController.swift */,
+				7F8B3EAD2391250C007CE49B /* DownloadExcelViewController.swift */,
 				7F9F724A2386C3FC0019E5FC /* ItemListViewController.swift */,
 			);
 			path = Controllers;
@@ -268,10 +279,13 @@
 				84172AFC23029E6B008FA9EE /* MenuCollectionViewCell.swift */,
 				84931BCA2302E033009501B6 /* OrderTableViewCell.swift */,
 				84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */,
+				7F51B6732390EAD4009580AA /* UnconfirmedOrderDetailsTableViewCell.swift */,
 				8473E15F2328A64300D394A0 /* canceledTableViewCell.swift */,
+				7F8B3EAB239118D1007CE49B /* CanceledOrderDetailsTableViewCell.swift */,
 				84DAD4F92328D7B5000F691B /* shippedTableViewCell.swift */,
 				84DAD5012328E265000F691B /* reservedTableViewCell.swift */,
 				84DAD5032328F8C2000F691B /* requestTableViewCell.swift */,
+				7F3C525B23913AD900EA9373 /* ItemInfoTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -296,6 +310,16 @@
 			path = ecelectricTests;
 			sourceTree = "<group>";
 		};
+		A4442A2E1C8550F246C702F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				205A556B2F843013B4182F0A /* Pods_EC_online.framework */,
+				BF4FD64AE54C0BDD257B164B /* Pods_EC_online_EC_onlineUITests.framework */,
+				F83B508AE36FD7673962E622 /* Pods_EC_onlineTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -303,11 +327,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84172AF923029C9F008FA9EE /* Build configuration list for PBXNativeTarget "EC-online" */;
 			buildPhases = (
-				5A744C4AB8D45B85EE0C2FF4 /* [CP] Check Pods Manifest.lock */,
+				9F7750C3E4A6C4333A3A04BA /* [CP] Check Pods Manifest.lock */,
 				84172AE323029C9A008FA9EE /* Sources */,
 				84172AE423029C9A008FA9EE /* Frameworks */,
 				84172AE523029C9A008FA9EE /* Resources */,
-				6535E5C3D8AD0DB25E178372 /* [CP] Embed Pods Frameworks */,
+				DC0B2B3957B6564D02A760CE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -322,11 +346,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84172B172302BDBC008FA9EE /* Build configuration list for PBXNativeTarget "EC-onlineUITests" */;
 			buildPhases = (
-				00211C520041E0F3643D58D3 /* [CP] Check Pods Manifest.lock */,
+				07DE9C4C539F4A1158DA2438 /* [CP] Check Pods Manifest.lock */,
 				84172B0C2302BDBC008FA9EE /* Sources */,
 				84172B0D2302BDBC008FA9EE /* Frameworks */,
 				84172B0E2302BDBC008FA9EE /* Resources */,
-				32A852EBA7FEE2EBD8445529 /* [CP] Embed Pods Frameworks */,
+				C70B1C14ABF1669DBBFCD4C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -342,7 +366,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84F888472309E6FD00F38085 /* Build configuration list for PBXNativeTarget "EC-onlineTests" */;
 			buildPhases = (
-				2ACA4823A3D870AE49DE3D3F /* [CP] Check Pods Manifest.lock */,
+				FF0B6A3A197DAC3CDF79B1E6 /* [CP] Check Pods Manifest.lock */,
 				84F8883C2309E6FD00F38085 /* Sources */,
 				84F8883D2309E6FD00F38085 /* Frameworks */,
 				84F8883E2309E6FD00F38085 /* Resources */,
@@ -429,7 +453,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00211C520041E0F3643D58D3 /* [CP] Check Pods Manifest.lock */ = {
+		07DE9C4C539F4A1158DA2438 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -451,46 +475,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2ACA4823A3D870AE49DE3D3F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EC-onlineTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		32A852EBA7FEE2EBD8445529 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5A744C4AB8D45B85EE0C2FF4 /* [CP] Check Pods Manifest.lock */ = {
+		9F7750C3E4A6C4333A3A04BA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -512,7 +497,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6535E5C3D8AD0DB25E178372 /* [CP] Embed Pods Frameworks */ = {
+		C70B1C14ABF1669DBBFCD4C1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC0B2B3957B6564D02A760CE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -529,6 +531,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EC-online/Pods-EC-online-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FF0B6A3A197DAC3CDF79B1E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EC-onlineTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -543,7 +567,9 @@
 				7F7F3A98237B9D83001BFFC9 /* Utilities.swift in Sources */,
 				84DAD5002328E17A000F691B /* reservedViewController.swift in Sources */,
 				84F8884B2309EE5F00F38085 /* NepodtvTableViewCell.swift in Sources */,
+				7F8B3EAA239111EA007CE49B /* CanceledOrderDetailsViewController.swift in Sources */,
 				84DAD5022328E265000F691B /* reservedTableViewCell.swift in Sources */,
+				7F51B6722390E613009580AA /* UnconfirmedOrderDetailsViewController.swift in Sources */,
 				7F7F3A96237B9D27001BFFC9 /* EcElectirc.swift in Sources */,
 				84F8884D2309F0B100F38085 /* NepodtvViewController.swift in Sources */,
 				8473E1602328A64300D394A0 /* canceledTableViewCell.swift in Sources */,
@@ -555,11 +581,17 @@
 				84DAD4FA2328D7B5000F691B /* shippedTableViewCell.swift in Sources */,
 				84931BCD2302E1F3009501B6 /* OrderViewController.swift in Sources */,
 				84172AFD23029E6B008FA9EE /* MenuCollectionViewCell.swift in Sources */,
+				7F8B3EAC239118D1007CE49B /* CanceledOrderDetailsTableViewCell.swift in Sources */,
 				84DAD5062328F8E6000F691B /* requestTableViewController.swift in Sources */,
 				84EF429D230ED0D100A402C8 /* SWRevealViewController.m in Sources */,
+				7F51B6702390D374009580AA /* Invoice.swift in Sources */,
 				84BDB394235647580014C6F2 /* orderDetailsViewController.swift in Sources */,
 				7F9F724B2386C3FC0019E5FC /* ItemListViewController.swift in Sources */,
 				7F3548D4237F99F8009772D3 /* Bucket.swift in Sources */,
+				7F3C525C23913AD900EA9373 /* ItemInfoTableViewCell.swift in Sources */,
+				7F51B6762390EFA7009580AA /* InvoiceDetails.swift in Sources */,
+				7F51B6742390EAD4009580AA /* UnconfirmedOrderDetailsTableViewCell.swift in Sources */,
+				7F8B3EAE2391250C007CE49B /* DownloadExcelViewController.swift in Sources */,
 				84DAD5042328F8C2000F691B /* requestTableViewCell.swift in Sources */,
 				84172AEB23029C9A008FA9EE /* AppDelegate.swift in Sources */,
 				84172B202302C1C0008FA9EE /* Button.swift in Sources */,
@@ -739,12 +771,12 @@
 		};
 		84172AFA23029C9F008FA9EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74898E624BCCEC40E72C94BF /* Pods-EC-online.debug.xcconfig */;
+			baseConfigurationReference = 28EA46A5FBB33EF0109BAC34 /* Pods-EC-online.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X889W2W8F6;
+				DEVELOPMENT_TEAM = HK44KZPRS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -761,12 +793,12 @@
 		};
 		84172AFB23029C9F008FA9EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB735C4898CCFEAFAA87D692 /* Pods-EC-online.release.xcconfig */;
+			baseConfigurationReference = FAF8595110669052DF5A0708 /* Pods-EC-online.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X889W2W8F6;
+				DEVELOPMENT_TEAM = HK44KZPRS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -782,7 +814,7 @@
 		};
 		84172B182302BDBC008FA9EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C97417EB7FC4BA62670D91E9 /* Pods-EC-online-EC-onlineUITests.debug.xcconfig */;
+			baseConfigurationReference = 4FD9BC3E144AC8452E4D078E /* Pods-EC-online-EC-onlineUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ecelectircUITests/Info.plist;
@@ -801,7 +833,7 @@
 		};
 		84172B192302BDBC008FA9EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62FFDDFB3C3B9C1B0CD3A901 /* Pods-EC-online-EC-onlineUITests.release.xcconfig */;
+			baseConfigurationReference = 2048F390DB217D81D68DEC37 /* Pods-EC-online-EC-onlineUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ecelectircUITests/Info.plist;
@@ -820,7 +852,7 @@
 		};
 		84F888482309E6FD00F38085 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A980273B78074541F3CB878 /* Pods-EC-onlineTests.debug.xcconfig */;
+			baseConfigurationReference = 13512E54EF415E654328C703 /* Pods-EC-onlineTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -841,7 +873,7 @@
 		};
 		84F888492309E6FD00F38085 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49351D6CF2D0D459719CBC8B /* Pods-EC-onlineTests.release.xcconfig */;
+			baseConfigurationReference = A3A5B6A1D2AE46934D3B8E00 /* Pods-EC-onlineTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

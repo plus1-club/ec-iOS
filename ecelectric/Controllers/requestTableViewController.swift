@@ -10,6 +10,7 @@ import UIKit
 
 class requestTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var comment: UITextField!
     @IBOutlet weak var requestTableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var grandTotal: UILabel!
@@ -20,15 +21,29 @@ class requestTableViewController: UIViewController, UITableViewDataSource, UITab
     let itemPrice1 = [("Цена: 2141,81"), ("Цена: 151,65"), ("Цена: 159,29"), ("Цена: 162,74"), ("Цена: 162,74")]
     */
     var buckets = [Bucket]()
-    
+    var refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         requestTableView.delegate = self
         requestTableView.dataSource = self
-        requestTableView.rowHeight = 70
+        requestTableView.estimatedRowHeight = 70
+        requestTableView.tableFooterView = UIView()
+
         setupSideMenu()
         
+        getBucket()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+        requestTableView.addSubview(refreshControl) // not required when using UITableViewController
+
+    }
+    
+    //MARK: Refresh Data
+    @objc func refresh(sender:AnyObject) {
+       // Code to refresh table view
         getBucket()
     }
     
@@ -38,8 +53,11 @@ class requestTableViewController: UIViewController, UITableViewDataSource, UITab
             self.buckets = buckets
             self.requestTableView.reloadData()
             self.calculateGrandTotal()
+            self.refreshControl.endRefreshing()
+
         }) { (error) in
             Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            self.refreshControl.endRefreshing()
 
         }
     }
@@ -72,21 +90,31 @@ class requestTableViewController: UIViewController, UITableViewDataSource, UITab
     @IBAction func addTapped(_ sender: Button) {
         let navController = self.storyboard?.instantiateViewController(withIdentifier: "checkAvailableProductNavigation") as! UINavigationController
         self.revealViewController()?.setFront(navController, animated: true)
-
     }
     
     @IBAction func checkoutTapped(_ sender: Button) {
+        Bucket().createOrder(buckets: self.buckets, comment: comment.text ?? "", successBlock: {
+            Utilities.showAlert(strTitle: "Заказ размещен!", strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+
+        }) { (error) in
+            Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+        }
+        
+        /*
         Bucket().updateBucket(buckets: self.buckets, successBlock: {
             Utilities.showAlert(strTitle: "Bucket successfully updated !!", strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
 
         }) { (error) in
             Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
         }
+         */
     }
     
     @IBAction func deleteTapped(_ sender: Button) {
+        self.view.endEditing(false)
         self.buckets.remove(at: sender.tag)
-        requestTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+//        requestTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+        requestTableView.reloadData()
     }
     
     //MARK: TableView DataSource Methods
@@ -107,7 +135,7 @@ class requestTableViewController: UIViewController, UITableViewDataSource, UITab
         requestTableCell.qty.tag = indexPath.row
         requestTableCell.qty.text = bucket.requestCount
         requestTableCell.qty.delegate = self
-        requestTableCell.invoiceAmount1.text = String(format: "Сумма: %@ %@", arguments: [bucket.stockCount, bucket.sum])
+        requestTableCell.invoiceAmount1.text = String(format: "Сумма: %@ %@", arguments: [bucket.stockCount, Utilities.formatedAmount(amount: bucket.sum as Any)])
         requestTableCell.itemPrice1.text = String(format: "Цена: %@", arguments: [bucket.price])
         
         requestTableCell.deleteItem.tag = indexPath.row
@@ -117,13 +145,14 @@ class requestTableViewController: UIViewController, UITableViewDataSource, UITab
         return requestTableCell
     }
     
+    
     func calculateGrandTotal() {
         var total: Double = 0
         for bucket in buckets {
             total += (Double(bucket.requestCount) ?? 0) * (Double(bucket.price) ?? 0)
         }
         
-        grandTotal.text = String(format: "Итого: %.2f", arguments: [total])
+        grandTotal.text = String(format: "Итого: %@", arguments: [Utilities.formatedAmount(amount: total)])
     }
 }
 

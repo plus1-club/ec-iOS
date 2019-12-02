@@ -8,16 +8,6 @@
 
 import UIKit
 
-class ItemInfoTableViewCell : UITableViewCell {
-    static let cellIdentifier = "itemsTableCell"
-    
-    @IBOutlet weak var isSelectedItem: UIButton!
-    @IBOutlet weak var qty: UITextField!
-    @IBOutlet weak var stockStatus: UILabel!
-    @IBOutlet weak var productName: UILabel!
-    
-}
-
 class ItemListViewController: UIViewController {
 
     var buckets = [Bucket]()
@@ -81,19 +71,66 @@ extension ItemListViewController: UITableViewDataSource {
         cell.qty.delegate = self
         
         cell.productName.text = bucket.product
-       
+      
+//        - stockCount = 0 - not exist at all - red(Нет)
+//        - stockCount >= count - green(В наличии)
+//        - stockCount < count - yellow (stockCount exist  less than required)
+
+        changeStockStatusLabel(cell: cell, bucket: bucket)
         
         
         return cell
     }
+    
+    func changeStockStatusLabel(cell: ItemInfoTableViewCell, bucket: Bucket) {
+        if let stock = Int(bucket.stockCount), let request = Int(bucket.requestCount) {
+            
+            let tintedImage = cell.isSelectedItem.imageView?.image?.withRenderingMode(.alwaysTemplate)
+            cell.isSelectedItem.imageView?.image = tintedImage
+            
+
+            if stock == 0 {
+                cell.stockStatus.text = "Нет"
+                cell.stockStatus.textColor = UIColor.red
+                cell.isSelectedItem.imageView?.tintColor = UIColor.red
+            }
+            else if stock >= request {
+                cell.stockStatus.text = "В наличии"
+                cell.stockStatus.textColor = #colorLiteral(red: 0.3079569936, green: 0.6612923145, blue: 0.3500179052, alpha: 1)
+                cell.isSelectedItem.imageView?.tintColor = #colorLiteral(red: 0.3079569936, green: 0.6612923145, blue: 0.3500179052, alpha: 1)
+            }
+            else if stock < request {
+                cell.stockStatus.text = String(format: "Есть %@ из %@", arguments: [bucket.stockCount, bucket.requestCount])
+                cell.stockStatus.textColor = #colorLiteral(red: 0.9759441018, green: 0.7644813061, blue: 0.01044687536, alpha: 1)
+                cell.isSelectedItem.imageView?.tintColor = #colorLiteral(red: 0.9759441018, green: 0.7644813061, blue: 0.01044687536, alpha: 1)
+            }
+            
+            
+        }
+    }
 }
 
 extension ItemListViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
+        let row = textField.tag
+        let bucket = self.buckets[row]
+
+        bucket.requestCount = updatedString
+        
+        let cell = itemsTableView.cellForRow(at: IndexPath(row: row, section: 0)) as! ItemInfoTableViewCell
+        changeStockStatusLabel(cell: cell, bucket: bucket)
+        //itemsTableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+
+        return true
+    }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let bucket = self.buckets[textField.tag]
+        let row = textField.tag
+        let bucket = self.buckets[row]
 
         bucket.requestCount = textField.text
-        
+        itemsTableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
 
     }
 }

@@ -165,6 +165,7 @@ class Bucket: Codable  {
         }
     }
     
+    //MARK: Add Item To Bucket
     func addItemToBucket(buckets : [Bucket],
                       successBlock :@escaping () -> (),
                       errorBlock :@escaping (_ error : String) -> ())  {
@@ -278,4 +279,57 @@ class Bucket: Codable  {
         }
     }
     
+    //MARK: Create Order
+    func createOrder(buckets: [Bucket],
+                     comment: String,
+                     successBlock :@escaping () -> (),
+                     errorBlock :@escaping (_ error : String) -> ())  {
+        
+        var bucketDict = [[String : String]]()
+        
+        for bucket in buckets {
+            bucketDict.append([
+                "number" : bucket.number,
+                "product" : bucket.product,
+                "requestCount" : bucket.requestCount
+            ])
+        }
+        
+        let params = [
+            "requests": bucketDict,
+            "comment": comment
+            ] as [String : Any]
+        
+        ServiceManager.shared.processServiceCall(serviceURL: Constants.SERVICES.CREATE_ORDER, parameters: params as AnyObject, showLoader: true, requestType: Constants.REQUEST_TYPE.POST, successBlock: { (response) in
+            
+            if let statusKey = response.value(forKey: "success") as? Int {
+                    if statusKey != 1 {
+                        DispatchQueue.main.async {
+                            if let errormessage = response.value(forKey: "message") as? String{
+                                errorBlock(errormessage)
+                            }
+                        }
+                    }
+                    else {
+                        
+                        DispatchQueue.main.async {
+                            successBlock()
+                        }
+                        
+                    }
+            }
+            else {
+                DispatchQueue.main.async {
+                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                }
+            }
+
+
+        }) { (error) in
+            print("error : \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                errorBlock(error.localizedDescription)
+            }
+        }
+    }
 }

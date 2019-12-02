@@ -65,4 +65,19 @@ class Utilities: NSObject {
         parent.present(alert, animated: true, completion: nil)
         
     }
+    
+    
+    class func formatedAmount(amount: Any) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        if let amt = amount as? Double {
+            return numberFormatter.string(from: NSNumber(value:amt))!
+        }
+        else if let strAmt = amount as? String, let dblAmt = Double(strAmt)  {
+            
+            return numberFormatter.string(from: NSNumber(value:dblAmt))!
+        }
+
+        return (amount as? String) ?? ""
+    }
 }

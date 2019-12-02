@@ -12,9 +12,7 @@ class NepodtvTableViewCell: UITableViewCell {
 
     @IBOutlet weak var invoiceNumber1: UILabel!
     @IBOutlet weak var invoiceAmount1: UILabel!
-    
-    @IBAction func invoiceDetail(_ sender: Any) {
-    }
+    @IBOutlet weak var invoiceDetailsButton: Button!
     
     override func awakeFromNib() {
         super.awakeFromNib()

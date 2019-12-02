@@ -37,6 +37,13 @@ class Constants {
         static let CLEAR_BUCKET = BASE_URL + "request/basket"
         static let GET_ITEM_BY_CODE = BASE_URL + "request/byCode"
 
+        static let CREATE_ORDER = BASE_URL + "request/order"
+
+        
+        static let GET_UNCONFIRMED_ORDERS = BASE_URL + "invoices/unconfirmed"
+        static let GET_CANCELED_ORDERS = BASE_URL + "invoices/canceled"
+
+
     }
     
     struct MESSAGES {
