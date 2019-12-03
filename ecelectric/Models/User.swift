@@ -81,22 +81,10 @@ class User {
                     }
                     else {
                         
-                        if let data = response.value(forKey: "data") as? [String: Any] {
-                                
-                            if let token = data["user_token"]  as? String {
-                                EcElectirc.shared.user.token = token
-                            }
-                            
-                            DispatchQueue.main.async {
-                                successBlock()
-                            }
+                        DispatchQueue.main.async {
+                            successBlock()
                         }
-                        else {
-                            DispatchQueue.main.async {
-                                errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
-                            }
-                            
-                        }
+                        
                     }
             }
             else {

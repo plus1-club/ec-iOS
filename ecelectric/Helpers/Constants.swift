@@ -39,10 +39,11 @@ class Constants {
 
         static let CREATE_ORDER = BASE_URL + "request/order"
 
-        
+        //Invoice
         static let GET_UNCONFIRMED_ORDERS = BASE_URL + "invoices/unconfirmed"
         static let GET_CANCELED_ORDERS = BASE_URL + "invoices/canceled"
-
+        static let GET_ORDERED_LIST = BASE_URL + "invoices/ordered"
+        static let GET_RESERVED_LIST = BASE_URL + "invoices/reserved"
 
     }
     
@@ -51,6 +52,7 @@ class Constants {
         static let SOMETHING_WENT_WRONG = "Something went wrong !!"
         static let ERROR_ON_READ_DATA_FROM_RESPONSE   = "Something went wrong while fetching data, Please try again"
         static let ENTER_VALID_DETAILS = "Please enter valid details"
+        static let PRINT_NOT_AVAILABLE = "Print is not available, Please try again!"
 
     }
 }

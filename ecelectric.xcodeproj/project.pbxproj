@@ -10,10 +10,15 @@
 		71F01F7091CCD1BD4D7C033B /* Pods_EC_online.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205A556B2F843013B4182F0A /* Pods_EC_online.framework */; };
 		7F3548D4237F99F8009772D3 /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3548D3237F99F8009772D3 /* Bucket.swift */; };
 		7F3C525C23913AD900EA9373 /* ItemInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C525B23913AD900EA9373 /* ItemInfoTableViewCell.swift */; };
+		7F4500F623967B6D00A58E4E /* ReservedOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4500F523967B6D00A58E4E /* ReservedOrderDetailsViewController.swift */; };
+		7F4500F823967D7F00A58E4E /* ReservedOrderDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4500F723967D7F00A58E4E /* ReservedOrderDetailsTableViewCell.swift */; };
+		7F4500FA2396988800A58E4E /* ViewPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4500F92396988800A58E4E /* ViewPDFViewController.swift */; };
 		7F51B6702390D374009580AA /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51B66F2390D374009580AA /* Invoice.swift */; };
 		7F51B6722390E613009580AA /* UnconfirmedOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51B6712390E613009580AA /* UnconfirmedOrderDetailsViewController.swift */; };
 		7F51B6742390EAD4009580AA /* UnconfirmedOrderDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51B6732390EAD4009580AA /* UnconfirmedOrderDetailsTableViewCell.swift */; };
 		7F51B6762390EFA7009580AA /* InvoiceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51B6752390EFA7009580AA /* InvoiceDetails.swift */; };
+		7F5B0C5C2396633500299718 /* CheckAvailibilityForMakeAnOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B0C5B2396633500299718 /* CheckAvailibilityForMakeAnOrderViewController.swift */; };
+		7F5B0C5E2396635300299718 /* DownloadExcelForMakeAnOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B0C5D2396635300299718 /* DownloadExcelForMakeAnOrderViewController.swift */; };
 		7F7F3A8F237B9B2E001BFFC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F3A8E237B9B2E001BFFC9 /* User.swift */; };
 		7F7F3A92237B9C76001BFFC9 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F3A91237B9C76001BFFC9 /* ServiceManager.swift */; };
 		7F7F3A94237B9CA0001BFFC9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F3A93237B9CA0001BFFC9 /* NetworkManager.swift */; };
@@ -26,6 +31,7 @@
 		7F8B3EAE2391250C007CE49B /* DownloadExcelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8B3EAD2391250C007CE49B /* DownloadExcelViewController.swift */; };
 		7F9F72492386B76E0019E5FC /* CheckTheAvailibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9F72482386B76E0019E5FC /* CheckTheAvailibilityViewController.swift */; };
 		7F9F724B2386C3FC0019E5FC /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9F724A2386C3FC0019E5FC /* ItemListViewController.swift */; };
+		7FE1E37523966EF40019E015 /* OrderedItemDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1E37423966EF40019E015 /* OrderedItemDetailsTableViewCell.swift */; };
 		84172AEB23029C9A008FA9EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172AEA23029C9A008FA9EE /* AppDelegate.swift */; };
 		84172AED23029C9A008FA9EE /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84172AEC23029C9A008FA9EE /* MenuViewController.swift */; };
 		84172AF023029C9A008FA9EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84172AEE23029C9A008FA9EE /* Main.storyboard */; };
@@ -81,10 +87,15 @@
 		4FD9BC3E144AC8452E4D078E /* Pods-EC-online-EC-onlineUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online-EC-onlineUITests.debug.xcconfig"; path = "Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7F3548D3237F99F8009772D3 /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		7F3C525B23913AD900EA9373 /* ItemInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoTableViewCell.swift; sourceTree = "<group>"; };
+		7F4500F523967B6D00A58E4E /* ReservedOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedOrderDetailsViewController.swift; sourceTree = "<group>"; };
+		7F4500F723967D7F00A58E4E /* ReservedOrderDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedOrderDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		7F4500F92396988800A58E4E /* ViewPDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPDFViewController.swift; sourceTree = "<group>"; };
 		7F51B66F2390D374009580AA /* Invoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
 		7F51B6712390E613009580AA /* UnconfirmedOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnconfirmedOrderDetailsViewController.swift; sourceTree = "<group>"; };
 		7F51B6732390EAD4009580AA /* UnconfirmedOrderDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnconfirmedOrderDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		7F51B6752390EFA7009580AA /* InvoiceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceDetails.swift; sourceTree = "<group>"; };
+		7F5B0C5B2396633500299718 /* CheckAvailibilityForMakeAnOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAvailibilityForMakeAnOrderViewController.swift; sourceTree = "<group>"; };
+		7F5B0C5D2396635300299718 /* DownloadExcelForMakeAnOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadExcelForMakeAnOrderViewController.swift; sourceTree = "<group>"; };
 		7F7F3A8E237B9B2E001BFFC9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7F7F3A91237B9C76001BFFC9 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		7F7F3A93237B9CA0001BFFC9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -97,6 +108,7 @@
 		7F8B3EAD2391250C007CE49B /* DownloadExcelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadExcelViewController.swift; sourceTree = "<group>"; };
 		7F9F72482386B76E0019E5FC /* CheckTheAvailibilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTheAvailibilityViewController.swift; sourceTree = "<group>"; };
 		7F9F724A2386C3FC0019E5FC /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
+		7FE1E37423966EF40019E015 /* OrderedItemDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedItemDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		84172AE723029C9A008FA9EE /* EC-online.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EC-online.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84172AEA23029C9A008FA9EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84172AEC23029C9A008FA9EE /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -253,22 +265,26 @@
 		84172B1A2302C081008FA9EE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7F7F3A9B237BAB12001BFFC9 /* SideMenuTableViewController.swift */,
 				84172AEC23029C9A008FA9EE /* MenuViewController.swift */,
-				84931BCC2302E1F3009501B6 /* OrderViewController.swift */,
 				84F8884C2309F0B100F38085 /* NepodtvViewController.swift */,
 				7F51B6712390E613009580AA /* UnconfirmedOrderDetailsViewController.swift */,
 				8455DEF7232893B6005FC055 /* сanceledViewController.swift */,
 				7F8B3EA9239111EA007CE49B /* CanceledOrderDetailsViewController.swift */,
+				84931BCC2302E1F3009501B6 /* OrderViewController.swift */,
+				84BDB393235647580014C6F2 /* orderDetailsViewController.swift */,
 				84DAD4FF2328E17A000F691B /* reservedViewController.swift */,
+				7F4500F523967B6D00A58E4E /* ReservedOrderDetailsViewController.swift */,
 				84879282232155EE006CBC17 /* checkByRequestViewController.swift */,
 				8455DEF52328873F005FC055 /* orderByRequestViewController.swift */,
 				84DAD4FD2328D886000F691B /* shippedViewController.swift */,
 				84DAD5052328F8E6000F691B /* requestTableViewController.swift */,
-				84BDB393235647580014C6F2 /* orderDetailsViewController.swift */,
-				7F7F3A9B237BAB12001BFFC9 /* SideMenuTableViewController.swift */,
 				7F9F72482386B76E0019E5FC /* CheckTheAvailibilityViewController.swift */,
 				7F8B3EAD2391250C007CE49B /* DownloadExcelViewController.swift */,
 				7F9F724A2386C3FC0019E5FC /* ItemListViewController.swift */,
+				7F5B0C5B2396633500299718 /* CheckAvailibilityForMakeAnOrderViewController.swift */,
+				7F5B0C5D2396635300299718 /* DownloadExcelForMakeAnOrderViewController.swift */,
+				7F4500F92396988800A58E4E /* ViewPDFViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -278,12 +294,14 @@
 			children = (
 				84172AFC23029E6B008FA9EE /* MenuCollectionViewCell.swift */,
 				84931BCA2302E033009501B6 /* OrderTableViewCell.swift */,
+				7FE1E37423966EF40019E015 /* OrderedItemDetailsTableViewCell.swift */,
 				84F8884A2309EE5F00F38085 /* NepodtvTableViewCell.swift */,
 				7F51B6732390EAD4009580AA /* UnconfirmedOrderDetailsTableViewCell.swift */,
 				8473E15F2328A64300D394A0 /* canceledTableViewCell.swift */,
 				7F8B3EAB239118D1007CE49B /* CanceledOrderDetailsTableViewCell.swift */,
-				84DAD4F92328D7B5000F691B /* shippedTableViewCell.swift */,
 				84DAD5012328E265000F691B /* reservedTableViewCell.swift */,
+				7F4500F723967D7F00A58E4E /* ReservedOrderDetailsTableViewCell.swift */,
+				84DAD4F92328D7B5000F691B /* shippedTableViewCell.swift */,
 				84DAD5032328F8C2000F691B /* requestTableViewCell.swift */,
 				7F3C525B23913AD900EA9373 /* ItemInfoTableViewCell.swift */,
 			);
@@ -561,9 +579,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8455DEF62328873F005FC055 /* orderByRequestViewController.swift in Sources */,
+				7F5B0C5E2396635300299718 /* DownloadExcelForMakeAnOrderViewController.swift in Sources */,
 				8455DEF8232893B6005FC055 /* сanceledViewController.swift in Sources */,
 				84DAD4FE2328D886000F691B /* shippedViewController.swift in Sources */,
 				7F7F3A92237B9C76001BFFC9 /* ServiceManager.swift in Sources */,
+				7FE1E37523966EF40019E015 /* OrderedItemDetailsTableViewCell.swift in Sources */,
+				7F4500FA2396988800A58E4E /* ViewPDFViewController.swift in Sources */,
 				7F7F3A98237B9D83001BFFC9 /* Utilities.swift in Sources */,
 				84DAD5002328E17A000F691B /* reservedViewController.swift in Sources */,
 				84F8884B2309EE5F00F38085 /* NepodtvTableViewCell.swift in Sources */,
@@ -577,6 +598,7 @@
 				84172B222302C6AE008FA9EE /* ViewController.swift in Sources */,
 				7F7F3A8F237B9B2E001BFFC9 /* User.swift in Sources */,
 				7F7F3A94237B9CA0001BFFC9 /* NetworkManager.swift in Sources */,
+				7F4500F823967D7F00A58E4E /* ReservedOrderDetailsTableViewCell.swift in Sources */,
 				84172AED23029C9A008FA9EE /* MenuViewController.swift in Sources */,
 				84DAD4FA2328D7B5000F691B /* shippedTableViewCell.swift in Sources */,
 				84931BCD2302E1F3009501B6 /* OrderViewController.swift in Sources */,
@@ -596,8 +618,10 @@
 				84172AEB23029C9A008FA9EE /* AppDelegate.swift in Sources */,
 				84172B202302C1C0008FA9EE /* Button.swift in Sources */,
 				84879283232155EE006CBC17 /* checkByRequestViewController.swift in Sources */,
+				7F4500F623967B6D00A58E4E /* ReservedOrderDetailsViewController.swift in Sources */,
 				7F7F3A9A237B9E05001BFFC9 /* Constants.swift in Sources */,
 				7F9F72492386B76E0019E5FC /* CheckTheAvailibilityViewController.swift in Sources */,
+				7F5B0C5C2396633500299718 /* CheckAvailibilityForMakeAnOrderViewController.swift in Sources */,
 				7F7F3A9C237BAB12001BFFC9 /* SideMenuTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

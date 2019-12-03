@@ -40,9 +40,7 @@ class SideMenuTableViewController: UITableViewController {
                 
                 EcElectirc.shared.user.logout(successBlock: {
                 
-                    Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.ID)
-                    Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.PASSWORD)
-                    Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.synchronize()
+                    Utilities.resetValuesOnLogout()
                     
                     window.rootViewController = self.storyboard?.instantiateInitialViewController()
                     window.makeKeyAndVisible()

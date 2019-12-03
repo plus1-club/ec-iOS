@@ -1,21 +1,19 @@
 //
-//  reservedTableViewCell.swift
-//  ecelectric
+//  OrderedItemDetailsTableViewCell.swift
+//  EC-online
 //
-//  Created by Sam on 11/09/2019.
+//  Created by Dhaval Dobariya on 03/12/19.
 //  Copyright © 2019 Samir Azizov. All rights reserved.
 //
 
 import UIKit
 
-class reservedTableViewCell: UITableViewCell {
+class OrderedItemDetailsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var invoiceNumber1: UILabel!
-    @IBOutlet weak var invoiceAmount1: UILabel!
-    @IBOutlet weak var invoiceDetailsButton: Button!
-    @IBOutlet weak var scoreButton: Button!
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var countAndAvailable: UILabel!
+    @IBOutlet weak var price: UILabel!
 
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

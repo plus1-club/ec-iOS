@@ -11,6 +11,7 @@ import UIKit
 class MenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
     
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     let imageArray = [UIImage(named: "request"), UIImage(named: "order"), UIImage(named: "basket"), UIImage(named: "unconfirmed"), UIImage(named: "reserved"), UIImage(named: "ordered"), UIImage(named: "canceled"), UIImage(named: "shipped")]
@@ -30,10 +31,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             EcElectirc.shared.user.logout(successBlock: {
             
-                Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.ID)
-                Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.PASSWORD)
-                Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.synchronize()
-                
+                Utilities.resetValuesOnLogout()
                 window.rootViewController = self.storyboard?.instantiateInitialViewController()
                 window.makeKeyAndVisible()
             }) { (error) in
@@ -82,5 +80,22 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     
+}
+
+extension MenuViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 15
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: (collectionView.frame.width / 2) - 7.5, height: 100)
+    }
 }
 

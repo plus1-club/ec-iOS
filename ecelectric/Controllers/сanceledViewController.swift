@@ -16,9 +16,6 @@ class canceledViewController: UIViewController, UITableViewDelegate, UITableView
     
     var canceledOrders = [Invoice]()
     var refreshControl = UIRefreshControl()
-
-//    let invoiceNumber1 = [("Счет № 756503 от 27 марта 2019"), ("Счет № 75358 от 27 марта 2019"), ("Счет № 737303 от 27 марта 2019"), ("Счет № 736947 от 27 марта 2019"), ("Счет № 758673 от 27 марта 2019")]
-//    let invoiceAmount1 = [("Сумма: 7 970,98"), ("Сумма: 6 172,76"), ("Сумма: 8 817,87"), ("Сумма: 27 967,00"), ("Сумма: 356,73")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +26,7 @@ class canceledViewController: UIViewController, UITableViewDelegate, UITableView
 
         sideMenu()
         
-        getCancelledOrders()
+        getCancelledOrders(isShowLoader: true)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
@@ -51,12 +48,12 @@ class canceledViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: Refresh Data
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
-        getCancelledOrders()
+        getCancelledOrders(isShowLoader: false)
     }
     
     //MARK: API Call
-    func getCancelledOrders() {
-        Invoice().getUnconfirmedOrders(successBlock: { (invoices) in
+    func getCancelledOrders(isShowLoader: Bool) {
+        Invoice().getCanceledOrders(isShowLoader: isShowLoader, successBlock: { (invoices) in
             self.canceledOrders = invoices
             self.canceledTableView.reloadData()
             self.refreshControl.endRefreshing()

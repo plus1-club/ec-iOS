@@ -11,13 +11,9 @@ import UIKit
 class OrderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var invoiceNumber1: UILabel!
-    @IBOutlet weak var invoiceAmount1: UILabel!
-    
-    @IBAction func invoice(_ sender: Any) {
-    }
-    @IBAction func inoviceDetail(_ sender: Any) {
-    }
-    
+    @IBOutlet weak var invoiceAmount1: UILabel!    
+    @IBOutlet weak var invoiceDetailsButton: Button!
+    @IBOutlet weak var scoreButton: Button!
     
     
     override func awakeFromNib() {

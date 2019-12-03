@@ -20,10 +20,11 @@ class Bucket: Codable  {
     var stockStatus: String!
     
     //MARK: Get Bucket
-    func getBucket(successBlock :@escaping (_ buckets : [Bucket]) -> (),
+    func getBucket(isShowLoader: Bool,
+                   successBlock :@escaping (_ buckets : [Bucket]) -> (),
                    errorBlock :@escaping (_ error : String) -> ())  {
                 
-        ServiceManager.shared.processServiceCall(serviceURL: Constants.SERVICES.GET_BUCKET, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
+        ServiceManager.shared.processServiceCall(serviceURL: Constants.SERVICES.GET_BUCKET, parameters: nil, showLoader: isShowLoader, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
             
             if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {

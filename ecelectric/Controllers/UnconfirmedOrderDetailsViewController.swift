@@ -20,10 +20,16 @@ class UnconfirmedOrderDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setToInitialValue()
         self.orderDetailsTableView.tableFooterView = UIView()
 
         getUnconfirmedOrderDetails()
         // Do any additional setup after loading the view.
+    }
+    
+    func setToInitialValue() {
+        self.accountNoAndDate.text = ""
+        self.totalAmount.text = ""
     }
     
     //MARK: API Call

@@ -80,4 +80,12 @@ class Utilities: NSObject {
 
         return (amount as? String) ?? ""
     }
+    
+    class func resetValuesOnLogout() {
+        EcElectirc.shared.user.token = nil
+        Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.ID)
+        Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.PASSWORD)
+        Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.synchronize()
+
+    }
 }
