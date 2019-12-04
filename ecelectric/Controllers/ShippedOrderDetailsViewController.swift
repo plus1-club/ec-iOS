@@ -1,19 +1,20 @@
 //
-//  ReservedOrderDetailsViewController.swift
+//  ShippedOrderDetailsViewController.swift
 //  EC-online
 //
-//  Created by Dhaval Dobariya on 03/12/19.
+//  Created by Dhaval Dobariya on 04/12/19.
 //  Copyright © 2019 Samir Azizov. All rights reserved.
 //
 
 import UIKit
 
-class ReservedOrderDetailsViewController: UIViewController {
+class ShippedOrderDetailsViewController: UIViewController {
 
     @IBOutlet weak var orderDetailsTableView: UITableView!
     @IBOutlet weak var accountNoAndDate: UILabel!
+    @IBOutlet weak var wayBillsNo: UILabel!
     @IBOutlet weak var totalAmount: UILabel!
-    
+
     var invoiceDetails = [InvoiceDetails]()
     var invoice : Invoice!
 
@@ -24,19 +25,22 @@ class ReservedOrderDetailsViewController: UIViewController {
 
         orderDetailsTableView.tableFooterView = UIView()
 
-        getReservedItemDetails()
+        getShippedItemDetails()
+
     }
     
     func setToInitialValue() {
         self.accountNoAndDate.text = ""
+        self.wayBillsNo.text = ""
         self.totalAmount.text = ""
     }
     
     //MARK: API Call
-    func getReservedItemDetails() {
-        InvoiceDetails().getReservedItemDetails(accountNo: invoice.number, successBlock: { (invoices) in
+    func getShippedItemDetails() {
+        InvoiceDetails().getShippedItemDetails(accountNo: invoice.number, successBlock: { (invoices) in
             
             self.accountNoAndDate.text = String(format: "Счет № %@ от %@", arguments: [self.invoice.number, self.invoice.date])
+            self.wayBillsNo.text = String(format: "Накладная № %@", arguments: [self.invoice.waybill])
             self.totalAmount.text = String(format: "Итого: %@ pyб.", arguments: [self.invoice.sum])
             
             self.invoiceDetails = invoices
@@ -53,13 +57,13 @@ class ReservedOrderDetailsViewController: UIViewController {
     }
 }
 
-extension ReservedOrderDetailsViewController: UITableViewDataSource {
+extension ShippedOrderDetailsViewController: UITableViewDataSource {
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return self.invoiceDetails.count
    }
    
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "reservedItemDetailsCell", for: indexPath) as! ReservedOrderDetailsTableViewCell
+       let cell = tableView.dequeueReusableCell(withIdentifier: "shippedItemDetailsCell", for: indexPath) as! ShippedOrderDetailsTableViewCell
        
        let invoice = self.invoiceDetails[indexPath.row]
        
@@ -70,4 +74,3 @@ extension ReservedOrderDetailsViewController: UITableViewDataSource {
        return cell
    }
 }
-

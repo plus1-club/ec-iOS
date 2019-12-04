@@ -14,7 +14,7 @@ class Invoice: Codable {
     var date : String!
     var sum : String!
     var status : String!
-    
+    var waybill : String!
     
     //MARK: Get unconfirmed orders
     func getUnconfirmedOrders(isShowLoader: Bool,
@@ -291,6 +291,65 @@ class Invoice: Codable {
                     }
                     
                 }
+            }
+            else {
+                DispatchQueue.main.async {
+                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                }
+            }
+
+
+        }) { (error) in
+            print("error : \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                errorBlock(error.localizedDescription)
+            }
+        }
+    }
+    
+    //MARK: Get shipped Item list
+    func getShippedItemList(isShowLoader: Bool,
+                            successBlock :@escaping (_ invoices : [Invoice]) -> (),
+                            errorBlock :@escaping (_ error : String) -> ())  {
+                
+        let url = Constants.SERVICES.GET_SHIPPED_LIST + String(format: "?user-token=%@", arguments: [EcElectirc.shared.user.token])
+
+        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
+            
+            if let statusKey = response.value(forKey: "success") as? Int {
+                    if statusKey != 1 {
+                        DispatchQueue.main.async {
+                            if let errormessage = response.value(forKey: "message") as? String{
+                                errorBlock(errormessage)
+                            }
+                        }
+                    }
+                    else {
+                        var invoices : [Invoice] = []
+                        
+                        do {
+                            if let invoiceArray = response.value(forKey: "data") as? Array<Any> {
+                                
+                                for dict in invoiceArray {
+                                    let data = try JSONSerialization.data(withJSONObject: dict, options: [])
+                                    
+                                    let jsonDecoder = JSONDecoder()
+                                    
+                                    let invoice = try jsonDecoder.decode(Invoice.self, from: data)
+                                    invoices.append(invoice)
+                                }
+                            }
+                            
+                            DispatchQueue.main.async {
+                                successBlock(invoices)
+                            }
+                        }
+                        catch {
+                            DispatchQueue.main.async {
+                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
+                            }
+                        }
+                    }
             }
             else {
                 DispatchQueue.main.async {

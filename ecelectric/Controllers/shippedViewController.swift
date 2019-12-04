@@ -13,16 +13,29 @@ class shippedViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var shippedTableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    let invoiceNumber1 = [("Счет № 756503 от 27 марта 2019"), ("Счет № 75358 от 27 марта 2019"), ("Счет № 737303 от 27 марта 2019"), ("Счет № 736947 от 27 марта 2019"), ("Счет № 758673 от 27 марта 2019")]
-    let invoiceAmount1 = [("Сумма: 7 970,98"), ("Сумма: 6 172,76"), ("Сумма: 8 817,87"), ("Сумма: 27 967,00"), ("Сумма: 356,73")]
-    let waybillNumber1 = [("Накладная №39727"), ("Накладная №34637"), ("Накладная №53271"), ("Накладная №87365"), ("Накладная №12836")]
+    var invoices = [Invoice]()
+    var refreshControl = UIRefreshControl()
+
+//    let invoiceNumber1 = [("Счет № 756503 от 27 марта 2019"), ("Счет № 75358 от 27 марта 2019"), ("Счет № 737303 от 27 марта 2019"), ("Счет № 736947 от 27 марта 2019"), ("Счет № 758673 от 27 марта 2019")]
+//    let invoiceAmount1 = [("Сумма: 7 970,98"), ("Сумма: 6 172,76"), ("Сумма: 8 817,87"), ("Сумма: 27 967,00"), ("Сумма: 356,73")]
+//    let waybillNumber1 = [("Накладная №39727"), ("Накладная №34637"), ("Накладная №53271"), ("Накладная №87365"), ("Накладная №12836")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         shippedTableView.delegate = self
         shippedTableView.dataSource = self
+        shippedTableView.tableFooterView = UIView()
+        
         sideMenu()
+        
+        
+        getShippedOrders(isShowLoader: true)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+        shippedTableView.addSubview(refreshControl) // not required when using UITableViewController
+
     }
     
     func sideMenu() {
@@ -36,20 +49,53 @@ class shippedViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    //MARK: Refresh Data
+    @objc func refresh(sender:AnyObject) {
+       // Code to refresh table view
+        getShippedOrders(isShowLoader: false)
     }
     
+    //MARK: API Call
+    func getShippedOrders(isShowLoader: Bool) {
+        Invoice().getShippedItemList(isShowLoader: isShowLoader, successBlock: { (invoices) in
+            self.invoices = invoices
+            self.shippedTableView.reloadData()
+            self.refreshControl.endRefreshing()
+                                                                    		
+        }) { (error) in
+            Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            self.refreshControl.endRefreshing()
+
+        }
+    }
+    
+    //MARK: IBActions
+    @IBAction func showInvoiceDetailsTapped(_ sender: UIButton) {
+        let selectedInvoice = self.invoices[sender.tag]
+
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "ShippedOrderDetailsViewController") as! ShippedOrderDetailsViewController
+        controller.invoice = selectedInvoice
+        self.navigationController?.pushViewController(controller, animated: true)
+
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return invoiceNumber1.count
+        return invoices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let shippedCell = tableView.dequeueReusableCell(withIdentifier: "shippedCell", for: indexPath as IndexPath) as! shippedTableViewCell
-        shippedCell.invoiceNumber1.text = self.invoiceNumber1[indexPath.row]
-        shippedCell.invoiceAmount1.text = self.invoiceAmount1[indexPath.row]
-        shippedCell.waybillNumber1.text = self.waybillNumber1[indexPath.row]
         
+        let invoice = invoices[indexPath.row]
+        shippedCell.invoiceNumber1.text = String(format: "Счет № %@ от %@", arguments: [invoice.number, invoice.date])
+        shippedCell.invoiceAmount1.text = String(format: "Сумма: %@ pyб.", arguments: [invoice.sum])
+        shippedCell.waybillNumber1.text = String(format: "Накладная № %@", arguments: [invoice.waybill])
+        
+        shippedCell.invoiceDetailsButton.tag = indexPath.row
+        shippedCell.invoiceDetailsButton.removeTarget(self, action: #selector(showInvoiceDetailsTapped(_:)), for: .touchUpInside)
+        shippedCell.invoiceDetailsButton.addTarget(self, action: #selector(showInvoiceDetailsTapped(_:)), for: .touchUpInside)
+
         return shippedCell
     }
 }

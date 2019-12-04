@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="XoI-Ul-kMS">
-                                <rect key="frame" x="86.5" y="64" width="147.00000000000006" height="51.5"/>
+                                <rect key="frame" x="86.5" y="64" width="147" height="51.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XoI-Ul-kMS" secondAttribute="height" multiplier="146:51" id="FlF-KZ-1Pk"/>
                                     <constraint firstAttribute="width" constant="146.99999999999994" id="Mge-0M-KNy"/>
@@ -509,7 +509,7 @@
                                 <rect key="frame" x="20" y="125" width="280" height="318"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="jtu-uL-kGd">
-                                        <rect key="frame" x="31" y="0.0" width="218.00000000000006" height="88.5"/>
+                                        <rect key="frame" x="31" y="0.0" width="218" height="88.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="jtu-uL-kGd" secondAttribute="height" multiplier="217:88" id="P7H-wz-BEM"/>
                                             <constraint firstAttribute="width" constant="217.99999999999994" id="nAR-aY-Opi"/>
@@ -2167,9 +2167,6 @@
                                                             <real key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="invoice:" destination="tFJ-qh-wSd" eventType="touchUpInside" id="ZbA-NX-3Du"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -2188,6 +2185,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="invoiceAmount1" destination="U1m-hh-cVf" id="aV5-Rg-86n"/>
+                                            <outlet property="invoiceDetailsButton" destination="I5Z-Za-scR" id="dgo-wV-zGg"/>
                                             <outlet property="invoiceNumber1" destination="KTL-l0-Ubo" id="XJT-lh-WOM"/>
                                             <outlet property="waybillNumber1" destination="Sof-By-r3V" id="prB-P0-ewM"/>
                                         </connections>
@@ -2224,6 +2222,131 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E9F-WW-9gV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6845" y="-1361"/>
+        </scene>
+        <!--Отгрузка-->
+        <scene sceneID="E5R-pe-IRy">
+            <objects>
+                <viewController storyboardIdentifier="ShippedOrderDetailsViewController" title="Отгрузка" id="ZnK-x6-lRF" customClass="ShippedOrderDetailsViewController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y2L-E5-dFQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Счет № 756503 от 27 марта 2019" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="EnT-1H-MoA">
+                                <rect key="frame" x="15" y="64" width="290" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Накладная №53271" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0An-Be-l5S">
+                                <rect key="frame" x="15" y="92.5" width="290" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сумма: 7 970,98" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-Fo-2Nt">
+                                <rect key="frame" x="15" y="128" width="290" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IvY-6d-5Yu">
+                                <rect key="frame" x="0.0" y="164" width="320" height="404"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="shippedItemDetailsCell" rowHeight="80" id="Aul-cE-7Kf" customClass="ShippedOrderDetailsTableViewCell" customModule="EC_online" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Aul-cE-7Kf" id="amR-si-eMT">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schneider BLNRA011411 О/У РОЗ 4x2P+E со шт ИЗ/ПЛ.,16А, 250В, Б" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbl-Pd-HOL">
+                                                    <rect key="frame" x="15" y="4" width="290" height="46.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="1        В наличии" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-ko-RuE">
+                                                    <rect key="frame" x="15" y="58.5" width="106.5" height="13.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="13.333333333333336" id="ukZ-N8-n9a"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="284,58 pyб" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYk-MT-SjU">
+                                                    <rect key="frame" x="225" y="57" width="80" height="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yLj-ko-RuE" firstAttribute="top" secondItem="nbl-Pd-HOL" secondAttribute="bottom" constant="8.3333333333333286" id="Bcd-ho-5Gs"/>
+                                                <constraint firstItem="GYk-MT-SjU" firstAttribute="trailing" secondItem="nbl-Pd-HOL" secondAttribute="trailing" id="OmD-Od-Ra2"/>
+                                                <constraint firstAttribute="trailing" secondItem="nbl-Pd-HOL" secondAttribute="trailing" constant="15" id="UAj-qB-niP"/>
+                                                <constraint firstAttribute="bottom" secondItem="yLj-ko-RuE" secondAttribute="bottom" constant="8" id="asq-LB-F8i"/>
+                                                <constraint firstItem="GYk-MT-SjU" firstAttribute="centerY" secondItem="yLj-ko-RuE" secondAttribute="centerY" id="cPS-tZ-tyB"/>
+                                                <constraint firstItem="GYk-MT-SjU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yLj-ko-RuE" secondAttribute="trailing" constant="8" id="eVb-ly-SYz"/>
+                                                <constraint firstItem="nbl-Pd-HOL" firstAttribute="top" secondItem="amR-si-eMT" secondAttribute="top" constant="4" id="hE0-uK-fyg"/>
+                                                <constraint firstItem="yLj-ko-RuE" firstAttribute="leading" secondItem="nbl-Pd-HOL" secondAttribute="leading" id="mMH-l7-a0J"/>
+                                                <constraint firstItem="nbl-Pd-HOL" firstAttribute="leading" secondItem="amR-si-eMT" secondAttribute="leading" constant="15" id="ok9-ux-1q5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="countAndAvailable" destination="yLj-ko-RuE" id="kxB-tQ-xmA"/>
+                                            <outlet property="price" destination="GYk-MT-SjU" id="zgN-Oe-c1k"/>
+                                            <outlet property="productName" destination="nbl-Pd-HOL" id="aGo-9x-t6r"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZnK-x6-lRF" id="y1a-8d-sof"/>
+                                    <outlet property="delegate" destination="ZnK-x6-lRF" id="fVE-5R-eSk"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IvY-6d-5Yu" firstAttribute="bottom" secondItem="Lkl-2i-0Lx" secondAttribute="bottom" id="9nM-Le-DEh"/>
+                            <constraint firstItem="Lkl-2i-0Lx" firstAttribute="trailing" secondItem="EnT-1H-MoA" secondAttribute="trailing" constant="15" id="Dgw-1f-Lqq"/>
+                            <constraint firstItem="IvY-6d-5Yu" firstAttribute="leading" secondItem="Lkl-2i-0Lx" secondAttribute="leading" id="GEQ-Rh-vUi"/>
+                            <constraint firstItem="GFl-Fo-2Nt" firstAttribute="leading" secondItem="EnT-1H-MoA" secondAttribute="leading" id="GSl-FQ-B20"/>
+                            <constraint firstItem="0An-Be-l5S" firstAttribute="leading" secondItem="EnT-1H-MoA" secondAttribute="leading" id="I8n-Fk-lvQ"/>
+                            <constraint firstItem="EnT-1H-MoA" firstAttribute="leading" secondItem="Lkl-2i-0Lx" secondAttribute="leading" constant="15" id="IEB-DH-sEt"/>
+                            <constraint firstItem="IvY-6d-5Yu" firstAttribute="top" secondItem="GFl-Fo-2Nt" secondAttribute="bottom" constant="15.666666666666671" id="QES-qe-pb0"/>
+                            <constraint firstItem="0An-Be-l5S" firstAttribute="top" secondItem="EnT-1H-MoA" secondAttribute="bottom" constant="8" id="WFp-Ue-NH4"/>
+                            <constraint firstItem="0An-Be-l5S" firstAttribute="trailing" secondItem="EnT-1H-MoA" secondAttribute="trailing" id="Wex-w4-ilC"/>
+                            <constraint firstItem="GFl-Fo-2Nt" firstAttribute="top" secondItem="0An-Be-l5S" secondAttribute="bottom" constant="15" id="X16-Yu-bXd"/>
+                            <constraint firstItem="IvY-6d-5Yu" firstAttribute="trailing" secondItem="Lkl-2i-0Lx" secondAttribute="trailing" id="X9a-tF-e5a"/>
+                            <constraint firstItem="IvY-6d-5Yu" firstAttribute="bottom" secondItem="Lkl-2i-0Lx" secondAttribute="bottom" id="ciQ-SL-aUh"/>
+                            <constraint firstItem="EnT-1H-MoA" firstAttribute="top" secondItem="Lkl-2i-0Lx" secondAttribute="top" constant="20" id="nxJ-uS-mqJ"/>
+                            <constraint firstItem="IvY-6d-5Yu" firstAttribute="leading" secondItem="Lkl-2i-0Lx" secondAttribute="leading" id="oGP-4Q-6Jy"/>
+                            <constraint firstItem="GFl-Fo-2Nt" firstAttribute="trailing" secondItem="EnT-1H-MoA" secondAttribute="trailing" id="oOE-Oq-7Pe"/>
+                            <constraint firstItem="IvY-6d-5Yu" firstAttribute="trailing" secondItem="Lkl-2i-0Lx" secondAttribute="trailing" id="tyF-mt-rLd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lkl-2i-0Lx"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Отгрузка" id="5yG-Cg-d8l">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="4eA-8v-Wqy"/>
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="0Oo-sw-ONv">
+                            <connections>
+                                <action selector="backTapped:" destination="ZnK-x6-lRF" id="Eru-fg-PhI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="accountNoAndDate" destination="EnT-1H-MoA" id="nTN-c9-49u"/>
+                        <outlet property="orderDetailsTableView" destination="IvY-6d-5Yu" id="4Ph-px-yep"/>
+                        <outlet property="totalAmount" destination="GFl-Fo-2Nt" id="VLc-ne-Ziw"/>
+                        <outlet property="wayBillsNo" destination="0An-Be-l5S" id="Krh-tP-pJJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JTv-4q-EHr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7592" y="-1362"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2vr-s7-lwX">
@@ -2740,7 +2863,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZq-E4-Cmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8528" y="-1361"/>
+            <point key="canvasLocation" x="9291" y="-1362"/>
         </scene>
         <!--Item-->
         <scene sceneID="XiR-cL-QFZ">
@@ -2759,7 +2882,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ui6-ba-JZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7758" y="-1361"/>
+            <point key="canvasLocation" x="8520" y="-1362"/>
         </scene>
         <!--Заказ-->
         <scene sceneID="Q6Z-uG-9oZ">
@@ -2891,6 +3014,6 @@
         <segue reference="vBR-s9-Myb"/>
         <segue reference="owd-A9-qiO"/>
         <segue reference="Ux2-1H-IFX"/>
-        <segue reference="jQB-yd-frg"/>
+        <segue reference="VdZ-Zd-aic"/>
     </inferredMetricsTieBreakers>
 </document>

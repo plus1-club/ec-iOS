@@ -44,6 +44,7 @@ class Constants {
         static let GET_CANCELED_ORDERS = BASE_URL + "invoices/canceled"
         static let GET_ORDERED_LIST = BASE_URL + "invoices/ordered"
         static let GET_RESERVED_LIST = BASE_URL + "invoices/reserved"
+        static let GET_SHIPPED_LIST = BASE_URL + "invoices/shipped"
 
     }
     

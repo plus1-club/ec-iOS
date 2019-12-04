@@ -66,7 +66,7 @@
         let invoice = self.invoiceDetails[indexPath.row]
         
         cell.productName.text = invoice.product
-        cell.countAndAvailable.text = String(format: "%@     %@", arguments: [invoice.id, invoice.available])
+        cell.countAndAvailable.text = String(format: "%@     %@", arguments: [invoice.count, invoice.available])
         cell.price.text = String(format: "%@ pyб.", arguments: [invoice.price])
         
         return cell
