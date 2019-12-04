@@ -42,7 +42,7 @@ class CheckTheAvailibilityViewController: UIViewController {
         
         if isValidInput() {
             
-            Bucket().getProductByCode(product: product.text!, count: quantity.text!, fullSearch: isAdvanceSearch.isSelected, successBlock: { (buckets) in
+            Bucket().getProductByCode(product: product.text!, count: quantity.text!, fullSearch: !isAdvanceSearch.isSelected, successBlock: { (buckets) in
                 
                 let controller = self.storyboard?.instantiateViewController(withIdentifier: "ItemListViewController") as! ItemListViewController
                 controller.buckets = buckets

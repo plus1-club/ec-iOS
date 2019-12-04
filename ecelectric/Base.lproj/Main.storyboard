@@ -3,7 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -143,10 +143,10 @@
             </objects>
             <point key="canvasLocation" x="3317.5999999999999" y="-184.85757121439281"/>
         </scene>
-        <!--Неподтвержденные заказы-->
+        <!--Неподтвержденные резервы-->
         <scene sceneID="PUy-8I-dv8">
             <objects>
-                <viewController storyboardIdentifier="nepodtv" title="Неподтвержденные заказы" id="ndd-sK-2L1" customClass="NepodtvViewController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="nepodtv" title="Неподтвержденные резервы" id="ndd-sK-2L1" customClass="NepodtvViewController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oyO-g3-TO3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="5060" y="-609.44527736131943"/>
         </scene>
-        <!--неподтвержденного резерва-->
+        <!--Неподтвержденный резерв-->
         <scene sceneID="y28-M4-NQc">
             <objects>
-                <viewController storyboardIdentifier="UnconfirmedOrderDetailsViewController" title="неподтвержденного резерва" id="xBh-OR-5ar" customClass="UnconfirmedOrderDetailsViewController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UnconfirmedOrderDetailsViewController" title="Неподтвержденный резерв" id="xBh-OR-5ar" customClass="UnconfirmedOrderDetailsViewController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V30-mD-R6a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1085,7 +1085,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Скачать складские остатки" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZr-cj-Uc8">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пример файла" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZr-cj-Uc8">
                                                         <rect key="frame" x="10" y="445.5" width="300" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1868,10 +1868,10 @@
             </objects>
             <point key="canvasLocation" x="1718" y="1287"/>
         </scene>
-        <!--Аннулированные счета-->
+        <!--Аннулированный/просроченный счет-->
         <scene sceneID="h2O-gq-Dj6">
             <objects>
-                <viewController storyboardIdentifier="сanceled" title="Аннулированные счета" id="7Xs-KP-M4N" customClass="canceledViewController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="сanceled" title="Аннулированный/просроченный счет" id="7Xs-KP-M4N" customClass="canceledViewController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hSe-m7-0Kg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1962,7 +1962,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jCP-zb-pTW"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Анулированные и просроченные счета" id="yuG-Mc-Z5G">
+                    <navigationItem key="navigationItem" title="Анулированный/ просроченный счет" id="yuG-Mc-Z5G">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="qOk-ep-eUw"/>
                         <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="K14-Gw-PcM">
                             <connections>

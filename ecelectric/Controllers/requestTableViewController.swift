@@ -79,7 +79,7 @@ class requestTableViewController: UIViewController, UITableViewDataSource, UITab
             self.requestTableView.reloadData()
             self.calculateGrandTotal()
 
-            Utilities.showAlert(strTitle: "Ведро успешно очищено !!", strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            Utilities.showAlert(strTitle: "Корзина очищена", strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
 
         }) { (error) in
             Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
@@ -93,20 +93,21 @@ class requestTableViewController: UIViewController, UITableViewDataSource, UITab
     
     @IBAction func checkoutTapped(_ sender: Button) {
         Bucket().createOrder(buckets: self.buckets, comment: comment.text ?? "", successBlock: {
-            Utilities.showAlert(strTitle: "Заказ размещен!", strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            Utilities.showAlert(strTitle: "Заказ размещен", strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
 
         }) { (error) in
             Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
         }
         
-        /*
-        Bucket().updateBucket(buckets: self.buckets, successBlock: {
-            Utilities.showAlert(strTitle: "Bucket successfully updated !!", strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+        Bucket().clearBucket(successBlock: {
+            self.buckets.removeAll()
+            self.requestTableView.reloadData()
+            self.calculateGrandTotal()
+            self.comment.text = ""
 
         }) { (error) in
             Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
         }
-         */
     }
     
     @IBAction func deleteTapped(_ sender: Button) {
@@ -131,8 +132,8 @@ class requestTableViewController: UIViewController, UITableViewDataSource, UITab
         requestTableCell.qty.tag = indexPath.row
         requestTableCell.qty.text = bucket.requestCount
         requestTableCell.qty.delegate = self
-        requestTableCell.invoiceAmount1.text = String(format: "Сумма: %@ %@", arguments: [bucket.stockCount, Utilities.formatedAmount(amount: bucket.sum as Any)])
-        requestTableCell.itemPrice1.text = String(format: "Цена: %@", arguments: [bucket.price])
+        requestTableCell.invoiceAmount1.text = String(format: "Сумма: %@ руб.", arguments: [Utilities.formatedAmount(amount: bucket.sum as Any)])
+        requestTableCell.itemPrice1.text = String(format: "Цена: %@ руб.", arguments: [bucket.price])
         
         requestTableCell.deleteItem.tag = indexPath.row
         requestTableCell.deleteItem.removeTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
