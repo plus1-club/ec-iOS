@@ -683,7 +683,7 @@ const int FrontViewPositionNone = 0xff;
 
 - (UIViewController *)childViewControllerForStatusBarStyle
 {
-    int positionDif =  _frontViewPosition - FrontViewPositionLeft;
+    long positionDif =  _frontViewPosition - FrontViewPositionLeft;
     
     UIViewController *controller = _frontViewController;
     if ( positionDif > 0 ) controller = _rearViewController;

@@ -234,7 +234,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wj3-Z2-YwJ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Неподтвержденные заказы" id="rGQ-Dl-tVD">
+                    <navigationItem key="navigationItem" title="Неподтвержденные резервы" id="rGQ-Dl-tVD">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="pUF-Ad-Hbh"/>
                         <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="1hb-de-veV">
                             <connections>
@@ -347,7 +347,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iK6-O5-U1Z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="неподтвержденного резерва" id="nLC-1O-BEe">
+                    <navigationItem key="navigationItem" title="Неподтвержденный резерв" id="nLC-1O-BEe">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="fEo-4f-7gO"/>
                         <barButtonItem key="leftBarButtonItem" title="Назад" id="5rv-MJ-foZ">
                             <connections>
@@ -693,8 +693,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Неподтвержденные заказы" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myR-aC-Ha0">
-                                                    <rect key="frame" x="74" y="14.333333333333258" width="174" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Неподтвержденные резервы" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myR-aC-Ha0">
+                                                    <rect key="frame" x="74" y="14.333333333333258" width="184" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -1962,7 +1962,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jCP-zb-pTW"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Анулированный/ просроченный счет" id="yuG-Mc-Z5G">
+                    <navigationItem key="navigationItem" title="Анулированный/просроченный счет" id="yuG-Mc-Z5G">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="qOk-ep-eUw"/>
                         <barButtonItem key="leftBarButtonItem" title="Меню" image="outline_home_black_36pt" landscapeImage="outline_home_black_36pt" id="K14-Gw-PcM">
                             <connections>
@@ -3011,9 +3011,9 @@
         <image name="square" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vBR-s9-Myb"/>
-        <segue reference="owd-A9-qiO"/>
-        <segue reference="Ux2-1H-IFX"/>
-        <segue reference="VdZ-Zd-aic"/>
+        <segue reference="eCl-8h-RKL"/>
+        <segue reference="cp3-ke-YQ8"/>
+        <segue reference="6rT-IL-pm2"/>
+        <segue reference="hJe-D9-DMa"/>
     </inferredMetricsTieBreakers>
 </document>

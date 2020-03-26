@@ -16,7 +16,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     let imageArray = [UIImage(named: "request"), UIImage(named: "order"), UIImage(named: "basket"), UIImage(named: "unconfirmed"), UIImage(named: "reserved"), UIImage(named: "ordered"), UIImage(named: "canceled"), UIImage(named: "shipped")]
     
-    let nameArray = ["Проверка наличия товара", "Сделать заказ", "Корзина", "Неподтвержденные заказы" ,"Резервы", "Заказы", "Анулированные и просроченные счета", "История отгрузок"]
+    let nameArray = ["Проверка наличия товара", "Сделать заказ", "Корзина", "Неподтвержденные резервы" ,"Резервы", "Заказы", "Анулированные и просроченные счета", "История отгрузок"]
      
     let arrayOfIds = ["proverka", "orderByRequest", "requestTable", "nepodtv", "reserved", "orders", "сanceled", "shipped"]
     
