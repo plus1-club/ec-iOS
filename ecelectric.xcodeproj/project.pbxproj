@@ -242,9 +242,9 @@
 		84172AE923029C9A008FA9EE /* ecelectric */ = {
 			isa = PBXGroup;
 			children = (
+				84172B1C2302C12C008FA9EE /* Addons */,
 				7F7F3A90237B9B47001BFFC9 /* Helpers */,
 				7F7F3A8D237B9AB9001BFFC9 /* Models */,
-				84172B1C2302C12C008FA9EE /* Addons */,
 				84172B1B2302C092008FA9EE /* Views */,
 				84172B1A2302C081008FA9EE /* Controllers */,
 				84172AEA23029C9A008FA9EE /* AppDelegate.swift */,
@@ -354,8 +354,10 @@
 				9F7750C3E4A6C4333A3A04BA /* [CP] Check Pods Manifest.lock */,
 				84172AE323029C9A008FA9EE /* Sources */,
 				84172AE423029C9A008FA9EE /* Frameworks */,
+				E2CA0E0B24363E90006B448F /* Show version on LaunchScreen */,
 				84172AE523029C9A008FA9EE /* Resources */,
 				DC0B2B3957B6564D02A760CE /* [CP] Embed Pods Frameworks */,
+				E2CA0E0E243646D8006B448F /* Set version from git */,
 			);
 			buildRules = (
 			);
@@ -554,6 +556,43 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EC-online/Pods-EC-online-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E2CA0E0B24363E90006B448F /* Show version on LaunchScreen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Show version on LaunchScreen";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#   ON/OFF Script Toggle (script ON with #, script OFF without #)\n#exit 0\n\n#   APP version / Build version constants\nsourceFilePath=\"$PROJECT_DIR/$PROJECT_NAME/Base.lproj/LaunchScreen.storyboard\"\nversionNumber=\"$MARKETING_VERSION\"\nbuildNumber=\"$CURRENT_PROJECT_VERSION\"\n\n#   Output version into a label on LaunchScreen.storyboard\nsed -i .bak -e \"/userLabel=\\\"APP_VERSION\\\"/s/text=\\\"[^\\\"]*\\\"/text=\\\"version $versionNumber.$buildNumber\\\"/\" \"$sourceFilePath\"\n";
+		};
+		E2CA0E0E243646D8006B448F /* Set version from git */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/ecelectric/Info.plist",
+			);
+			name = "Set version from git";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=$(sh /etc/profile; which git)\nappBuild=$(\"$git\" rev-list HEAD --count)\nbranchName=$(\"$git\" rev-parse --abbrev-ref HEAD)\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\n\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\n if [ -f \"$plist\" ]; then\n  if [ $CONFIGURATION = \"Debug\" ]; then\n\n   /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"$plist\"\n   echo \"Build number set to $appBuild-$branchName in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\n  else\n\n   /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"$plist\"\n   echo \"Build number set to $appBuild in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\n  fi\n fi\n\ndone\n";
 		};
 		FF0B6A3A197DAC3CDF79B1E6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -809,14 +848,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = X889W2W8F6;
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
+				INFOPLIST_PREPROCESS = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8;
+				MARKETING_VERSION = 0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.electric.ec.online;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -835,14 +875,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = X889W2W8F6;
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
+				INFOPLIST_PREPROCESS = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8;
+				MARKETING_VERSION = 0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.electric.ec.online;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
