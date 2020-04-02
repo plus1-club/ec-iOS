@@ -3,7 +3,8 @@
 //  EC-online
 //
 //  Created by Dhaval Dobariya on 13/11/19.
-//  Copyright © 2019 Samir Azizov. All rights reserved.
+//  Updated by Sergey Lavrov on 02/04/2020.
+//  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
 import Foundation
@@ -34,8 +35,8 @@ class ServiceManager: NSObject {
                 "cache-control": "no-cache",
             ]
             
-            if Utilities.isValidString(str: EcElectirc.shared.user.token) {
-                headers["user_token"] = EcElectirc.shared.user.token
+            if Utilities.isValidString(str: Auth.shared.user.token) {
+                headers["user_token"] = Auth.shared.user.token
             }
             
             print("headers : \(headers)")

@@ -1,5 +1,5 @@
 //
-//  Invoice.swift
+//  Details.swift
 //  EC-online
 //
 //  Created by Dhaval Dobariya on 29/11/19.
@@ -9,22 +9,23 @@
 
 import UIKit
 
-class Invoice: Codable {
+class Details: Codable {
     //MARK: Properties
-    var number : String!
-    var date : String!
+    var id : String!
+    var product : String!
+    var count : String!
+    var price : String!
     var sum : String!
-    var status : String!
-    var waybill : String!
-    
-    //MARK: Get unconfirmed orders
-    func getUnconfirmedOrders(isShowLoader: Bool,
-                              successBlock :@escaping (_ invoices : [Invoice]) -> (),
-                              errorBlock :@escaping (_ error : String) -> ())  {
-                
-        let url = Constants.SERVICES.GET_UNCONFIRMED_ORDERS + String(format: "?user-token=%@", arguments: [Auth.shared.user.token])
+    var available : String!
 
-        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
+    //MARK: Get unconfirmed orders
+    func getUnconfirmedOrderDetails(accountNo: String,
+                                    successBlock :@escaping (_ invoicesDetails : [Details]) -> (),
+                                    errorBlock :@escaping (_ error : String) -> ())  {
+                
+        let url = String(format: "%@invoices/%@/unconfirmed?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, accountNo, Auth.shared.user.token])
+
+        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
             
             if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -35,7 +36,7 @@ class Invoice: Codable {
                         }
                     }
                     else {
-                        var invoices : [Invoice] = []
+                        var invoicesDetails : [Details] = []
                         
                         do {
                             if let invoiceArray = response.value(forKey: "data") as? Array<Any> {
@@ -45,13 +46,13 @@ class Invoice: Codable {
                                     
                                     let jsonDecoder = JSONDecoder()
                                     
-                                    let invoice = try jsonDecoder.decode(Invoice.self, from: data)
-                                    invoices.append(invoice)
+                                    let invoice = try jsonDecoder.decode(Details.self, from: data)
+                                    invoicesDetails.append(invoice)
                                 }
                             }
                             
                             DispatchQueue.main.async {
-                                successBlock(invoices)
+                                successBlock(invoicesDetails)
                             }
                         }
                         catch {
@@ -77,221 +78,48 @@ class Invoice: Codable {
     }
     
     //MARK: Get canceled orders
-    func getCanceledOrders(isShowLoader: Bool,
-                           successBlock :@escaping (_ invoices : [Invoice]) -> (),
-                           errorBlock :@escaping (_ error : String) -> ())  {
+    func getCancelOrderDetails(accountNo: String,
+                                    successBlock :@escaping (_ invoicesDetails : [Details]) -> (),
+                                    errorBlock :@escaping (_ error : String) -> ())  {
                 
-        let url = Constants.SERVICES.GET_CANCELED_ORDERS + String(format: "?user-token=%@", arguments: [Auth.shared.user.token])
-
-        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
-                    if statusKey != 1 {
-                        DispatchQueue.main.async {
-                            if let errormessage = response.value(forKey: "message") as? String{
-                                errorBlock(errormessage)
-                            }
-                        }
-                    }
-                    else {
-                        var invoices : [Invoice] = []
-                        
-                        do {
-                            if let invoiceArray = response.value(forKey: "data") as? Array<Any> {
-                                
-                                for dict in invoiceArray {
-                                    let data = try JSONSerialization.data(withJSONObject: dict, options: [])
-                                    
-                                    let jsonDecoder = JSONDecoder()
-                                    
-                                    let invoice = try jsonDecoder.decode(Invoice.self, from: data)
-                                    invoices.append(invoice)
-                                }
-                            }
-                            
-                            DispatchQueue.main.async {
-                                successBlock(invoices)
-                            }
-                        }
-                        catch {
-                            DispatchQueue.main.async {
-                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
-                            }
-                        }
-                    }
-            }
-            else {
-                DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
-                }
-            }
-
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
-    }
-    
-    //MARK: Get ordered list
-    func getOrderedItemList(isShowLoader: Bool,
-                            successBlock :@escaping (_ invoices : [Invoice]) -> (),
-                            errorBlock :@escaping (_ error : String) -> ())  {
-                
-        let url = Constants.SERVICES.GET_ORDERED_LIST + String(format: "?user-token=%@", arguments: [Auth.shared.user.token])
-
-        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
-                    if statusKey != 1 {
-                        DispatchQueue.main.async {
-                            if let errormessage = response.value(forKey: "message") as? String{
-                                errorBlock(errormessage)
-                            }
-                        }
-                    }
-                    else {
-                        var invoices : [Invoice] = []
-                        
-                        do {
-                            if let invoiceArray = response.value(forKey: "data") as? Array<Any> {
-                                
-                                for dict in invoiceArray {
-                                    let data = try JSONSerialization.data(withJSONObject: dict, options: [])
-                                    
-                                    let jsonDecoder = JSONDecoder()
-                                    
-                                    let invoice = try jsonDecoder.decode(Invoice.self, from: data)
-                                    invoices.append(invoice)
-                                }
-                            }
-                            
-                            DispatchQueue.main.async {
-                                successBlock(invoices)
-                            }
-                        }
-                        catch {
-                            DispatchQueue.main.async {
-                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
-                            }
-                        }
-                    }
-            }
-            else {
-                DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
-                }
-            }
-
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
-    }
-    
-    //MARK: Get reserved Item list
-    func getReservedItemList(isShowLoader: Bool,
-                            successBlock :@escaping (_ invoices : [Invoice]) -> (),
-                            errorBlock :@escaping (_ error : String) -> ())  {
-                
-        let url = Constants.SERVICES.GET_RESERVED_LIST + String(format: "?user-token=%@", arguments: [Auth.shared.user.token])
-
-        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
-                    if statusKey != 1 {
-                        DispatchQueue.main.async {
-                            if let errormessage = response.value(forKey: "message") as? String{
-                                errorBlock(errormessage)
-                            }
-                        }
-                    }
-                    else {
-                        var invoices : [Invoice] = []
-                        
-                        do {
-                            if let invoiceArray = response.value(forKey: "data") as? Array<Any> {
-                                
-                                for dict in invoiceArray {
-                                    let data = try JSONSerialization.data(withJSONObject: dict, options: [])
-                                    
-                                    let jsonDecoder = JSONDecoder()
-                                    
-                                    let invoice = try jsonDecoder.decode(Invoice.self, from: data)
-                                    invoices.append(invoice)
-                                }
-                            }
-                            
-                            DispatchQueue.main.async {
-                                successBlock(invoices)
-                            }
-                        }
-                        catch {
-                            DispatchQueue.main.async {
-                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
-                            }
-                        }
-                    }
-            }
-            else {
-                DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
-                }
-            }
-
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
-    }
-    
-    //MARK: Get invoice PDF
-    func getInvoicePrint(accountNo: String,
-                         successBlock :@escaping (_ fileURL : URL) -> (),
-                         errorBlock :@escaping (_ error : String) -> ())  {
-                
-        let url = String(format: "%@invoices/%@/download?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, accountNo, Auth.shared.user.token])
+        let url = String(format: "%@invoices/%@/canceled?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, accountNo, Auth.shared.user.token])
 
         ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
             
             if let statusKey = response.value(forKey: "success") as? Int {
-                if statusKey != 1 {
-                    DispatchQueue.main.async {
-                        if let errormessage = response.value(forKey: "message") as? String{
-                            errorBlock(errormessage)
-                        }
-                    }
-                }
-                else {
-                    
-                    if let data = response.value(forKey: "data") as? [String: Any] {
-                        if let filePath = data["file"] as? String, let url = URL(string: filePath)  {
-                            
-                            DispatchQueue.main.async {
-                                successBlock(url)
-                            }
-                        }
-                        else {
-                            DispatchQueue.main.async {
-                                errorBlock(Constants.MESSAGES.PRINT_NOT_AVAILABLE)
+                    if statusKey != 1 {
+                        DispatchQueue.main.async {
+                            if let errormessage = response.value(forKey: "message") as? String{
+                                errorBlock(errormessage)
                             }
                         }
                     }
                     else {
-                        DispatchQueue.main.async {
-                            errorBlock(Constants.MESSAGES.PRINT_NOT_AVAILABLE)
+                        var invoicesDetails : [Details] = []
+                        
+                        do {
+                            if let invoiceArray = response.value(forKey: "data") as? Array<Any> {
+                                
+                                for dict in invoiceArray {
+                                    let data = try JSONSerialization.data(withJSONObject: dict, options: [])
+                                    
+                                    let jsonDecoder = JSONDecoder()
+                                    
+                                    let invoice = try jsonDecoder.decode(Details.self, from: data)
+                                    invoicesDetails.append(invoice)
+                                }
+                            }
+                            
+                            DispatchQueue.main.async {
+                                successBlock(invoicesDetails)
+                            }
+                        }
+                        catch {
+                            DispatchQueue.main.async {
+                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
+                            }
                         }
                     }
-                    
-                }
             }
             else {
                 DispatchQueue.main.async {
@@ -308,14 +136,14 @@ class Invoice: Codable {
         }
     }
     
-    //MARK: Get shipped Item list
-    func getShippedItemList(isShowLoader: Bool,
-                            successBlock :@escaping (_ invoices : [Invoice]) -> (),
-                            errorBlock :@escaping (_ error : String) -> ())  {
+    //MARK: Get ordered item details
+    func getOrderedItemDetails(accountNo: String,
+                               successBlock :@escaping (_ invoicesDetails : [Details]) -> (),
+                               errorBlock :@escaping (_ error : String) -> ())  {
                 
-        let url = Constants.SERVICES.GET_SHIPPED_LIST + String(format: "?user-token=%@", arguments: [Auth.shared.user.token])
+        let url = String(format: "%@invoices/%@/ordered?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, accountNo, Auth.shared.user.token])
 
-        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
+        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
             
             if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -326,7 +154,7 @@ class Invoice: Codable {
                         }
                     }
                     else {
-                        var invoices : [Invoice] = []
+                        var invoicesDetails : [Details] = []
                         
                         do {
                             if let invoiceArray = response.value(forKey: "data") as? Array<Any> {
@@ -336,13 +164,131 @@ class Invoice: Codable {
                                     
                                     let jsonDecoder = JSONDecoder()
                                     
-                                    let invoice = try jsonDecoder.decode(Invoice.self, from: data)
-                                    invoices.append(invoice)
+                                    let invoice = try jsonDecoder.decode(Details.self, from: data)
+                                    invoicesDetails.append(invoice)
                                 }
                             }
                             
                             DispatchQueue.main.async {
-                                successBlock(invoices)
+                                successBlock(invoicesDetails)
+                            }
+                        }
+                        catch {
+                            DispatchQueue.main.async {
+                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
+                            }
+                        }
+                    }
+            }
+            else {
+                DispatchQueue.main.async {
+                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                }
+            }
+
+
+        }) { (error) in
+            print("error : \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                errorBlock(error.localizedDescription)
+            }
+        }
+    }
+    
+    //MARK: Get reserved item details
+    func getReservedItemDetails(accountNo: String,
+                               successBlock :@escaping (_ invoicesDetails : [Details]) -> (),
+                               errorBlock :@escaping (_ error : String) -> ())  {
+                
+        let url = String(format: "%@invoices/%@/reserved?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, accountNo, Auth.shared.user.token])
+
+        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
+            
+            if let statusKey = response.value(forKey: "success") as? Int {
+                    if statusKey != 1 {
+                        DispatchQueue.main.async {
+                            if let errormessage = response.value(forKey: "message") as? String{
+                                errorBlock(errormessage)
+                            }
+                        }
+                    }
+                    else {
+                        var invoicesDetails : [Details] = []
+                        
+                        do {
+                            if let invoiceArray = response.value(forKey: "data") as? Array<Any> {
+                                
+                                for dict in invoiceArray {
+                                    let data = try JSONSerialization.data(withJSONObject: dict, options: [])
+                                    
+                                    let jsonDecoder = JSONDecoder()
+                                    
+                                    let invoice = try jsonDecoder.decode(Details.self, from: data)
+                                    invoicesDetails.append(invoice)
+                                }
+                            }
+                            
+                            DispatchQueue.main.async {
+                                successBlock(invoicesDetails)
+                            }
+                        }
+                        catch {
+                            DispatchQueue.main.async {
+                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
+                            }
+                        }
+                    }
+            }
+            else {
+                DispatchQueue.main.async {
+                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                }
+            }
+
+
+        }) { (error) in
+            print("error : \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                errorBlock(error.localizedDescription)
+            }
+        }
+    }
+    
+    //MARK: Get shipped item details
+    func getShippedItemDetails(accountNo: String,
+                               successBlock :@escaping (_ invoicesDetails : [Details]) -> (),
+                               errorBlock :@escaping (_ error : String) -> ())  {
+                
+        let url = String(format: "%@invoices/%@/shipped?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, accountNo, Auth.shared.user.token])
+
+        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
+            
+            if let statusKey = response.value(forKey: "success") as? Int {
+                    if statusKey != 1 {
+                        DispatchQueue.main.async {
+                            if let errormessage = response.value(forKey: "message") as? String{
+                                errorBlock(errormessage)
+                            }
+                        }
+                    }
+                    else {
+                        var invoicesDetails : [Details] = []
+                        
+                        do {
+                            if let invoiceArray = response.value(forKey: "data") as? Array<Any> {
+                                
+                                for dict in invoiceArray {
+                                    let data = try JSONSerialization.data(withJSONObject: dict, options: [])
+                                    
+                                    let jsonDecoder = JSONDecoder()
+                                    
+                                    let invoice = try jsonDecoder.decode(Details.self, from: data)
+                                    invoicesDetails.append(invoice)
+                                }
+                            }
+                            
+                            DispatchQueue.main.async {
+                                successBlock(invoicesDetails)
                             }
                         }
                         catch {

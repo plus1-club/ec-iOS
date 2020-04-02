@@ -3,7 +3,8 @@
 //  EC-online
 //
 //  Created by Dhaval Dobariya on 13/11/19.
-//  Copyright © 2019 Samir Azizov. All rights reserved.
+//  Updated by Sergey Lavrov on 02/04/2020.
+//  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
 import UIKit
@@ -82,7 +83,7 @@ class Utilities: NSObject {
     }
     
     class func resetValuesOnLogout() {
-        EcElectirc.shared.user.token = nil
+        Auth.shared.user.token = nil
         Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.ID)
         Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.PASSWORD)
         Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.synchronize()

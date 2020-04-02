@@ -3,7 +3,8 @@
 //  EC-online
 //
 //  Created by Dhaval Dobariya on 13/11/19.
-//  Copyright © 2019 Samir Azizov. All rights reserved.
+//  Updated by Sergey Lavrov on 02/04/2020.
+//  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
 import Foundation
@@ -35,7 +36,7 @@ class User {
                         if let data = response.value(forKey: "data") as? [String: Any] {
                                 
                             if let token = data["user_token"]  as? String {
-                                EcElectirc.shared.user.token = token
+                                Auth.shared.user.token = token
                             }
                             
                             DispatchQueue.main.async {

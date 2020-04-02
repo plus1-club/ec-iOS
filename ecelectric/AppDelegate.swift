@@ -1,9 +1,10 @@
 //
 //  AppDelegate.swift
-//  TestCollectionView
+//  EC-online
 //
-//  Created by Sam on 13/08/2019.
-//  Copyright © 2019 Samir Azizov. All rights reserved.
+//  Created by Samir Azizov on 13/08/2019.
+//  Updated by Sergey Lavrov on 02/04/2020.
+//  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
 import UIKit
@@ -13,7 +14,6 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -44,7 +44,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

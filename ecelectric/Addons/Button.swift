@@ -1,9 +1,10 @@
 //
 //  Button.swift
-//  ecelectirc
+//  EC-online
 //
 //  Created by Sam on 13/08/2019.
-//  Copyright © 2019 Samir Azizov. All rights reserved.
+//  Updated by Sergey Lavrov on 02/04/2020.
+//  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
 import UIKit
