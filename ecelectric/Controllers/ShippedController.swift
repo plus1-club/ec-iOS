@@ -50,13 +50,13 @@ class ShippedController: UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
     
-    //MARK: Refresh Data
+    //MARK: - Refresh Data
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
         getShippedOrders(isShowLoader: false)
     }
     
-    //MARK: API Call
+    //MARK: - API Call
     func getShippedOrders(isShowLoader: Bool) {
         Invoice().getShippedItemList(isShowLoader: isShowLoader, successBlock: { (invoices) in
             self.invoices = invoices
@@ -64,13 +64,20 @@ class ShippedController: UIViewController, UITableViewDataSource, UITableViewDel
             self.refreshControl.endRefreshing()
                                                                     		
         }) { (error) in
-            Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            //Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            let messageLabel = UILabel(frame: CGRect(x:0, y:0, width: self.shippedTableView.bounds.size.width, height: self.shippedTableView.bounds.size.height))
+            messageLabel.text = error
+            messageLabel.textColor = .black
+            messageLabel.numberOfLines = 0
+            messageLabel.textAlignment = .center
+            messageLabel.sizeToFit()
+            self.shippedTableView.backgroundView = messageLabel;
             self.refreshControl.endRefreshing()
 
         }
     }
     
-    //MARK: IBActions
+    //MARK: - IBActions
     @IBAction func showInvoiceDetailsTapped(_ sender: UIButton) {
         let selectedInvoice = self.invoices[sender.tag]
 

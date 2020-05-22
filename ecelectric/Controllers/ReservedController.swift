@@ -52,7 +52,7 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
         getReservedItemList(isShowLoader: false)
     }
     
-    //MARK: IBActions
+    //MARK: - IBActions
     @IBAction func showInvoiceDetailsTapped(_ sender: UIButton) {
         let selectedInvoice = self.invoices[sender.tag]
 
@@ -78,7 +78,7 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
     
-    //MARK: API Call
+    //MARK: - API Call
     func getReservedItemList(isShowLoader: Bool) {
         Invoice().getReservedItemList(isShowLoader: isShowLoader, successBlock: { (invoices) in
             
@@ -87,7 +87,14 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
             self.refreshControl.endRefreshing()
             
         }) { (error) in
-            Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            //Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            let messageLabel = UILabel(frame: CGRect(x:0, y:0, width: self.reservedTableView.bounds.size.width, height: self.reservedTableView.bounds.size.height))
+            messageLabel.text = error
+            messageLabel.textColor = .black
+            messageLabel.numberOfLines = 0
+            messageLabel.textAlignment = .center
+            messageLabel.sizeToFit()
+            self.reservedTableView.backgroundView = messageLabel;
             self.refreshControl.endRefreshing()
         }
     }

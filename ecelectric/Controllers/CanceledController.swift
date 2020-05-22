@@ -52,7 +52,7 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
         getCancelledOrders(isShowLoader: false)
     }
     
-    //MARK: API Call
+    //MARK: - API Call
     func getCancelledOrders(isShowLoader: Bool) {
         Invoice().getCanceledOrders(isShowLoader: isShowLoader, successBlock: { (invoices) in
             self.canceledOrders = invoices
@@ -60,13 +60,20 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
             self.refreshControl.endRefreshing()
 
         }) { (error) in
-            Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            //Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            let messageLabel = UILabel(frame: CGRect(x:0, y:0, width: self.canceledTableView.bounds.size.width, height: self.canceledTableView.bounds.size.height))
+            messageLabel.text = error
+            messageLabel.textColor = .black
+            messageLabel.numberOfLines = 0
+            messageLabel.textAlignment = .center
+            messageLabel.sizeToFit()
+            self.canceledTableView.backgroundView = messageLabel;
             self.refreshControl.endRefreshing()
 
         }
     }
     
-    //MARK: IBActions
+    //MARK: - IBActions
     @IBAction func showInvoiceDetailsTapped(_ sender: UIButton) {
         let selectedInvoice = self.canceledOrders[sender.tag]
 

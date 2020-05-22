@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="MenuController" id="BYZ-38-t0r" customClass="MenuController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="XoI-Ul-kMS">
@@ -90,7 +90,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wf6-ZV-Zs3" customClass="Button" customModule="EC_online" customModuleProvider="target">
-                                <rect key="frame" x="15" y="660" width="384" height="35"/>
+                                <rect key="frame" x="15" y="680" width="384" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="3Jn-zf-6ay"/>
@@ -870,11 +870,11 @@
             <objects>
                 <viewController storyboardIdentifier="RequestCheckController" id="3Re-fX-Wd5" customClass="RequestCheckController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gDR-E6-6FU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HJ6-wN-zSA">
-                                <rect key="frame" x="0.0" y="56" width="414" height="46"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Q41-3w-lF0"/>
                                 </constraints>
@@ -888,13 +888,13 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmi-Vm-SOk">
-                                <rect key="frame" x="0.0" y="101" width="414" height="615"/>
+                                <rect key="frame" x="0.0" y="89" width="414" height="647"/>
                                 <connections>
                                     <segue destination="jw1-Na-TJ7" kind="embed" id="B8i-bW-5cU"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAH-Dv-rbM">
-                                <rect key="frame" x="0.0" y="101" width="414" height="615"/>
+                                <rect key="frame" x="0.0" y="89" width="414" height="647"/>
                                 <connections>
                                     <segue destination="wX7-gx-TdD" kind="embed" id="i7w-Tb-vtw"/>
                                 </connections>
@@ -960,7 +960,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Pge-cn-4mU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage=" " backIndicatorTransitionMaskImage=" " id="tfj-ip-1sR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -977,17 +977,17 @@
             <objects>
                 <viewController storyboardIdentifier="RequestFromExcelCheckController" id="jw1-Na-TJ7" customClass="RequestFromExcelCheckController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OdX-dR-FcV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fp9-DG-zxP" userLabel="ScrollContainerView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JP-xM-mN8">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YPX-Pd-uIK" userLabel="ContentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите Excel-файл (формат XLS, XLSX, ODS. Коды проверяемых товаров в 1й колонке, количество во 2й колонке):" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhA-cK-2bc">
                                                         <rect key="frame" x="10" y="20" width="394" height="54"/>
@@ -1322,7 +1322,7 @@
             <objects>
                 <viewController storyboardIdentifier="RequestByCodeCheckController" id="wX7-gx-TdD" customClass="RequestByCodeCheckController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Amm-uY-C8X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ведите код или название товара:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNp-uX-nWF">
@@ -1456,11 +1456,11 @@
             <objects>
                 <viewController storyboardIdentifier="RequestOrderController" id="Glc-cL-dxu" customClass="RequestOrderController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LX7-xL-Knl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gBw-ph-yLe">
-                                <rect key="frame" x="0.0" y="56" width="414" height="46"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="hQY-oz-T23"/>
                                 </constraints>
@@ -1474,13 +1474,13 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OkN-2n-DUa">
-                                <rect key="frame" x="0.0" y="101" width="414" height="615"/>
+                                <rect key="frame" x="0.0" y="89" width="414" height="647"/>
                                 <connections>
                                     <segue destination="MZD-iR-jR6" kind="embed" id="QUd-lL-8Gg"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Neb-ty-WzH">
-                                <rect key="frame" x="0.0" y="101" width="414" height="615"/>
+                                <rect key="frame" x="0.0" y="89" width="414" height="647"/>
                                 <connections>
                                     <segue destination="wQ9-Yr-EJr" kind="embed" id="5i7-lW-Dzl"/>
                                 </connections>
@@ -1526,17 +1526,17 @@
             <objects>
                 <viewController storyboardIdentifier="RequestFromExcelOrderController" id="MZD-iR-jR6" customClass="RequestFromExcelOrderController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Dz-YP-qiu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rZ-HU-suz" userLabel="ScrollContainerView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46G-Dc-Gre">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Br6-E2-yIM" userLabel="ContentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите Excel-файл (формат XLS, XLSX, ODS. Коды проверяемых товаров в 1й колонке, количество во 2й колонке):" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyD-kT-eEJ">
                                                         <rect key="frame" x="10" y="20" width="394" height="54"/>
@@ -1732,7 +1732,7 @@
             <objects>
                 <viewController storyboardIdentifier="RequestByCodeOrderController" id="wQ9-Yr-EJr" customClass="RequestByCodeOrderController" customModule="EC_online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Htx-l9-YIW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooJ-5T-PhO">
@@ -1883,7 +1883,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="f1Q-Nb-gFn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pm8-Kd-oTr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3059,7 +3059,7 @@
         <segue reference="d1J-uU-m9Q"/>
         <segue reference="vBR-s9-Myb"/>
         <segue reference="owd-A9-qiO"/>
-        <segue reference="4bf-1d-W5J"/>
+        <segue reference="wty-sB-Uv3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name=" " width="16" height="16"/>

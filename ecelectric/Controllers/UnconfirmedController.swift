@@ -44,13 +44,12 @@ class UnconfirmedController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
         getUnconfirmedOrders(isShowLoader: false)
     }
     
-    //MARK: IBActions
+    //MARK: - IBActions
     @IBAction func showInvoiceDetailsTapped(_ sender: UIButton) {
         let selectedInvoice = self.invoices[sender.tag]
 
@@ -60,14 +59,21 @@ class UnconfirmedController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
     
-    //MARK: API Call
+    //MARK: - API Call
     func getUnconfirmedOrders(isShowLoader: Bool) {
         Invoice().getUnconfirmedOrders(isShowLoader: isShowLoader, successBlock: { (invoices) in
             self.invoices = invoices
             self.nepodtvTableView.reloadData()
             self.refreshControl.endRefreshing()
         }) { (error) in
-            Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            //Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            let messageLabel = UILabel(frame: CGRect(x:0, y:0, width: self.nepodtvTableView.bounds.size.width, height: self.nepodtvTableView.bounds.size.height))
+            messageLabel.text = error
+            messageLabel.textColor = .black
+            messageLabel.numberOfLines = 0
+            messageLabel.textAlignment = .center
+            messageLabel.sizeToFit()
+            self.nepodtvTableView.backgroundView = messageLabel;
             self.refreshControl.endRefreshing()
         }
     }
