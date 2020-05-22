@@ -17,6 +17,7 @@ class Basket: Codable  {
     var requestCount : String!
     var price : String!
     var sum : String!
+    var unit : String!
     var isSelected: Bool!
     var stockStatus: String!
     
@@ -47,6 +48,8 @@ class Basket: Codable  {
                                     let jsonDecoder = JSONDecoder()
                                     
                                     let bucket = try jsonDecoder.decode(Basket.self, from: data)
+                                    bucket.stockStatus = "В наличии"
+                                    bucket.unit = "шт"
                                     buckets.append(bucket)
                                 }
                             }

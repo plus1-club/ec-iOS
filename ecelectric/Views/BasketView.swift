@@ -15,6 +15,7 @@ class BasketView: UITableViewCell {
     @IBOutlet weak var invoiceAmount1: UILabel!
     @IBOutlet weak var itemPrice1: UILabel!
     @IBOutlet weak var qty: UITextField!
+    @IBOutlet weak var unit: UILabel!
     
     @IBOutlet weak var circleIcon: UILabel!
     @IBOutlet weak var deleteItem: UIButton!
@@ -24,8 +25,8 @@ class BasketView: UITableViewCell {
     
         circleIcon.layer.cornerRadius = circleIcon.frame.width/2
         circleIcon.layer.masksToBounds = true
-        circleIcon.backgroundColor = UIColor.red
-        circleIcon.textColor = UIColor.white
+        //circleIcon.backgroundColor = UIColor.red
+        circleIcon.textColor = UIColor.red
         // Initialization code
     }
 

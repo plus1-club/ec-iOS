@@ -128,14 +128,15 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         let requestTableCell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath as IndexPath) as! BasketView
         
         let basket = self.basketArray[indexPath.row]
-        requestTableCell.invoiceNumber1.text = String(format: "%@.%@", arguments: [basket.number, basket.product])
+        requestTableCell.invoiceNumber1.text = String(format: "%@", arguments: [basket.product])
         
         requestTableCell.qty.tag = indexPath.row
         requestTableCell.qty.text = basket.requestCount
         requestTableCell.qty.delegate = self
-        requestTableCell.invoiceAmount1.text = String(format: "Сумма: %@ руб.", arguments: [Utilities.formatedAmount(amount: basket.sum as Any)])
-        requestTableCell.itemPrice1.text = String(format: "Цена: %@ руб.", arguments: [basket.price])
-        
+        requestTableCell.invoiceAmount1.text = String(format: "%@ руб.", arguments: [Utilities.formatedAmount(amount: basket.sum as Any)])
+        requestTableCell.itemPrice1.text = String(format: "%@", arguments: [basket.stockStatus])
+        requestTableCell.unit.text = String(format: "%@", arguments: [basket.unit])
+
         requestTableCell.deleteItem.tag = indexPath.row
         requestTableCell.deleteItem.removeTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
         requestTableCell.deleteItem.addTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
