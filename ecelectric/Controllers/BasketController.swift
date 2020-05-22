@@ -88,7 +88,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func addTapped(_ sender: Button) {
-        let navController = self.storyboard?.instantiateViewController(withIdentifier: "checkAvailableProductNavigation") as! UINavigationController
+        let navController = self.storyboard?.instantiateViewController(withIdentifier: "RequestCheckController") as! UINavigationController
         self.revealViewController()?.setFront(navController, animated: true)
     }
     
@@ -111,7 +111,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
     
-    @IBAction func deleteTapped(_ sender: Button) {
+    @IBAction func deleteTapped(_ sender: UIButton) {
         self.view.endEditing(false)
         self.basketArray.remove(at: sender.tag)
 //        requestTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)

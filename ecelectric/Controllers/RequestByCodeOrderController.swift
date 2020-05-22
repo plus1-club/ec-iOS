@@ -13,7 +13,7 @@ class RequestByCodeOrderController: UIViewController {
 
     @IBOutlet weak var product: UITextField!
     @IBOutlet weak var quantity: UITextField!
-    @IBOutlet weak var isAdvanceSearch: Button!
+    @IBOutlet weak var isAdvanceSearch: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -61,7 +61,7 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.imgImage.image = imageArray[indexPath.row]
         cell.lblImageName.text! = nameArray[indexPath.row]
         
-        cell.layer.borderColor = UIColor.red.cgColor
+        cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 5
         
@@ -80,7 +80,7 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
 extension MenuController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 15
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -90,7 +90,7 @@ extension MenuController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (collectionView.frame.width / 2) - 7.5, height: 100)
+        return CGSize(width: (collectionView.frame.width / 2) - 5, height: 100)
     }
 }
 

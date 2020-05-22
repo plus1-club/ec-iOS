@@ -20,6 +20,11 @@ class RequestFromExcelCheckController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func checkTapped(_ sender: Button) {
+        
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SearchController") as! SearchController
+        self.navigationController?.pushViewController(controller, animated: true)
+     }
     /*
     // MARK: - Navigation
 
