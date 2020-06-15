@@ -15,7 +15,7 @@ class EnterController: UIViewController {
     @IBOutlet weak var id: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var buttonEnter: Button!
-    @IBOutlet weak var enterText: UILabel!
+    @IBOutlet weak var enterText: LinkLabel!
 
     //MARK: - Override
     override func viewDidLoad() {
@@ -25,6 +25,8 @@ class EnterController: UIViewController {
             let password = Constants.DEFAULTS.SELF.object(forKey: Constants.DEFAULTS.PASSWORD) as? String{
                 performLogin(id: id, password: password)
         }
+        // Link
+        prepareLink()
     }
     
     //MARK: - Method
@@ -49,6 +51,30 @@ class EnterController: UIViewController {
         else {
             Utilities.showAlert(strTitle: Constants.MESSAGES.ENTER_VALID_LOGIN_DETAILS, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
             return false
+        }
+    }
+    
+    func prepareLink(){
+        let linkAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.blue,
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.RawValue(),
+            NSAttributedString.Key.link: "tel:+74957300230"
+        ]
+        let link = NSMutableAttributedString(string: "+7 (495) 730-02-30")
+        link.setAttributes(linkAttributes, range: NSRange(location: 0,length: link.length))
+        
+        let text = NSMutableAttributedString()
+        text.append(enterText.attributedText ?? NSAttributedString(string: ""))
+        text.append(link)
+        enterText.attributedText = text
+        
+        enterText.onCharacterTapped = {
+            enterText,
+            characterIndex in
+            if let _ = enterText.attributedText?.attribute(NSAttributedString.Key.link, at: characterIndex, effectiveRange: nil) as? String,
+                let url = NSURL(string: "tel:74957300230"){
+                UIApplication.shared.open(url as URL)
+            }
         }
     }
 

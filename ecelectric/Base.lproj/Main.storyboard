@@ -559,15 +559,21 @@
                                             <action selector="touchEnter:" destination="rU0-7E-l4v" eventType="touchUpInside" id="kXo-nb-kfY"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76C-o5-N6S" userLabel="enterText">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76C-o5-N6S" userLabel="enterText" customClass="LinkLabel" customModule="EC_online" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="278" width="374" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="VOE-EW-Fgb"/>
                                         </constraints>
-                                        <string key="text">Логин и временный пароль вы можете получить, позвонив по телефону:
-+7(495)7300230</string>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">Логин и временный пароль вы можете получить, позвонив по телефону:
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="system" size="17"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
