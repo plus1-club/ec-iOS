@@ -10,6 +10,8 @@
 import UIKit
 
 class SideMenuController: UITableViewController {
+  
+    let exit = 9
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,31 +32,23 @@ class SideMenuController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 9
+        return 10
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Exit
-        if indexPath.row == 8 {
+        if indexPath.row == exit {
             if  let app = UIApplication.shared.delegate as? AppDelegate,
                 let window = app.window {
-                
                 Auth.shared.user.logout(successBlock: {
-                
-                    Utilities.resetValuesOnLogout()
-                    
+                    Auth.resetValuesOnLogout()
                     window.rootViewController = self.storyboard?.instantiateInitialViewController()
                     window.makeKeyAndVisible()
                 }) { (error) in
                     Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
                 }
-                
-                
-
             }
-            
-            
         }
     }
     /*

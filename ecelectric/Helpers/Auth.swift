@@ -18,4 +18,11 @@ class Auth {
     private init() {
 
     }
+    
+    class func resetValuesOnLogout() {
+        Auth.shared.user.token = nil
+        Constants.DEFAULTS.SELF.removeObject(forKey: Constants.DEFAULTS.ID)
+        Constants.DEFAULTS.SELF.removeObject(forKey: Constants.DEFAULTS.PASSWORD)
+        Constants.DEFAULTS.SELF.synchronize()
+    }
 }

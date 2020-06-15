@@ -11,9 +11,8 @@ import UIKit
 
 class Utilities: NSObject {
     
-    //MARK: Validation methods
+    //MARK: - Validation
     class func isValidString(str:String?) -> Bool {
-        
         if str != nil && str?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             return false
         }
@@ -21,9 +20,7 @@ class Utilities: NSObject {
     }
     
     class func isValidEmail(strEmail : String?) -> Bool {
-        
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9_%+-]+\\.[A-Za-z]{2,}"
-        
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: strEmail)
     }
@@ -42,7 +39,7 @@ class Utilities: NSObject {
         }
     }
     
-    //MARK: Show Alert
+    //MARK: - Show Alert
     class func showAlert(strTitle:String, strMessage:String?, parent:AnyObject, OKButtonTitle : String? ,CancelButtonTitle : String?, okBlock : (() -> Void)?, cancelBlock : (() -> Void)?)
     {
         let alert = UIAlertController(title: strTitle, message: (strMessage ?? ""), preferredStyle: .alert)
@@ -62,12 +59,10 @@ class Utilities: NSObject {
             }
             alert.addAction(CancelAction)
         }
-        
         parent.present(alert, animated: true, completion: nil)
-        
     }
     
-    
+    //MARK: - Format
     class func formatedAmount(amount: Any) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
@@ -78,15 +73,6 @@ class Utilities: NSObject {
             
             return numberFormatter.string(from: NSNumber(value:dblAmt))!
         }
-
         return (amount as? String) ?? ""
-    }
-    
-    class func resetValuesOnLogout() {
-        Auth.shared.user.token = nil
-        Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.ID)
-        Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.removeObject(forKey: Constants.USER_DEFAULTS.PASSWORD)
-        Constants.USER_DEFAULTS.OBJ_USER_DEFAULT.synchronize()
-
-    }
+    }    
 }

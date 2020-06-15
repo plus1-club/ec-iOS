@@ -4,7 +4,7 @@
 #  ecelectric
 #
 #  Created by Sergey Lavrov on 13.06.2020.
-#  Copyright © 2020 +1. All rights reserved.
+#  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 
 #git=$(sh /etc/profile; which git)
 #number_of_commits=$("$git" rev-list HEAD --count)

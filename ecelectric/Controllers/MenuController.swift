@@ -31,7 +31,7 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             Auth.shared.user.logout(successBlock: {
             
-                Utilities.resetValuesOnLogout()
+                Auth.resetValuesOnLogout()
                 window.rootViewController = self.storyboard?.instantiateInitialViewController()
                 window.makeKeyAndVisible()
             }) { (error) in
