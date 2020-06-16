@@ -3,7 +3,7 @@
 //  EC-online
 //
 //  Created by Samir Azizov on 11/09/2019.
-//  Updated by Sergey Lavrov on 02/04/2020.
+//  Refactored by Sergey Lavrov on 16/06/2020.
 //  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
@@ -11,16 +11,15 @@ import UIKit
 
 class ShippedController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    //MARK: - Outlet
     @IBOutlet weak var shippedTableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
+    //MARK: - Variable
     var invoices = [Invoice]()
     var refreshControl = UIRefreshControl()
 
-//    let invoiceNumber1 = [("Счет № 756503 от 27 марта 2019"), ("Счет № 75358 от 27 марта 2019"), ("Счет № 737303 от 27 марта 2019"), ("Счет № 736947 от 27 марта 2019"), ("Счет № 758673 от 27 марта 2019")]
-//    let invoiceAmount1 = [("Сумма: 7 970,98"), ("Сумма: 6 172,76"), ("Сумма: 8 817,87"), ("Сумма: 27 967,00"), ("Сумма: 356,73")]
-//    let waybillNumber1 = [("Накладная №39727"), ("Накладная №34637"), ("Накладная №53271"), ("Накладная №87365"), ("Накладная №12836")]
-    
+    //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,16 +34,15 @@ class ShippedController: UIViewController, UITableViewDataSource, UITableViewDel
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         shippedTableView.addSubview(refreshControl) // not required when using UITableViewController
-
     }
         
-    //MARK: - Refresh Data
+    //MARK: - Selector
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
         getShippedOrders(isShowLoader: false)
     }
     
-    //MARK: - API Call
+    //MARK: - API
     func getShippedOrders(isShowLoader: Bool) {
         Invoice().getShippedItemList(isShowLoader: isShowLoader, successBlock: { (invoices) in
             self.invoices = invoices
@@ -52,30 +50,20 @@ class ShippedController: UIViewController, UITableViewDataSource, UITableViewDel
             self.refreshControl.endRefreshing()
                                                                     		
         }) { (error) in
-            //Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
-            let messageLabel = UILabel(frame: CGRect(x:0, y:0, width: self.shippedTableView.bounds.size.width, height: self.shippedTableView.bounds.size.height))
-            messageLabel.text = error
-            messageLabel.textColor = .black
-            messageLabel.numberOfLines = 0
-            messageLabel.textAlignment = .center
-            messageLabel.sizeToFit()
-            self.shippedTableView.backgroundView = messageLabel;
-            self.refreshControl.endRefreshing()
-
+            Utilities.tableMessage(table: self.shippedTableView, refresh: self.refreshControl, message: error)
         }
     }
     
-    //MARK: - IBActions
+    //MARK: - Action
     @IBAction func showInvoiceDetailsTapped(_ sender: UIButton) {
         let selectedInvoice = self.invoices[sender.tag]
 
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "ShippedDetailsController") as! ShippedDetailsController
         controller.invoice = selectedInvoice
         self.navigationController?.pushViewController(controller, animated: true)
-
     }
     
-    
+    //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return invoices.count
     }

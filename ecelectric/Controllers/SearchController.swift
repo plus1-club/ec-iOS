@@ -3,7 +3,7 @@
 //  EC-online
 //
 //  Created by Dhaval Dobariya on 21/11/19.
-//  Updated by Sergey Lavrov on 02/04/2020.
+//  Refactored by Sergey Lavrov on 16/06/2020.
 //  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
@@ -11,15 +11,30 @@ import UIKit
 
 class SearchController: UIViewController {
 
-    var basketArray = [Basket]()
-    @IBOutlet weak var itemsTableView: UITableView!
+    //MARK: - Outlet
+    @IBOutlet weak var searchTableView: UITableView!
     
+    //MARK: - Variable
+    var basketArray = [Basket]()
+    var refreshControl = UIRefreshControl()
+
+    //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        itemsTableView.reloadData()
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+        searchTableView.addSubview(refreshControl) // not required when using UITableViewController
+
+        searchTableView.reloadData()
     }
     
+    //MARK: - Selector
+    @objc func refresh(sender:AnyObject) {
+        searchTableView.reloadData()
+    }
+
+    //MARK: - Action
     @IBAction func isSelectItemTapped(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         
@@ -28,24 +43,24 @@ class SearchController: UIViewController {
     }
     
     @IBAction func addToBucket(_ sender: UIButton) {
-        
         let selectedBasket = basketArray.filter ({ $0.isSelected == true })
         if selectedBasket.count > 0 {
             self.view.endEditing(true)
-
+            
             Basket().addItemToBucket(buckets: selectedBasket, successBlock: {
-                
                 let navController = self.storyboard?.instantiateViewController(withIdentifier: "bucketNavigation") as! UINavigationController
                 self.revealViewController()?.setFront(navController, animated: true)
                 
             }) { (error) in
-                Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+                Utilities.tableMessage(table: self.searchTableView, refresh: self.refreshControl, message: error)
             }
         }
     }
 }
 
+//MARK: - DataSourse
 extension SearchController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return basketArray.count
     }
@@ -76,11 +91,9 @@ extension SearchController: UITableViewDataSource {
     
     func changeStockStatusLabel(cell: SearchView, basket: Basket) {
         if let stock = Int(basket.stockCount), let request = Int(basket.requestCount) {
-            
             let tintedImage = cell.isSelectedItem.imageView?.image?.withRenderingMode(.alwaysTemplate)
             cell.isSelectedItem.imageView?.image = tintedImage
             
-
             if stock == 0 {
                 cell.stockStatus.text = "Нет"
                 cell.stockStatus.textColor = UIColor.red
@@ -96,12 +109,13 @@ extension SearchController: UITableViewDataSource {
                 cell.stockStatus.textColor = #colorLiteral(red: 0.9759441018, green: 0.7644813061, blue: 0.01044687536, alpha: 1)
                 cell.isSelectedItem.imageView?.tintColor = #colorLiteral(red: 0.9759441018, green: 0.7644813061, blue: 0.01044687536, alpha: 1)
             }
-
         }
     }
 }
 
+//MARK: - Delegate
 extension SearchController: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
@@ -110,18 +124,18 @@ extension SearchController: UITextFieldDelegate {
 
         basket.requestCount = updatedString
         
-        let cell = itemsTableView.cellForRow(at: IndexPath(row: row, section: 0)) as! SearchView
+        let cell = searchTableView.cellForRow(at: IndexPath(row: row, section: 0)) as! SearchView
         changeStockStatusLabel(cell: cell, basket: basket)
         //itemsTableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
 
         return true
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         let row = textField.tag
         let bucket = self.basketArray[row]
 
         bucket.requestCount = textField.text
-        itemsTableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
-
+        searchTableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
     }
 }

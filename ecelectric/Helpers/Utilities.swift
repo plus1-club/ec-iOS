@@ -62,6 +62,17 @@ class Utilities: NSObject {
         parent.present(alert, animated: true, completion: nil)
     }
     
+    class func tableMessage(table: UITableView, refresh: UIRefreshControl, message:String){
+        let messageLabel = UILabel(frame: CGRect(x:0, y:0, width: table.bounds.size.width, height: table.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .black
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.sizeToFit()
+        table.backgroundView = messageLabel;
+        refresh.endRefreshing()
+    }
+    
     class func sideMenu(window: UIViewController, menuButton: UIBarButtonItem){
         if window.revealViewController() != nil {
             menuButton.target = window.revealViewController()

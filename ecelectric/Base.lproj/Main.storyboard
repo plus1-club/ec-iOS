@@ -245,7 +245,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="BG6-AO-owc" id="Y8G-R9-T5Z"/>
-                        <outlet property="nepodtvTableView" destination="Pqd-xG-fzs" id="ets-l6-FVv"/>
+                        <outlet property="unconfirmedTableView" destination="Pqd-xG-fzs" id="jeV-zW-681"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYT-As-4aH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -358,7 +358,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="accountNoAndDate" destination="4v3-zJ-IJs" id="F6K-hl-SMJ"/>
-                        <outlet property="orderDetailsTableView" destination="gPp-9x-cOz" id="Vvi-vO-QNR"/>
+                        <outlet property="detailsTableView" destination="gPp-9x-cOz" id="qA7-Gr-wCq"/>
                         <outlet property="totalAmount" destination="KOA-ey-Dqm" id="blh-Sv-NdU"/>
                     </connections>
                 </viewController>
@@ -1378,7 +1378,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hv4-Kh-Tt2"/>
                     <connections>
-                        <outlet property="itemsTableView" destination="a7u-ii-Ebb" id="18q-Kg-jkI"/>
+                        <outlet property="searchTableView" destination="a7u-ii-Ebb" id="BCA-8G-oO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYa-LC-bcH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2181,7 +2181,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="accountNoAndDate" destination="1S1-Me-5ad" id="TvA-uR-ohl"/>
-                        <outlet property="orderDetailsTableView" destination="KbQ-Rw-ajv" id="EQw-A3-Dyc"/>
+                        <outlet property="detailsTableView" destination="KbQ-Rw-ajv" id="Tb0-fw-c5M"/>
                         <outlet property="totalAmount" destination="Kso-UI-g4m" id="JKo-se-T0k"/>
                     </connections>
                 </viewController>
@@ -2437,7 +2437,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="accountNoAndDate" destination="EnT-1H-MoA" id="nTN-c9-49u"/>
-                        <outlet property="orderDetailsTableView" destination="IvY-6d-5Yu" id="4Ph-px-yep"/>
+                        <outlet property="detailsTableView" destination="IvY-6d-5Yu" id="NPL-BM-BhS"/>
                         <outlet property="totalAmount" destination="GFl-Fo-2Nt" id="VLc-ne-Ziw"/>
                         <outlet property="wayBillsNo" destination="0An-Be-l5S" id="Krh-tP-pJJ"/>
                     </connections>
@@ -2702,7 +2702,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="accountNoAndDate" destination="zAf-Xm-202" id="sTn-Pr-xCK"/>
-                        <outlet property="orderDetailsTableView" destination="nlj-E8-yM7" id="aDX-zy-3aN"/>
+                        <outlet property="detailsTableView" destination="nlj-E8-yM7" id="43K-iJ-6Te"/>
                         <outlet property="totalAmount" destination="Aby-Ao-k9N" id="E0V-eP-kwA"/>
                     </connections>
                 </viewController>
@@ -2976,10 +2976,10 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="menu" id="4BW-D7-pxj"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="basketTableView" destination="UVB-qz-bmc" id="mi9-Xf-DQb"/>
                         <outlet property="comment" destination="8n6-ED-3Co" id="NUS-I0-zhN"/>
                         <outlet property="grandTotal" destination="vQx-x1-NEU" id="9QZ-Kl-Y2E"/>
                         <outlet property="menuButton" destination="4BW-D7-pxj" id="xDC-Tc-BKw"/>
-                        <outlet property="requestTableView" destination="UVB-qz-bmc" id="ZSC-ev-aBl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZq-E4-Cmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3112,7 +3112,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="accountNoAndDate" destination="TlU-0Y-Skr" id="esx-dz-mtn"/>
-                        <outlet property="orderDetailsTableView" destination="zcC-8U-ZQz" id="a7d-Wt-HG8"/>
+                        <outlet property="detailsTableView" destination="zcC-8U-ZQz" id="jac-qQ-KyW"/>
                         <outlet property="totalAmount" destination="2Kr-UE-HYM" id="f7p-EU-SaH"/>
                     </connections>
                 </viewController>
@@ -3141,13 +3141,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kvf-ZA-5xF"/>
         <segue reference="9w2-vZ-cyY"/>
         <segue reference="d1J-uU-m9Q"/>
         <segue reference="vBR-s9-Myb"/>
         <segue reference="owd-A9-qiO"/>
         <segue reference="igX-ck-7fJ"/>
-        <segue reference="NYq-2f-MLH"/>
+        <segue reference="VdZ-Zd-aic"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name=" " width="16" height="16"/>

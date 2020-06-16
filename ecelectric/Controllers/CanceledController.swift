@@ -3,7 +3,7 @@
 //  EC-online
 //
 //  Created by Samir Azizov on 11/09/2019.
-//  Updated by Sergey Lavrov on 02/04/2020.
+//  Refactored by Sergey Lavrov on 16/06/2020.
 //  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
@@ -11,13 +11,15 @@ import UIKit
 
 class CanceledController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-
+    //MARK: - Outlet
     @IBOutlet weak var canceledTableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
+    //MARK: - Variable
     var canceledOrders = [Invoice]()
     var refreshControl = UIRefreshControl()
     
+    //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,16 +34,15 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         canceledTableView.addSubview(refreshControl) // not required when using UITableViewController
-
     }
         
-    //MARK: Refresh Data
+    //MARK: - Selector
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
         getCancelledOrders(isShowLoader: false)
     }
     
-    //MARK: - API Call
+    //MARK: - API
     func getCancelledOrders(isShowLoader: Bool) {
         Invoice().getCanceledOrders(isShowLoader: isShowLoader, successBlock: { (invoices) in
             self.canceledOrders = invoices
@@ -49,29 +50,20 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
             self.refreshControl.endRefreshing()
 
         }) { (error) in
-            //Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
-            let messageLabel = UILabel(frame: CGRect(x:0, y:0, width: self.canceledTableView.bounds.size.width, height: self.canceledTableView.bounds.size.height))
-            messageLabel.text = error
-            messageLabel.textColor = .black
-            messageLabel.numberOfLines = 0
-            messageLabel.textAlignment = .center
-            messageLabel.sizeToFit()
-            self.canceledTableView.backgroundView = messageLabel;
-            self.refreshControl.endRefreshing()
-
+            Utilities.tableMessage(table: self.canceledTableView, refresh: self.refreshControl, message: error)
         }
     }
     
-    //MARK: - IBActions
+    //MARK: - Action
     @IBAction func showInvoiceDetailsTapped(_ sender: UIButton) {
         let selectedInvoice = self.canceledOrders[sender.tag]
 
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "CanceledDetailsController") as! CanceledDetailsController
         controller.invoice = selectedInvoice
         self.navigationController?.pushViewController(controller, animated: true)
-
     }
     
+    //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return canceledOrders.count
     }
@@ -89,6 +81,5 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
         canceledCell.invoiceDetailsButton.addTarget(self, action: #selector(showInvoiceDetailsTapped(_:)), for: .touchUpInside)
 
         return canceledCell
-}
-
+    }
 }

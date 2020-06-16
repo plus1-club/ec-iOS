@@ -3,7 +3,7 @@
 //  EC-online
 //
 //  Created by Dhaval Dobariya on 13/11/19.
-//  Updated by Sergey Lavrov on 02/04/2020.
+//  Refactored by Sergey Lavrov on 16/06/2020.
 //  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
@@ -28,7 +28,7 @@ class SideMenuController: UITableViewController {
         super.viewDidLoad()
     }
 
-    // MARK: - Table view data source
+    // MARK: - TableView
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

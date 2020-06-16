@@ -3,7 +3,7 @@
 //  EC-online
 //
 //  Created by Samir Azizov on 13/08/2019.
-//  Updated by Sergey Lavrov on 02/04/2020.
+//  Refactored by Sergey Lavrov on 16/06/2020.
 //  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
@@ -15,7 +15,7 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    //MARK: - Array
+    //MARK: - Variable
     let imageArray = [
         UIImage(named: "request"),
         UIImage(named: "order"),
@@ -69,7 +69,7 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    //MARK: - Collection
+    //MARK: - CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArray.count
     }
@@ -99,6 +99,7 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 }
 
+//MARK: - Delegate
 extension MenuController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10

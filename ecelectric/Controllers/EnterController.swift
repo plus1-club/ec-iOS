@@ -3,7 +3,7 @@
 //  EC-online
 //
 //  Created by Samir Azizov on 13/08/2019.
-//  Updated by Sergey Lavrov on 02/04/2020.
+//  Refactored by Sergey Lavrov on 16/06/2020.
 //  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
@@ -29,7 +29,7 @@ class EnterController: UIViewController {
         prepareLink()
     }
     
-    //MARK: - Method
+    //MARK: - API
     func performLogin(id: String, password: String) {
         Auth.shared.user.login(id: id, password: password, successBlock: {
             Constants.DEFAULTS.SELF.set(id, forKey: Constants.DEFAULTS.ID)
@@ -43,6 +43,7 @@ class EnterController: UIViewController {
         }
     }
     
+    //MARK: - Method
     func isValidInput() -> Bool {
         if Utilities.isValidString(str: id.text) &&
             Utilities.isValidString(str: password.text) {
@@ -78,7 +79,7 @@ class EnterController: UIViewController {
         }
     }
 
-    //MARK: - Event
+    //MARK: - Action
     @IBAction func touchEnter(_ sender: UIButton) {
         if isValidInput() {
             self.view.endEditing(true)
