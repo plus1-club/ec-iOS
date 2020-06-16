@@ -25,8 +25,8 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
         canceledTableView.dataSource = self
         canceledTableView.tableFooterView = UIView()
 
-        sideMenu()
-        
+        Utilities.sideMenu(window: self, menuButton: menuButton)
+
         getCancelledOrders(isShowLoader: true)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
@@ -34,18 +34,7 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
         canceledTableView.addSubview(refreshControl) // not required when using UITableViewController
 
     }
-    
-    func sideMenu() {
         
-        if revealViewController() != nil {
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-            revealViewController().rightViewRevealWidth = 275
-            
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-    }
-    
     //MARK: Refresh Data
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view

@@ -27,26 +27,15 @@ class OrderedController: UIViewController, UITableViewDelegate, UITableViewDataS
         orderTableView.dataSource = self
         orderTableView.tableFooterView = UIView()
 
-        sideMenu()
-        
+        Utilities.sideMenu(window: self, menuButton: menuButton)
+
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         orderTableView.addSubview(refreshControl) // not required when using UITableViewController
 
         getOrderedItemList(isShowLoader: true)
     }
-    
-    func sideMenu() {
         
-        if revealViewController() != nil {
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-            revealViewController().rightViewRevealWidth = 275
-            
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-    }
-    
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
         getOrderedItemList(isShowLoader: false)

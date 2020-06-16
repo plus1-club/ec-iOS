@@ -18,19 +18,7 @@ class RequestCheckController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        sideMenu()
-    }
-    
-    func sideMenu() {
-        
-        if revealViewController() != nil {
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-            revealViewController().rightViewRevealWidth = 275
-            
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
+        Utilities.sideMenu(window: self, menuButton: menuButton)
     }
     
     @IBAction func switchViews(_ sender: UISegmentedControl) {
@@ -42,5 +30,4 @@ class RequestCheckController: UIViewController {
             secondView.alpha = 1
         }
     }
-
 }

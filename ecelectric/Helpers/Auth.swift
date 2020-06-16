@@ -11,14 +11,17 @@ import Foundation
 
 class Auth {
 
+    //MARK: - Variable
     static let shared = Auth()
     let user = User()
     
+    //MARK: - Constructor
     //This prevents others from using the default '()' initializer for this class.
     private init() {
 
     }
     
+    //MARK: - Method
     class func resetValuesOnLogout() {
         Auth.shared.user.token = nil
         Constants.DEFAULTS.SELF.removeObject(forKey: Constants.DEFAULTS.ID)

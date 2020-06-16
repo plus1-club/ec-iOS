@@ -3,7 +3,7 @@
 //  EC-online
 //
 //  Created by Sergey Lavrov on 15.06.2020.
-//  Copyright © 2020 Samir Azizov. All rights reserved.
+//  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
 import UIKit

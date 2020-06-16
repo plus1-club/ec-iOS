@@ -28,22 +28,11 @@ class UnconfirmedController: UIViewController, UITableViewDelegate, UITableViewD
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         nepodtvTableView.addSubview(refreshControl) // not required when using UITableViewController
         
-        sideMenu()
-        
+        Utilities.sideMenu(window: self, menuButton: menuButton)
+
         getUnconfirmedOrders(isShowLoader: true)
     }
-    
-    func sideMenu() {
         
-        if revealViewController() != nil {
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-            revealViewController().rightViewRevealWidth = 275
-            
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-    }
-    
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
         getUnconfirmedOrders(isShowLoader: false)

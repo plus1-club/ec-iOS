@@ -39,7 +39,7 @@ class Utilities: NSObject {
         }
     }
     
-    //MARK: - Show Alert
+    //MARK: - Window
     class func showAlert(strTitle:String, strMessage:String?, parent:AnyObject, OKButtonTitle : String? ,CancelButtonTitle : String?, okBlock : (() -> Void)?, cancelBlock : (() -> Void)?)
     {
         let alert = UIAlertController(title: strTitle, message: (strMessage ?? ""), preferredStyle: .alert)
@@ -60,6 +60,15 @@ class Utilities: NSObject {
             alert.addAction(CancelAction)
         }
         parent.present(alert, animated: true, completion: nil)
+    }
+    
+    class func sideMenu(window: UIViewController, menuButton: UIBarButtonItem){
+        if window.revealViewController() != nil {
+            menuButton.target = window.revealViewController()
+            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+            window.revealViewController().rightViewRevealWidth = 275
+            window.view.addGestureRecognizer(window.revealViewController().panGestureRecognizer())
+        }
     }
     
     //MARK: - Format

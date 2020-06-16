@@ -11,46 +11,65 @@ import UIKit
 
 class MenuController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
     
+    //MARK: - Outlet
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    let imageArray = [UIImage(named: "request"), UIImage(named: "order"), UIImage(named: "basket"), UIImage(named: "unconfirmed"), UIImage(named: "reserved"), UIImage(named: "ordered"), UIImage(named: "canceled"), UIImage(named: "shipped")]
+    //MARK: - Array
+    let imageArray = [
+        UIImage(named: "request"),
+        UIImage(named: "order"),
+        UIImage(named: "basket"),
+        UIImage(named: "unconfirmed"),
+        UIImage(named: "reserved"),
+        UIImage(named: "ordered"),
+        UIImage(named: "canceled"),
+        UIImage(named: "shipped")
+    ]
     
-    let nameArray = ["Проверка наличия товара", "Сделать заказ", "Корзина", "Неподтвержденные резервы" ,"Резервы", "Заказы", "Анулированные и просроченные счета", "История отгрузок"]
+    let nameArray = [
+        "Проверка наличия товара",
+        "Сделать заказ",
+        "Корзина",
+        "Неподтвержденные резервы",
+        "Резервы",
+        "Заказы",
+        "Анулированные и просроченные счета",
+        "История отгрузок"]
      
-    let arrayOfIds = ["RequestCheckController", "RequestOrderController", "BasketController", "UnconfirmedController", "ReservedController", "OrderedController", "CanceledController", "ShippedController"]
+    let idArray = [
+        "RequestCheckController",
+        "RequestOrderController",
+        "BasketController",
+        "UnconfirmedController",
+        "ReservedController",
+        "OrderedController",
+        "CanceledController",
+        "ShippedController"]
     
+    //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        sideMenu()
+        Utilities.sideMenu(window: self, menuButton: menuButton)
     }
 
+    //MARK: - Action
     @IBAction func logoutTapped(_ sender: UIButton) {
         if let app = UIApplication.shared.delegate as? AppDelegate, let window = app.window {
-            
-            Auth.shared.user.logout(successBlock: {
-            
-                Auth.resetValuesOnLogout()
-                window.rootViewController = self.storyboard?.instantiateInitialViewController()
-                window.makeKeyAndVisible()
-            }) { (error) in
-                Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+            Auth.shared.user.logout(
+                successBlock: {
+                    Auth.resetValuesOnLogout()
+                    window.rootViewController = self.storyboard?.instantiateInitialViewController()
+                    window.makeKeyAndVisible()
+                }) { (error) in
+                    Utilities.showAlert(strTitle: error, strMessage: nil, parent: self,
+                                        OKButtonTitle: nil, CancelButtonTitle: nil,
+                                        okBlock: nil, cancelBlock: nil)
             }
         }
     }
     
-    func sideMenu() {
-        
-        if revealViewController() != nil {
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-            revealViewController().rightViewRevealWidth = 275
-            
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-    }
-    
+    //MARK: - Collection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArray.count
     }
@@ -60,6 +79,11 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuView
         cell.imgImage.image = imageArray[indexPath.row]
         cell.lblImageName.text! = nameArray[indexPath.row]
+        if (collectionView.frame.width < 350){
+            cell.lblImageName.font = UIFont.systemFont(ofSize: 13.0, weight: UIFont.Weight.bold)
+        } else {
+            cell.lblImageName.font = UIFont.systemFont(ofSize: 15.0, weight: UIFont.Weight.bold)
+        }
         
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1
@@ -69,9 +93,7 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        print("test is good")
-        let name = arrayOfIds[indexPath.row]
+        let name = idArray[indexPath.row]
         let viewController = storyboard?.instantiateViewController(withIdentifier: name)
         self.navigationController?.pushViewController(viewController!, animated: true)
     }
@@ -79,18 +101,15 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
 extension MenuController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        
         return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: (collectionView.frame.width / 2) - 5, height: 100)
+        return CGSize(width: (collectionView.frame.width / 2) - 5,
+                      height: (collectionView.frame.height - 30) / 4)
     }
 }
-
