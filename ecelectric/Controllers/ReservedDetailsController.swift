@@ -68,19 +68,18 @@ class ReservedDetailsController: UIViewController {
 
 //MARK: - DataSource
 extension ReservedDetailsController: UITableViewDataSource {
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return self.invoiceDetails.count
-   }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.invoiceDetails.count
+    }
    
-   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "reservedDetailsCell", for: indexPath) as! ReservedDetailsView
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reservedDetailsCell", for: indexPath) as! ReservedDetailsView
        
-       let invoice = self.invoiceDetails[indexPath.row]
+        let details = self.invoiceDetails[indexPath.row]
+        cell.productName.text = details.product
+        cell.countAndAvailable.text = String(format: "%@ %@     %@", arguments: [details.count, details.unit, details.available])
+        cell.price.text = String(format: "%@ pyб.", arguments: [details.price])
        
-       cell.productName.text = invoice.product
-       cell.countAndAvailable.text = String(format: "%@     %@", arguments: [invoice.count, invoice.available])
-       cell.price.text = String(format: "%@ pyб.", arguments: [invoice.price])
-       
-       return cell
-   }
+        return cell
+    }
 }

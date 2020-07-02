@@ -14,9 +14,11 @@ class Details: Codable {
     var id : String!
     var product : String!
     var count : String!
+    var unit : String!
     var price : String!
     var sum : String!
     var available : String!
+    var delivery : String!
 
     //MARK: Get unconfirmed orders
     func getUnconfirmedOrderDetails(accountNo: String,

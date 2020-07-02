@@ -75,11 +75,10 @@
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderedDetailsCell", for: indexPath) as! OrderedDetailsView
         
-        let invoice = self.invoiceDetails[indexPath.row]
-        
-        cell.productName.text = invoice.product
-        cell.countAndAvailable.text = String(format: "%@     %@", arguments: [invoice.count, invoice.available])
-        cell.price.text = String(format: "%@ pyб.", arguments: [invoice.price])
+        let details = self.invoiceDetails[indexPath.row]
+        cell.productName.text = details.product
+        cell.countAndAvailable.text = String(format: "%@ %@     %@", arguments: [details.count, details.unit, details.available])
+        cell.price.text = String(format: "%@ pyб.", arguments: [details.price])
         
         return cell
     }
