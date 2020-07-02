@@ -94,5 +94,18 @@ class Utilities: NSObject {
             return numberFormatter.string(from: NSNumber(value:dblAmt))!
         }
         return (amount as? String) ?? ""
-    }    
+    }
+    
+    //MARK: - Colors
+    class func availableColor(available: String) -> UIColor {
+        if (available == "Нет"){
+            return UIColor.red
+        } else if (available == "В наличии"){
+            return UIColor(red: 0, green: 0.7, blue: 0, alpha: 1)
+        } else if (available.hasPrefix("Есть только")){
+            return UIColor.yellow
+        } else {
+            return UIColor.gray
+        }
+    }
 }

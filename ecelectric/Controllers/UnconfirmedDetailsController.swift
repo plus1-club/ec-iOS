@@ -82,6 +82,7 @@ extension UnconfirmedDetailsController: UITableViewDataSource {
         
         cell.productName.text = details.product
         cell.countAndAvailable.text = String(format: "%@ %@     %@", arguments: [details.count, details.unit, details.available])
+        cell.countAndAvailable.textColor = Utilities.availableColor(available: details.available)
         cell.price.text = String(format: "%@ pyб.", arguments: [details.price])
         
         return cell
