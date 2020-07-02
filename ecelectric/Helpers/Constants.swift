@@ -54,5 +54,6 @@ class Constants {
         static let ENTER_VALID_LOGIN_DETAILS = "Пожалуйста введите корректные логин и пароль"
         static let ENTER_VALID_DETAILS = "Пожалуйста введите корректные данные"
         static let PRINT_NOT_AVAILABLE = "Счет не доступен. Попробуйте снова"
+        static let FILE_NOT_AVAILABLE = "Файл не доступен. Попробуйте снова"
     }
 }

@@ -73,6 +73,13 @@ class Utilities: NSObject {
         refresh.endRefreshing()
     }
     
+    class func alertMessage(parent: AnyObject, message: String){
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "ok", style: .default)
+        alertController.addAction(OKAction)
+        parent.present(alertController, animated: true, completion: nil)
+    }
+
     class func sideMenu(window: UIViewController, menuButton: UIBarButtonItem){
         if window.revealViewController() != nil {
             menuButton.target = window.revealViewController()

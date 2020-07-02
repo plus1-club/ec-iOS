@@ -21,7 +21,7 @@ class Basket: Codable  {
     var isSelected: Bool!
     var stockStatus: String!
     
-    //MARK: Get Bucket
+    //MARK: - Get Bucket
     func getBucket(isShowLoader: Bool,
                    successBlock :@escaping (_ baskets : [Basket]) -> (),
                    errorBlock :@escaping (_ error : String) -> ())  {
@@ -329,6 +329,109 @@ class Basket: Codable  {
                 }
             }
 
+
+        }) { (error) in
+            print("error : \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                errorBlock(error.localizedDescription)
+            }
+        }
+    }
+    
+    // MARK: Download stock balance
+    func downloadStockBalance(successBlock :@escaping (_ fileURL : URL) -> (),
+                              errorBlock :@escaping (_ error : String) -> ()) {
+        
+        let url = String(format: "%@request/download/stock?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, Auth.shared.user.token])
+
+        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
+            
+            if let statusKey = response.value(forKey: "success") as? Int {
+                if statusKey != 1 {
+                    DispatchQueue.main.async {
+                        if let errormessage = response.value(forKey: "message") as? String{
+                            errorBlock(errormessage)
+                        }
+                    }
+                }
+                else {
+                    
+                    if let data = response.value(forKey: "data") as? [String: Any] {
+                        if let filePath = data["product"] as? String, let url = URL(string: filePath)  {
+                            
+                            DispatchQueue.main.async {
+                                successBlock(url)
+                            }
+                        }
+                        else {
+                            DispatchQueue.main.async {
+                                errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
+                            }
+                        }
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
+                        }
+                    }
+                }
+            }
+            else {
+                DispatchQueue.main.async {
+                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                }
+            }
+        }) { (error) in
+            print("error : \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                errorBlock(error.localizedDescription)
+            }
+        }
+    }
+
+    // MARK: Download table example
+    func downloadExample(successBlock :@escaping (_ fileURL : URL) -> (),
+                              errorBlock :@escaping (_ error : String) -> ()) {
+        
+        let url = String(format: "%@request/download/example?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, Auth.shared.user.token])
+
+        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
+            
+            if let statusKey = response.value(forKey: "success") as? Int {
+                if statusKey != 1 {
+                    DispatchQueue.main.async {
+                        if let errormessage = response.value(forKey: "message") as? String{
+                            errorBlock(errormessage)
+                        }
+                    }
+                }
+                else {
+                    
+                    if let data = response.value(forKey: "data") as? [String: Any] {
+                        if let filePath = data["product"] as? String, let url = URL(string: filePath)  {
+                            
+                            DispatchQueue.main.async {
+                                successBlock(url)
+                            }
+                        }
+                        else {
+                            DispatchQueue.main.async {
+                                errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
+                            }
+                        }
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
+                        }
+                    }
+                }
+            }
+            else {
+                DispatchQueue.main.async {
+                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                }
+            }
 
         }) { (error) in
             print("error : \(error.localizedDescription)")
