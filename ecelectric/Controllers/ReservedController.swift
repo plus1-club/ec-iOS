@@ -59,6 +59,7 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
             
             let controller = PrintController()
             controller.pdfFilePath = fileURL
+            controller.number = selectedInvoice.number
             self.navigationController?.pushViewController(controller, animated: true)
 
             

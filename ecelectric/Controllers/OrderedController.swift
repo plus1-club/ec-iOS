@@ -58,6 +58,7 @@ class OrderedController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             let controller = PrintController()
             controller.pdfFilePath = fileURL
+            controller.number = selectedInvoice.number
             self.navigationController?.pushViewController(controller, animated: true)
             
         }) { (error) in
