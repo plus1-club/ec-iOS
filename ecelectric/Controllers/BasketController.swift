@@ -29,7 +29,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         
         basketTableView.delegate = self
         basketTableView.dataSource = self
-        basketTableView.estimatedRowHeight = 70
+        basketTableView.estimatedRowHeight = 150
         basketTableView.tableFooterView = UIView()
 
         setupSideMenu()
@@ -135,31 +135,50 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         let basketTableCell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath as IndexPath) as! BasketView
         
         let basket = self.basketArray[indexPath.row]
-        basketTableCell.invoiceNumber1.text = String(format: "%@", arguments: [basket.product])
-        
-        basketTableCell.qty.tag = indexPath.row
-        basketTableCell.qty.text = basket.requestCount
-        basketTableCell.qty.delegate = self
-
         var stockStatus: String
         var stockColor: UIColor
         (stockStatus, stockColor) = Utilities.stockColor(request: basket)
+                
+        basketTableCell.count.tag = indexPath.row
+        basketTableCell.count.text = basket.requestCount
+        basketTableCell.count.delegate = self
+        basketTableCell.count.textColor = stockColor
+        basketTableCell.count.layer.borderColor = stockColor.cgColor
 
-        basketTableCell.qty.textColor = stockColor
-        
-        basketTableCell.invoiceAmount1.text = String(format: "%@ руб.", arguments: [Utilities.formatedAmount(amount: basket.sum as Any)])
-        
-        basketTableCell.itemPrice1.text = stockStatus
-        basketTableCell.itemPrice1.textColor = stockColor
-        
         basketTableCell.unit.text = String(format: "%@", arguments: [basket.unit])
         basketTableCell.unit.textColor = stockColor
+
+        basketTableCell.product.text = String(format: "%@", arguments: [basket.product])
+
+        basketTableCell.sum.text = String(format: "%@ руб.", arguments: [Utilities.formatedAmount(amount: basket.sum as Any)])
+        
+        basketTableCell.status.text = stockStatus
+        basketTableCell.status.textColor = stockColor
+     
+        if ((Int(basket.multiplicity) ?? 0) > 1){
+            basketTableCell.multiplicity.isHidden = false
+            basketTableCell.multiplicity.text = String(format: "Увеличено до кратности минимальной упаковки: %@ (по %@ в упаковке)", arguments: [basket.requestCount, basket.multiplicity])
+            basketTableCell.multiplicity.textColor = stockColor
+        } else {
+            basketTableCell.multiplicity.isHidden = true
+            //basketTableCell.multiplicity.text = ""
+            //basketTableCell.multiplicity.textColor = stockColor
+        }
 
         basketTableCell.deleteItem.tag = indexPath.row
         basketTableCell.deleteItem.removeTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
         basketTableCell.deleteItem.addTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
         
         return basketTableCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let basket = self.basketArray[indexPath.row]
+        if ((Int(basket.multiplicity) ?? 0) > 1){
+            return 150
+        } else {
+            return 100
+        }
     }
 }
 

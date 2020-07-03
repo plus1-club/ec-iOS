@@ -11,11 +11,13 @@ import UIKit
 
 class BasketView: UITableViewCell {
 
-    @IBOutlet weak var invoiceNumber1: UILabel!
-    @IBOutlet weak var invoiceAmount1: UILabel!
-    @IBOutlet weak var itemPrice1: UILabel!
-    @IBOutlet weak var qty: UITextField!
+    @IBOutlet weak var count: UITextField!
     @IBOutlet weak var unit: UILabel!
+    @IBOutlet weak var product: UILabel!
+    @IBOutlet weak var sum: UILabel!
+    @IBOutlet weak var status: UILabel!
+
+    @IBOutlet weak var multiplicity: UILabel!
     
     @IBOutlet weak var circleIcon: UILabel!
     @IBOutlet weak var deleteItem: UIButton!
@@ -25,15 +27,10 @@ class BasketView: UITableViewCell {
     
         circleIcon.layer.cornerRadius = circleIcon.frame.width/2
         circleIcon.layer.masksToBounds = true
-        //circleIcon.backgroundColor = UIColor.red
-        circleIcon.textColor = UIColor.red
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
