@@ -106,13 +106,13 @@ class Utilities: NSObject {
     //MARK: - Colors
     class func availableColor(available: String) -> UIColor {
         if (available == "Нет"){
-            return UIColor.red
+            return Constants.COLORS.RED
         } else if (available == "В наличии"){
-            return UIColor(red: 0, green: 0.7, blue: 0, alpha: 1)
+            return Constants.COLORS.GREEN
         } else if (available.hasPrefix("Есть только")){
-            return UIColor.yellow
+            return Constants.COLORS.YELLOW
         } else {
-            return UIColor.gray
+            return Constants.COLORS.GRAY
         }
     }
     
@@ -121,26 +121,61 @@ class Utilities: NSObject {
         var color: UIColor
         if (request.stockCount == "-3"){
             status = String(format: "Товар %@ не найден", request.requestProduct)
-            color = UIColor(red: 0.5, green: 0.2, blue: 0, alpha: 1) // Коричневый
+            color = Constants.COLORS.BROWN
         } else if (request.requestCount == "0"){
             status = String(format: "Неизвестно")
-            color = .black
+            color = Constants.COLORS.GRAY
         } else if (request.stockCount == "-2"){
             status = String(format: "Превышено допустимое число проверок количества, попробуйте позднее")
-            color = UIColor(red: 1, green: 0, blue: 1, alpha: 1) // Фиолетовый
+            color = Constants.COLORS.VIOLET
         } else if (request.stockCount == "0"){
             status = String(format: "Нет")
-            color = .red
+            color = Constants.COLORS.RED
         } else if (request.stockCount >= request.requestCount){
             status = String(format: "В наличии")
-            color = .green
+            color = Constants.COLORS.GREEN
         } else if ((Int(request.stockCount) ?? 0) > 500 || request.stockCount == "-1"){
             status = String(format: "Частично доступно")
-            color = UIColor(red: 1, green: 0.7, blue: 0, alpha: 1) // Оранжевый
+            color = Constants.COLORS.ORANGE
         } else {
             status = String(format: "Доступно %@", request.stockCount)
-            color = UIColor(red: 0.9, green: 0.9, blue: 0, alpha: 1) // Желтый
+            color = Constants.COLORS.YELLOW
         }
         return (status, color)
+    }
+}
+
+extension UIColor {
+    public convenience init?(hex: String){
+        let r, g, b, a: CGFloat
+        
+        if hex.hasPrefix("#"){
+            let start = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = String(hex[start...])
+            if (hexColor.count == 8) {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+                if scanner.scanHexInt64(&hexNumber){
+                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    a = CGFloat(hexNumber & 0x000000ff) / 255
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                }
+            } else if (hexColor.count == 6) {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+                if scanner.scanHexInt64(&hexNumber){
+                    r = CGFloat((hexNumber & 0xff0000) >> 16) / 255
+                    g = CGFloat((hexNumber & 0x00ff00) >> 8) / 255
+                    b = CGFloat(hexNumber & 0x0000ff) / 255
+                    a = 1
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                }
+            }
+        }
+        return nil
     }
 }

@@ -56,4 +56,18 @@ class Constants {
         static let PRINT_NOT_AVAILABLE = "Счет не доступен. Попробуйте снова"
         static let FILE_NOT_AVAILABLE = "Файл не доступен. Попробуйте снова"
     }
+    
+    struct COLORS {
+        static let BROWN = UIColor(hex: "#9A6855")!
+        static let RED = UIColor(hex: "#F44336")!
+        static let ORANGE = UIColor(hex: "#FF8036")!
+        static let YELLOW = UIColor(hex: "#FFC107")!
+        static let GREEN = UIColor(hex: "#4CAF50")!
+        static let BLUE = UIColor(hex: "#0080FF")!
+        static let VIOLET = UIColor(hex: "#AA80FF")!
+        static let BLACK = UIColor(hex: "#000000")!
+        static let DARK = UIColor(hex: "#676767")!
+        static let GRAY = UIColor(hex: "#888888")!
+        static let WHITE = UIColor(hex: "#FFFFFF")!
+    }
 }
