@@ -79,7 +79,13 @@ extension SearchController: UITableViewDataSource {
         cell.qty.delegate = self
         
         cell.productName.text = basket.product
-      
+        var stockStatus: String
+        var stockColor: UIColor
+        (stockStatus, stockColor) = Utilities.stockColor(request: basket)
+        cell.stockStatus.text = stockStatus
+        cell.stockStatus.textColor = stockColor
+        cell.isSelectedItem.imageView?.tintColor = stockColor
+
 //        - stockCount = 0 - not exist at all - red(Нет)
 //        - stockCount >= count - green(В наличии)
 //        - stockCount < count - yellow (stockCount exist  less than required)
@@ -94,21 +100,13 @@ extension SearchController: UITableViewDataSource {
             let tintedImage = cell.isSelectedItem.imageView?.image?.withRenderingMode(.alwaysTemplate)
             cell.isSelectedItem.imageView?.image = tintedImage
             
-            if stock == 0 {
-                cell.stockStatus.text = "Нет"
-                cell.stockStatus.textColor = UIColor.red
-                cell.isSelectedItem.imageView?.tintColor = UIColor.red
-            }
-            else if stock >= request {
-                cell.stockStatus.text = "В наличии"
-                cell.stockStatus.textColor = #colorLiteral(red: 0.3079569936, green: 0.6612923145, blue: 0.3500179052, alpha: 1)
-                cell.isSelectedItem.imageView?.tintColor = #colorLiteral(red: 0.3079569936, green: 0.6612923145, blue: 0.3500179052, alpha: 1)
-            }
-            else if stock < request {
-                cell.stockStatus.text = String(format: "Есть %@ из %@", arguments: [basket.stockCount, basket.requestCount])
-                cell.stockStatus.textColor = #colorLiteral(red: 0.9759441018, green: 0.7644813061, blue: 0.01044687536, alpha: 1)
-                cell.isSelectedItem.imageView?.tintColor = #colorLiteral(red: 0.9759441018, green: 0.7644813061, blue: 0.01044687536, alpha: 1)
-            }
+            var stockStatus: String
+            var stockColor: UIColor
+            (stockStatus, stockColor) = Utilities.stockColor(request: basket)
+            cell.stockStatus.text = stockStatus
+            cell.stockStatus.textColor = stockColor
+            cell.isSelectedItem.imageView?.tintColor = stockColor
+
         }
     }
 }

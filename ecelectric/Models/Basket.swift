@@ -10,6 +10,7 @@
 import Foundation
 
 class Basket: Codable  {
+    
     //MARK: Properties
     var number : String!
     var product : String!
@@ -19,7 +20,8 @@ class Basket: Codable  {
     var sum : String!
     var unit : String!
     var isSelected: Bool!
-    var stockStatus: String!
+    var multiplicity: String!
+    var requestProduct: String!
     
     //MARK: - Get Bucket
     func getBucket(isShowLoader: Bool,
@@ -48,8 +50,6 @@ class Basket: Codable  {
                                     let jsonDecoder = JSONDecoder()
                                     
                                     let bucket = try jsonDecoder.decode(Basket.self, from: data)
-                                    bucket.stockStatus = "В наличии"
-                                    bucket.unit = "шт"
                                     buckets.append(bucket)
                                 }
                             }

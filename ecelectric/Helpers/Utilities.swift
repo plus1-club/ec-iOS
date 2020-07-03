@@ -115,4 +115,32 @@ class Utilities: NSObject {
             return UIColor.gray
         }
     }
+    
+    class func stockColor(request: Basket) -> (String, UIColor){
+        var status: String
+        var color: UIColor
+        if (request.stockCount == "-3"){
+            status = String(format: "Товар %@ не найден", request.requestProduct)
+            color = UIColor(red: 0.5, green: 0.2, blue: 0, alpha: 1) // Коричневый
+        } else if (request.requestCount == "0"){
+            status = String(format: "Неизвестно")
+            color = .black
+        } else if (request.stockCount == "-2"){
+            status = String(format: "Превышено допустимое число проверок количества, попробуйте позднее")
+            color = UIColor(red: 1, green: 0, blue: 1, alpha: 1) // Фиолетовый
+        } else if (request.stockCount == "0"){
+            status = String(format: "Нет")
+            color = .red
+        } else if (request.stockCount >= request.requestCount){
+            status = String(format: "В наличии")
+            color = .green
+        } else if ((Int(request.stockCount) ?? 0) > 500 || request.stockCount == "-1"){
+            status = String(format: "Частично доступно")
+            color = UIColor(red: 1, green: 0.7, blue: 0, alpha: 1) // Оранжевый
+        } else {
+            status = String(format: "Доступно %@", request.stockCount)
+            color = UIColor(red: 0.9, green: 0.9, blue: 0, alpha: 1) // Желтый
+        }
+        return (status, color)
+    }
 }

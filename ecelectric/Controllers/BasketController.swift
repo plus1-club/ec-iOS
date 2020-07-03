@@ -96,7 +96,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func addTapped(_ sender: Button) {
-        let navController = self.storyboard?.instantiateViewController(withIdentifier: "RequestCheckController") as! UINavigationController
+        let navController = self.storyboard?.instantiateViewController(withIdentifier: "RequestCheckNavigation") as! UINavigationController
         self.revealViewController()?.setFront(navController, animated: true)
     }
     
@@ -140,9 +140,20 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         basketTableCell.qty.tag = indexPath.row
         basketTableCell.qty.text = basket.requestCount
         basketTableCell.qty.delegate = self
+
+        var stockStatus: String
+        var stockColor: UIColor
+        (stockStatus, stockColor) = Utilities.stockColor(request: basket)
+
+        basketTableCell.qty.textColor = stockColor
+        
         basketTableCell.invoiceAmount1.text = String(format: "%@ руб.", arguments: [Utilities.formatedAmount(amount: basket.sum as Any)])
-        basketTableCell.itemPrice1.text = String(format: "%@", arguments: [basket.stockStatus])
+        
+        basketTableCell.itemPrice1.text = stockStatus
+        basketTableCell.itemPrice1.textColor = stockColor
+        
         basketTableCell.unit.text = String(format: "%@", arguments: [basket.unit])
+        basketTableCell.unit.textColor = stockColor
 
         basketTableCell.deleteItem.tag = indexPath.row
         basketTableCell.deleteItem.removeTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
