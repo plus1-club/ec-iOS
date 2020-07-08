@@ -229,7 +229,7 @@ class Basket: Codable  {
                           successBlock :@escaping (_ buckets : [Basket]) -> (),
                           errorBlock :@escaping (_ error : String) -> ())  {
                 
-        let url = Constants.SERVICES.GET_ITEM_BY_CODE + String(format: "?product=%@&count=%@&fullsearch=%d", arguments: [product, count, fullSearch])
+        let url = Constants.SERVICES.GET_ITEM_BY_CODE + String(format: "?product=%@&count=%@&fullsearch=%@", arguments: [product, count, (fullSearch ? "true" : "false")])
 
         ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
             

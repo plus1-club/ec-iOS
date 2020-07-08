@@ -173,9 +173,9 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let basket = self.basketArray[indexPath.row]
         if ((Int(basket.multiplicity) ?? 0) > 1){
-            return 150
+            return 170
         } else {
-            return 100
+            return 120
         }
     }
 }
