@@ -13,20 +13,16 @@ class SearchView: UITableViewCell {
 
     static let cellIdentifier = "search"
     
-    @IBOutlet weak var isSelectedItem: UIButton!
-    @IBOutlet weak var qty: UITextField!
-    @IBOutlet weak var stockStatus: UILabel!
-    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var isChecked: UIButton!
+    @IBOutlet weak var count: UITextField!
+    @IBOutlet weak var product: UILabel!
+    @IBOutlet weak var status: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

@@ -12,10 +12,10 @@ import UIKit
 class BasketController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //MARK: Outlet
-    @IBOutlet weak var comment: UITextField!
-    @IBOutlet weak var basketTableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var basketTableView: UITableView!
     @IBOutlet weak var grandTotal: UILabel!
+    @IBOutlet weak var comment: UITextField!
     
     //MARK: - Variable
     var basketArray = [Basket]()
@@ -132,44 +132,42 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let basketTableCell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath as IndexPath) as! BasketView
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath as IndexPath) as! BasketView
         
         let basket = self.basketArray[indexPath.row]
         var stockStatus: String
         var stockColor: UIColor
         (stockStatus, stockColor) = Utilities.stockColor(request: basket)
                 
-        basketTableCell.count.tag = indexPath.row
-        basketTableCell.count.text = basket.requestCount
-        basketTableCell.count.delegate = self
-        basketTableCell.count.textColor = stockColor
-        basketTableCell.count.layer.borderColor = stockColor.cgColor
+        cell.count.tag = indexPath.row
+        cell.count.text = basket.requestCount
+        cell.count.delegate = self
+        cell.count.textColor = stockColor
+        cell.count.layer.borderColor = stockColor.cgColor
 
-        basketTableCell.unit.text = String(format: "%@", arguments: [basket.unit])
-        basketTableCell.unit.textColor = stockColor
+        cell.unit.text = String(format: "%@", arguments: [basket.unit])
+        cell.unit.textColor = stockColor
 
-        basketTableCell.product.text = String(format: "%@", arguments: [basket.product])
+        cell.product.text = String(format: "%@", arguments: [basket.product])
 
-        basketTableCell.sum.text = String(format: "%@ руб.", arguments: [Utilities.formatedAmount(amount: basket.sum as Any)])
+        cell.sum.text = String(format: "%@ руб.", arguments: [Utilities.formatedAmount(amount: basket.sum as Any)])
         
-        basketTableCell.status.text = stockStatus
-        basketTableCell.status.textColor = stockColor
+        cell.status.text = stockStatus
+        cell.status.textColor = stockColor
      
         if ((Int(basket.multiplicity) ?? 0) > 1){
-            basketTableCell.multiplicity.isHidden = false
-            basketTableCell.multiplicity.text = String(format: "Увеличено до кратности минимальной упаковки: %@ (по %@ в упаковке)", arguments: [basket.requestCount, basket.multiplicity])
-            basketTableCell.multiplicity.textColor = stockColor
+            cell.multiplicity.isHidden = false
+            cell.multiplicity.text = String(format: "Увеличено до кратности минимальной упаковки: %@ (по %@ в упаковке)", arguments: [basket.requestCount, basket.multiplicity])
+            cell.multiplicity.textColor = stockColor
         } else {
-            basketTableCell.multiplicity.isHidden = true
-            //basketTableCell.multiplicity.text = ""
-            //basketTableCell.multiplicity.textColor = stockColor
+            cell.multiplicity.isHidden = true
         }
 
-        basketTableCell.deleteItem.tag = indexPath.row
-        basketTableCell.deleteItem.removeTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
-        basketTableCell.deleteItem.addTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
+        cell.deleteItem.tag = indexPath.row
+        cell.deleteItem.removeTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
+        cell.deleteItem.addTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
         
-        return basketTableCell
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
