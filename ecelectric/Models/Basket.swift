@@ -287,7 +287,7 @@ class Basket: Codable  {
     //MARK: Create Order
     func createOrder(buckets: [Basket],
                      comment: String,
-                     successBlock :@escaping () -> (),
+                     successBlock :@escaping (_ order: String) -> (),
                      errorBlock :@escaping (_ error : String) -> ())  {
         
         var bucketDict = [[String : String]]()
@@ -305,7 +305,9 @@ class Basket: Codable  {
             "comment": comment
             ] as [String : Any]
         
-        ServiceManager.shared.processServiceCall(serviceURL: Constants.SERVICES.CREATE_ORDER, parameters: params as AnyObject, showLoader: true, requestType: Constants.REQUEST_TYPE.POST, successBlock: { (response) in
+        let url = Constants.SERVICES.CREATE_ORDER+String(format:"?comment=%@", arguments:[comment])
+        
+        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: params as AnyObject, showLoader: true, requestType: Constants.REQUEST_TYPE.POST, successBlock: { (response) in
             
             if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -316,12 +318,19 @@ class Basket: Codable  {
                         }
                     }
                     else {
-                        
-                        DispatchQueue.main.async {
-                            successBlock()
+                        if let data = response.value(forKey: "data") as? [String: Any] {
+                            if let order = data["number"] as? String  {
+                                DispatchQueue.main.async {
+                                    successBlock(order)
+                                }
+                            }
+                            else {
+                                DispatchQueue.main.async {
+                                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                                }
+                            }
                         }
-                        
-                    }
+                }
             }
             else {
                 DispatchQueue.main.async {

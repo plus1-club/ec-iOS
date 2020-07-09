@@ -99,8 +99,9 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func checkoutTapped(_ sender: Button) {
-        Basket().createOrder(buckets: self.basketArray, comment: comment.text ?? "", successBlock: {
-            Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "Заказ размещен")
+        Basket().createOrder(buckets: self.basketArray, comment: comment.text ?? "",
+        successBlock: { (order) in
+            Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: String(format: "Заказ %@ размещен", arguments: [order]))
         }) { (error) in
             Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
         }

@@ -54,7 +54,13 @@ class ServiceManager: NSObject {
                     postData = try JSONSerialization.data(withJSONObject: parameters!, options:JSONSerialization.WritingOptions.prettyPrinted)
                 }
                 
-                let request = NSMutableURLRequest(url: NSURL(string: serviceURL)! as URL,
+                let url: URL
+                if let encodedURL = serviceURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
+                    url = NSURL(string: encodedURL)! as URL
+                } else {
+                    url = NSURL(fileURLWithPath: serviceURL) as URL
+                }
+                let request = NSMutableURLRequest(url: url,
                                                   cachePolicy: .useProtocolCachePolicy,
                                                   timeoutInterval: REQUEST_TIME_OUT)
                 request.httpMethod = requestType

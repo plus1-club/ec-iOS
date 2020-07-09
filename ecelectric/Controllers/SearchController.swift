@@ -85,10 +85,18 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let selected = searchArray.filter ({ $0.isSelected == true })
-        if (segue.identifier == "AddToBasket" && selected.count > 0) {
+        if (segue.identifier != "AddToBasket"){
+            return
+        }
+        var selectedArray: [Basket] = []
+        for search in searchArray {
+            if ((search.isSelected) != nil && search.isSelected == true) {
+                selectedArray.append(search)
+            }
+        }
+        if (selectedArray.count > 0) {
             self.view.endEditing(true)
-            Basket().addItemToBucket(buckets: selected,
+            Basket().addItemToBucket(buckets: selectedArray,
             successBlock: {
                 let navigation = segue.destination as! UINavigationController
                 let controller = navigation.viewControllers.first as! BasketController
@@ -98,6 +106,24 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             errorBlock: { (error) in
                 Utilities.tableMessage(table: self.searchTableView, refresh: self.refreshControl, message: error)
             })
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (identifier != "AddToBasket"){
+            return false
+        }
+        var selectedArray: [Basket] = []
+        for search in searchArray {
+            if ((search.isSelected) != nil && search.isSelected == true) {
+                selectedArray.append(search)
+            }
+        }
+        if (selectedArray.count > 0) {
+            return true
+        } else {
+            Utilities.alertMessage(parent: self, message: "Не выбран товар для добавления в корзину")
+            return false
         }
     }
     
