@@ -16,7 +16,9 @@ class SearchView: UITableViewCell {
     @IBOutlet weak var isChecked: UIButton!
     @IBOutlet weak var count: UITextField!
     @IBOutlet weak var product: UILabel!
+    @IBOutlet weak var unit: UILabel!
     @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var multiplicity: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

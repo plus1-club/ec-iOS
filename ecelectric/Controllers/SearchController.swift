@@ -90,15 +90,10 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             self.view.endEditing(true)
             Basket().addItemToBucket(buckets: selected,
             successBlock: {
-                //let navController = self.storyboard?.instantiateViewController(withIdentifier: "BasketNavigation") as! UINavigationController
-                //self.navigationController?.pushViewController(navController, animated: true)
-                
                 let navigation = segue.destination as! UINavigationController
                 let controller = navigation.viewControllers.first as! BasketController
-                //controller.searchArray = searchArray
                 controller.basketTableView.reloadData()
                 controller.refreshControl.endRefreshing()
-
             },
             errorBlock: { (error) in
                 Utilities.tableMessage(table: self.searchTableView, refresh: self.refreshControl, message: error)
@@ -128,24 +123,36 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         var stockColor: UIColor
         (stockStatus, stockColor) = Utilities.stockColor(request: search)
         
+        let multiplicity = Int(search.multiplicity)!
+        if (multiplicity > 1){
+            var count = Int(search.requestCount)!
+            if (count % multiplicity) > 0 {
+                count += multiplicity - (count % multiplicity)
+            }
+            search.requestCount = String(count)
+            cell.multiplicity.isHidden = false
+            cell.multiplicity.text = String(format: "Увеличено до кратности минимальной упаковки: %@ (по %@ в упаковке)", arguments: [search.requestCount, search.multiplicity])
+            cell.multiplicity.textColor = stockColor
+        } else {
+            cell.multiplicity.isHidden = true
+        }
+
         cell.isChecked.isSelected = search.isSelected ?? false
         cell.isChecked.removeTarget(self, action: #selector(isCheckedTapped(_:)), for: .touchUpInside)
         cell.isChecked.addTarget(self, action: #selector(isCheckedTapped(_:)), for: .touchUpInside)
- 
+
+        cell.count.delegate = self
         cell.count.tag = indexPath.row
         cell.count.text = search.requestCount
-        cell.count.delegate = self
         cell.count.textColor = stockColor
         cell.count.layer.borderColor = stockColor.cgColor
 
+        cell.unit.text = String(format: "%@", arguments: [search.unit])
+        cell.unit.textColor = stockColor
+
         cell.product.text = String(format: "%@", arguments: [search.product])
 
-        cell.status.text = String(format: "%@   %@", arguments: [search.unit, search.product])
-        if ((Int(search.multiplicity) ?? 0) > 1){
-            cell.status.text = String(format: "%@   %@\nУвеличено до кратности минимальной упаковки: %@ (по %@ в упаковке)", arguments: [search.unit, stockStatus, search.requestCount, search.multiplicity])
-        } else {
-            cell.status.text = String(format: "%@   %@", arguments: [search.unit, stockStatus])
-        }
+        cell.status.text = String(format: "%@", arguments: [stockStatus])
         cell.status.textColor = stockColor
 
         return cell
@@ -164,7 +171,6 @@ extension SearchController: UITextFieldDelegate {
         selected.requestCount = updatedString        
         let cell = searchTableView.cellForRow(at: IndexPath(row: row, section: 0)) as! SearchView
         changeStatus(cell: cell, selected: selected)
-        //itemsTableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
 
         return true
     }

@@ -64,12 +64,10 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     
     //MARK: - Method
     func setupSideMenu() {
-        
         if revealViewController() != nil {
             menuButton.target = revealViewController()
             menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
             revealViewController().rightViewRevealWidth = 275
-            
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
     }
@@ -139,6 +137,20 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         var stockColor: UIColor
         (stockStatus, stockColor) = Utilities.stockColor(request: basket)
                 
+       let multiplicity = Int(basket.multiplicity)!
+       if (multiplicity > 1){
+           var count = Int(basket.requestCount)!
+           if (count % multiplicity) > 0 {
+               count += multiplicity - (count % multiplicity)
+           }
+           basket.requestCount = String(count)
+           cell.multiplicity.isHidden = false
+           cell.multiplicity.text = String(format: "Увеличено до кратности минимальной упаковки: %@ (по %@ в упаковке)", arguments: [basket.requestCount, basket.multiplicity])
+           cell.multiplicity.textColor = stockColor
+       } else {
+           cell.multiplicity.isHidden = true
+       }
+        
         cell.count.tag = indexPath.row
         cell.count.text = basket.requestCount
         cell.count.delegate = self
@@ -154,14 +166,6 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         
         cell.status.text = stockStatus
         cell.status.textColor = stockColor
-     
-        if ((Int(basket.multiplicity) ?? 0) > 1){
-            cell.multiplicity.isHidden = false
-            cell.multiplicity.text = String(format: "Увеличено до кратности минимальной упаковки: %@ (по %@ в упаковке)", arguments: [basket.requestCount, basket.multiplicity])
-            cell.multiplicity.textColor = stockColor
-        } else {
-            cell.multiplicity.isHidden = true
-        }
 
         cell.deleteItem.tag = indexPath.row
         cell.deleteItem.removeTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
@@ -185,6 +189,8 @@ extension BasketController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         let basket = self.basketArray[textField.tag]
         basket.requestCount = textField.text
+        basketTableView.reloadData()
         calculateGrandTotal()
+        refreshControl.endRefreshing()
     }
 }
