@@ -25,31 +25,47 @@ class Constants {
     }
     
     struct SERVICES {
-        // To Check internet availibility
-        static let HOST_URL = "www.google.com"
+        // URL
+        static let HOST_URL = "www.google.com" // To Check internet availibility
         static let BASE_URL = "https://www.ec-electric.ru/api/v1/"
         
-        //Login
+        // User
         static let LOGIN = BASE_URL + "user/enter"
         static let LOGOUT = BASE_URL + "user/exit"
-            
-        //Basket
+ 
+        // Search
+        static let SEARCH_BY_CODE = BASE_URL + "request/byCode"
+        static let SEARCH_FROM_EXCEL = BASE_URL + "request/fromExcel"
+
+        // Basket
         static let GET_BUCKET = BASE_URL + "request/basket"
         static let UPDATE_BUCKET = BASE_URL + "request/basket"
         static let CLEAR_BUCKET = BASE_URL + "request/basket"
-        static let GET_ITEM_BY_CODE = BASE_URL + "request/byCode"
         static let CREATE_ORDER = BASE_URL + "request/order"
 
-        //Invoice
-        static let GET_UNCONFIRMED_ORDERS = BASE_URL + "invoices/unconfirmed"
-        static let GET_CANCELED_ORDERS = BASE_URL + "invoices/canceled"
-        static let GET_ORDERED_LIST = BASE_URL + "invoices/ordered"
+        // Download
+        static let DOWNLOAD_STOCK_BALANCE = BASE_URL + "request/download/stock"
+        static let DOWNLOAD_EXAMPLE = BASE_URL + "request/download/example"
+
+        // Invoice
+        static let GET_UNCONFIRMED_LIST = BASE_URL + "invoices/unconfirmed"
         static let GET_RESERVED_LIST = BASE_URL + "invoices/reserved"
+        static let GET_ORDERED_LIST = BASE_URL + "invoices/ordered"
+        static let GET_CANCELED_LIST = BASE_URL + "invoices/canceled"
         static let GET_SHIPPED_LIST = BASE_URL + "invoices/shipped"
+
+        // Details
+        static let GET_UNCONFIRMED_DETAILS = BASE_URL + "invoices/%@/unconfirmed"
+        static let GET_RESERVED_DETAILS = BASE_URL + "invoices/%@/reserved"
+        static let GET_ORDERED_DETAILS = BASE_URL + "invoices/%@/ordered"
+        static let GET_CANCELED_DETAILS = BASE_URL + "invoices/%@/canceled"
+        static let GET_SHIPPED_DETAILS = BASE_URL + "invoices/%@/shipped"
+        static let DOWNLOAD_INVOICE_PRINT = BASE_URL + "invoices/%@/download"
     }
     
     struct MESSAGES {
         static let SOMETHING_WENT_WRONG = "Что-то пошло не так"
+        static let INTERNET_NOT_AVAILABLE = "Limited or no internet connectivity. Please try again."
         static let ERROR_ON_READ_DATA_FROM_RESPONSE   = "При получении данных произошёл сбой. Пожалуйста попробуйте снова"
         static let ENTER_VALID_LOGIN_DETAILS = "Пожалуйста введите корректные логин и пароль"
         static let ENTER_VALID_DETAILS = "Пожалуйста введите корректные данные"

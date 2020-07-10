@@ -96,7 +96,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
         if (selectedArray.count > 0) {
             self.view.endEditing(true)
-            Basket().addItemToBucket(buckets: selectedArray,
+            Basket().addToBasket(basketArray: selectedArray,
             successBlock: {
                 let navigation = segue.destination as! UINavigationController
                 let controller = navigation.viewControllers.first as! BasketController

@@ -19,7 +19,7 @@ class ServiceManager: NSObject {
                             showLoader : Bool,
                             requestType : String,
                             successBlock: @escaping (_ responseDict:NSDictionary) -> (),
-                            erroBlock: @escaping (_ error:NSError) -> Void)
+                            errorBlock: @escaping (_ error:NSError) -> Void)
     {
         if Reachability.isConnectedToNetwork() {
             
@@ -38,19 +38,17 @@ class ServiceManager: NSObject {
             if Utilities.isValidString(str: Auth.shared.user.token) {
                 headers["user_token"] = Auth.shared.user.token
             }
-            
             print("headers : \(headers)")
-            
-            
             do {
-                print("Service URL : \(serviceURL)")
-                print("Service METHOD : \(requestType)")
+                print(requestType)
+                print(serviceURL)
                 
                 var postData : Data? = nil
                 if parameters != nil {
                     let jsonData: NSData = try JSONSerialization.data(withJSONObject: parameters!, options: JSONSerialization.WritingOptions.prettyPrinted) as NSData
-                    print("\((serviceURL as NSString).lastPathComponent) Parameter : \(NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue)! as String)")
-                    
+                    print("\((serviceURL as NSString).lastPathComponent) ")
+                    print("Parameter : \(NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue)! as String)")
+
                     postData = try JSONSerialization.data(withJSONObject: parameters!, options:JSONSerialization.WritingOptions.prettyPrinted)
                 }
                 
@@ -77,51 +75,44 @@ class ServiceManager: NSObject {
                             if showLoader == true {
                                 iLoader.shared.hide()
                             }
-                            erroBlock(error! as NSError)
+                            errorBlock(error! as NSError)
                         })
                     } else {
                         do {
-                            print("\((serviceURL as NSString).lastPathComponent) Response: \(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)")
+                            print("\((serviceURL as NSString).lastPathComponent)")
+                            print("Response: \(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)")
                             let jsonDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-                            print("\((serviceURL as NSString).lastPathComponent) Response as Dictionary : \(jsonDictionary)")
+                            print("Response as Dictionary : \(jsonDictionary)")
                             DispatchQueue.main.async(execute: { () -> Void in
                                 if showLoader == true {
                                     iLoader.shared.hide()
                                 }
                                 successBlock(jsonDictionary)
                             })
-                            
                         } catch let myJSONError {
-                            
                             print("\((serviceURL as NSString).lastPathComponent) myJSONError : \(myJSONError)")
                             DispatchQueue.main.async(execute: { () -> Void in
                                 if showLoader == true {
                                     iLoader.shared.hide()
                                 }
-                                erroBlock(myJSONError as NSError)
+                                errorBlock(myJSONError as NSError)
                             })
                         }
-                        
                     }
                 })
-                
                 dataTask.resume()
             }
             catch let error {
                 if showLoader == true {
                     iLoader.shared.hide()
                 }
-                print("Erro in service call : \(error)")
+                print("Error in service call : \(error)")
             }
-            
         }
         else {
             let err = NSError(domain: "", code: 501, userInfo:
-                
-                [NSLocalizedDescriptionKey : "Limited or no internet connectivity. Please try again."])
-            erroBlock(err)
-            
+                [NSLocalizedDescriptionKey : Constants.MESSAGES.INTERNET_NOT_AVAILABLE])
+            errorBlock(err)
         }
     }
-    
 }

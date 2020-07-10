@@ -41,7 +41,7 @@ class ShippedDetailsController: UIViewController {
     
     //MARK: - API
     func getShippedItemDetails() {
-        Details().getShippedItemDetails(accountNo: invoice.number, successBlock: { (invoices) in
+        Details().getShippedDetails(accountNo: invoice.number, successBlock: { (invoices) in
             
             self.accountNoAndDate.text = String(format: "Счет № %@ от %@", arguments: [self.invoice.number, self.invoice.date])
             self.wayBillsNo.text = String(format: "Накладная № %@", arguments: [self.invoice.waybill])

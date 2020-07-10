@@ -52,7 +52,7 @@ class UnconfirmedController: UIViewController, UITableViewDelegate, UITableViewD
     
     //MARK: - API
     func getUnconfirmedOrders(isShowLoader: Bool) {
-        Invoice().getUnconfirmedOrders(isShowLoader: isShowLoader, successBlock: { (invoices) in
+        Invoice().getUnconfirmedList(isShowLoader: isShowLoader, successBlock: { (invoices) in
             self.invoices = invoices
             self.unconfirmedTableView.reloadData()
             self.refreshControl.endRefreshing()

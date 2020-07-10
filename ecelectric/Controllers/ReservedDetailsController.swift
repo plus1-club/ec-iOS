@@ -40,7 +40,7 @@ class ReservedDetailsController: UIViewController {
     
     //MARK: - API
     func getReservedItemDetails() {
-        Details().getReservedItemDetails(accountNo: invoice.number, successBlock: { (invoices) in
+        Details().getReservedDetails(accountNo: invoice.number, successBlock: { (invoices) in
             
             self.accountNoAndDate.text = String(format: "Счет № %@ от %@", arguments: [self.invoice.number, self.invoice.date])
             self.totalAmount.text = String(format: "Итого: %@ pyб.", arguments: [self.invoice.sum])

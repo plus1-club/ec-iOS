@@ -54,7 +54,7 @@ class OrderedController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBAction func printInvoiceTapped(_ sender: UIButton) {
         let selectedInvoice = self.invoices[sender.tag]
 
-        Invoice().getInvoicePrint(accountNo: selectedInvoice.number, successBlock: { (fileURL) in
+        Details().getInvoicePrint(accountNo: selectedInvoice.number, successBlock: { (fileURL) in
             
             let controller = PrintController()
             controller.pdfFilePath = fileURL
@@ -68,7 +68,7 @@ class OrderedController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     //MARK: - API
     func getOrderedItemList(isShowLoader: Bool) {
-        Invoice().getOrderedItemList(isShowLoader: isShowLoader, successBlock: { (invoices) in
+        Invoice().getOrderedList(isShowLoader: isShowLoader, successBlock: { (invoices) in
             
             self.invoices = invoices
             self.orderTableView.reloadData()

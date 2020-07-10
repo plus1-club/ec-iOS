@@ -55,7 +55,7 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func printInvoiceTapped(_ sender: UIButton) {
         let selectedInvoice = self.invoices[sender.tag]
 
-        Invoice().getInvoicePrint(accountNo: selectedInvoice.number, successBlock: { (fileURL) in
+        Details().getInvoicePrint(accountNo: selectedInvoice.number, successBlock: { (fileURL) in
             
             let controller = PrintController()
             controller.pdfFilePath = fileURL
@@ -71,7 +71,7 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //MARK: - API
     func getReservedItemList(isShowLoader: Bool) {
-        Invoice().getReservedItemList(isShowLoader: isShowLoader, successBlock: { (invoices) in
+        Invoice().getReservedList(isShowLoader: isShowLoader, successBlock: { (invoices) in
             
             self.invoices = invoices
             self.reservedTableView.reloadData()

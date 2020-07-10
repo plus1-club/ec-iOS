@@ -3,7 +3,7 @@
 //  EC-online
 //
 //  Created by Dhaval Dobariya on 16/11/19.
-//  Updated by Sergey Lavrov on 02/04/2020.
+//  Refactored by Sergey Lavrov on 10/07/2020.
 //  Copyright © 2019-2020 Samir Azizov & Sergey Lavrov. All rights reserved.
 //
 
@@ -11,7 +11,6 @@ import Foundation
 
 class Basket: Codable  {
     
-    //MARK: Properties
     var number : String!
     var product : String!
     var stockCount : String!
@@ -23,430 +22,442 @@ class Basket: Codable  {
     var multiplicity: String!
     var requestProduct: String!
     
-    //MARK: - Get Bucket
-    func getBucket(isShowLoader: Bool,
+    //MARK: - Method
+    func paramsFromBasket(basket: [Basket], comment: String?) -> AnyObject{
+        var dict = [[String : String]]()
+        
+        for item in basket {
+            dict.append([
+                "number" : item.number,
+                "product" : item.product,
+                "requestCount" : item.requestCount
+            ])
+        }
+        
+        let params: [String : Any]
+        if (comment == nil){
+            params = [
+                "requests" : dict
+            ]
+        } else {
+            params = [
+                "requests" : dict,
+                "comment" : comment!
+            ]
+        }
+        
+        return params as AnyObject
+    }
+    
+    func basketFromResponse(response: NSDictionary) -> [Basket]?{
+        var basket : [Basket] = []
+        do {
+            if let responseData = response.value(forKey: "data") as? Array<Any> {
+                for dict in responseData {
+                    let data = try JSONSerialization.data(withJSONObject: dict, options: [])
+                    let jsonDecoder = JSONDecoder()
+                    let item = try jsonDecoder.decode(Basket.self, from: data)
+                    basket.append(item)
+                }
+            }
+            return basket
+        } catch {
+            return nil
+        }
+    }
+    
+    //MARK: - Search API
+    func searchByCode(product: String,
+                      count: String,
+                      fullSearch: Bool,
+                      successBlock :@escaping (_ buckets : [Basket]) -> (),
+                      errorBlock :@escaping (_ error : String) -> ())  {
+                
+        let type = Constants.REQUEST_TYPE.GET
+        let url = Constants.SERVICES.SEARCH_BY_CODE
+            + String(format: "?product=%@&count=%@&fullsearch=%@",
+                     arguments: [product, count, (fullSearch ? "true" : "false")])
+
+        ServiceManager.shared.processServiceCall(
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            successBlock: { (response) in
+                if let statusKey = response.value(forKey: "success") as? Int {
+                    if statusKey != 1 {
+                        DispatchQueue.main.async {
+                            if let errormessage = response.value(forKey: "message") as? String{
+                                errorBlock(errormessage)
+                            }
+                        }
+                    } else {
+                        let basket = self.basketFromResponse(response: response)
+                        DispatchQueue.main.async {
+                            if (basket != nil) {
+                                successBlock(basket!)
+                            } else {
+                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
+                            }
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    }
+                }
+            },
+            errorBlock: { (error) in
+                print("error : \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    errorBlock(error.localizedDescription)
+                }
+            }
+        )
+    }
+    
+    func searchFromExcel(productColumn: String,
+                         countColumn: String,
+                         fullSearch: Bool,
+                         successBlock :@escaping (_ buckets : [Basket]) -> (),
+                         errorBlock :@escaping (_ error : String) -> ())  {
+                
+        let type = Constants.REQUEST_TYPE.POST
+        let url = Constants.SERVICES.SEARCH_FROM_EXCEL
+        let params = [
+            "productColumn": productColumn,
+            "countColumn": countColumn,
+            "fullsearch": (fullSearch ? "true" : "false")
+        ] as AnyObject
+
+        ServiceManager.shared.processServiceCall(
+            serviceURL: url, parameters: params, showLoader: true, requestType: type,
+            successBlock: { (response) in
+                if let statusKey = response.value(forKey: "success") as? Int {
+                    if statusKey != 1 {
+                        DispatchQueue.main.async {
+                            if let errormessage = response.value(forKey: "message") as? String{
+                                errorBlock(errormessage)
+                            }
+                        }
+                    } else {
+                        let basket = self.basketFromResponse(response: response)
+                        DispatchQueue.main.async {
+                            if (basket != nil) {
+                                successBlock(basket!)
+                            } else {
+                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
+                            }
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    }
+                }
+            },
+            errorBlock: { (error) in
+                print("error : \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    errorBlock(error.localizedDescription)
+                }
+            }
+        )
+    }
+    
+    //MARK: - Basket API
+    func getBasket(isShowLoader: Bool,
                    successBlock :@escaping (_ baskets : [Basket]) -> (),
                    errorBlock :@escaping (_ error : String) -> ())  {
-                
-        ServiceManager.shared.processServiceCall(serviceURL: Constants.SERVICES.GET_BUCKET, parameters: nil, showLoader: isShowLoader, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
+       
+        let type = Constants.REQUEST_TYPE.GET
+        let url = Constants.SERVICES.GET_BUCKET
+
+        ServiceManager.shared.processServiceCall(
+            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type,
+            successBlock: { (response) in
+                if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
                         DispatchQueue.main.async {
                             if let errormessage = response.value(forKey: "message") as? String{
                                 errorBlock(errormessage)
                             }
                         }
-                    }
-                    else {
-                        var buckets : [Basket] = []
-                        
-                        do {
-                            if let bucketArray = response.value(forKey: "data") as? Array<Any> {
-                                
-                                for bucketDict in bucketArray {
-                                    let data = try JSONSerialization.data(withJSONObject: bucketDict, options: [])
-                                    
-                                    let jsonDecoder = JSONDecoder()
-                                    
-                                    let bucket = try jsonDecoder.decode(Basket.self, from: data)
-                                    buckets.append(bucket)
-                                }
-                            }
-                            
-                            DispatchQueue.main.async {
-                                                                
-                                successBlock(buckets)
-                            }
-                        }
-                        catch {
-                            DispatchQueue.main.async {
+                    } else {
+                        let basket = self.basketFromResponse(response: response)
+                        DispatchQueue.main.async {
+                            if (basket != nil) {
+                                successBlock(basket!)
+                            } else {
                                 errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
                             }
                         }
                     }
-            }
-            else {
+                } else {
+                    DispatchQueue.main.async {
+                        errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    }
+                }
+            },
+            errorBlock: { (error) in
+                print("error : \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    errorBlock(error.localizedDescription)
                 }
             }
-
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
+        )
     }
     
-    //MARK: Update Bucket
-    func updateBucket(buckets : [Basket],
-                      successBlock :@escaping () -> (),
-                      errorBlock :@escaping (_ error : String) -> ())  {
-        
-        var bucketDict = [[String : String]]()
-        
-        for bucket in buckets {
-            bucketDict.append([
-                "number" : bucket.number,
-                "product" : bucket.product,
-                "requestCount" : bucket.requestCount
-            ])
-        }
-        
-        let params = [
-            "requests" : bucketDict
-        ]
-        
-        ServiceManager.shared.processServiceCall(serviceURL: Constants.SERVICES.UPDATE_BUCKET, parameters: params as AnyObject, showLoader: true, requestType: Constants.REQUEST_TYPE.PUT, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
-                    if statusKey != 1 {
-                        DispatchQueue.main.async {
-                            if let errormessage = response.value(forKey: "message") as? String{
-                                errorBlock(errormessage)
-                            }
-                        }
-                    }
-                    else {
-                        
-                        DispatchQueue.main.async {
-                            successBlock()
-                        }
-                        
-                    }
-            }
-            else {
-                DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
-                }
-            }
-
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
-    }
-    
-    //MARK: Clear Bucket
-    func clearBucket(successBlock :@escaping () -> (),
+    func addToBasket(basketArray : [Basket],
+                     successBlock :@escaping () -> (),
                      errorBlock :@escaping (_ error : String) -> ())  {
         
-        ServiceManager.shared.processServiceCall(serviceURL: Constants.SERVICES.CLEAR_BUCKET, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.DELETE, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
+        let type = Constants.REQUEST_TYPE.POST
+        let url = Constants.SERVICES.UPDATE_BUCKET
+        let params = paramsFromBasket(basket: basketArray, comment: nil)
+        
+        ServiceManager.shared.processServiceCall(
+            serviceURL: url, parameters: params, showLoader: true, requestType: type,
+            successBlock: { (response) in
+                if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
                         DispatchQueue.main.async {
                             if let errormessage = response.value(forKey: "message") as? String{
                                 errorBlock(errormessage)
                             }
                         }
-                    }
-                    else {
-                        
+                    } else {
                         DispatchQueue.main.async {
                             successBlock()
                         }
-                        
                     }
-            }
-            else {
+                } else {
+                    DispatchQueue.main.async {
+                        errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    }
+                }
+            },
+            errorBlock: { (error) in
+                print("error : \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    errorBlock(error.localizedDescription)
                 }
             }
-
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
+        )
     }
     
-    //MARK: Add Item To Bucket
-    func addItemToBucket(buckets : [Basket],
+    func updateBasket(basketArray : [Basket],
                       successBlock :@escaping () -> (),
                       errorBlock :@escaping (_ error : String) -> ())  {
         
-        var bucketDict = [[String : String]]()
-        
-        for bucket in buckets {
-            bucketDict.append([
-                "number" : bucket.number,
-                "product" : bucket.product,
-                "requestCount" : bucket.requestCount
-            ])
-        }
-        
-        let params = [
-            "requests" : bucketDict
-        ]
-        
-        ServiceManager.shared.processServiceCall(serviceURL: Constants.SERVICES.UPDATE_BUCKET, parameters: params as AnyObject, showLoader: true, requestType: Constants.REQUEST_TYPE.POST, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
+        let type = Constants.REQUEST_TYPE.PUT
+        let url = Constants.SERVICES.UPDATE_BUCKET
+        let params = paramsFromBasket(basket: basketArray, comment: nil)
+
+        ServiceManager.shared.processServiceCall(
+            serviceURL: url, parameters: params, showLoader: true, requestType: type,
+            successBlock: { (response) in
+                if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
                         DispatchQueue.main.async {
                             if let errormessage = response.value(forKey: "message") as? String{
                                 errorBlock(errormessage)
                             }
                         }
-                    }
-                    else {
-                        
+                    } else {
                         DispatchQueue.main.async {
                             successBlock()
                         }
-                        
                     }
-            }
-            else {
+                } else {
+                    DispatchQueue.main.async {
+                        errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    }
+                }
+            },
+            errorBlock: { (error) in
+                print("error : \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    errorBlock(error.localizedDescription)
                 }
             }
-
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
+        )
     }
     
-    //MARK: Get Product By Code
-    func getProductByCode(product: String,
-                          count: String,
-                          fullSearch: Bool,
-                          successBlock :@escaping (_ buckets : [Basket]) -> (),
-                          errorBlock :@escaping (_ error : String) -> ())  {
-                
-        let url = Constants.SERVICES.GET_ITEM_BY_CODE + String(format: "?product=%@&count=%@&fullsearch=%@", arguments: [product, count, (fullSearch ? "true" : "false")])
+    func clearBasket(successBlock :@escaping () -> (),
+                     errorBlock :@escaping (_ error : String) -> ())  {
+        
+        let type = Constants.REQUEST_TYPE.DELETE
+        let url = Constants.SERVICES.CLEAR_BUCKET
 
-        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
+        ServiceManager.shared.processServiceCall(
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            successBlock: { (response) in
+                if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
                         DispatchQueue.main.async {
                             if let errormessage = response.value(forKey: "message") as? String{
                                 errorBlock(errormessage)
                             }
                         }
-                    }
-                    else {
-                        var buckets : [Basket] = []
-                        
-                        do {
-                            if let bucketArray = response.value(forKey: "data") as? Array<Any> {
-                                
-                                for bucketDict in bucketArray {
-                                    let data = try JSONSerialization.data(withJSONObject: bucketDict, options: [])
-                                    
-                                    let jsonDecoder = JSONDecoder()
-                                    
-                                    let bucket = try jsonDecoder.decode(Basket.self, from: data)
-                                    buckets.append(bucket)
-                                }
-                            }
-                            
-                            DispatchQueue.main.async {
-                                                                
-                                successBlock(buckets)
-                            }
-                        }
-                        catch {
-                            DispatchQueue.main.async {
-                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
-                            }
+                    } else {
+                        DispatchQueue.main.async {
+                            successBlock()
                         }
                     }
-            }
-            else {
+                } else {
+                    DispatchQueue.main.async {
+                        errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    }
+                }
+            },
+            errorBlock: { (error) in
+                print("error : \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    errorBlock(error.localizedDescription)
                 }
             }
-
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
+        )
     }
     
-    //MARK: Create Order
-    func createOrder(buckets: [Basket],
+    func createOrder(basketArray: [Basket],
                      comment: String,
                      successBlock :@escaping (_ order: String) -> (),
                      errorBlock :@escaping (_ error : String) -> ())  {
         
-        var bucketDict = [[String : String]]()
+        let type = Constants.REQUEST_TYPE.POST
+        let url = Constants.SERVICES.CREATE_ORDER
+        let params = paramsFromBasket(basket: basketArray, comment: comment)
         
-        for bucket in buckets {
-            bucketDict.append([
-                "number" : bucket.number,
-                "product" : bucket.product,
-                "requestCount" : bucket.requestCount
-            ])
-        }
-        
-        let params = [
-            "requests": bucketDict,
-            "comment": comment
-            ] as [String : Any]
-        
-        let url = Constants.SERVICES.CREATE_ORDER+String(format:"?comment=%@", arguments:[comment])
-        
-        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: params as AnyObject, showLoader: true, requestType: Constants.REQUEST_TYPE.POST, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
+        ServiceManager.shared.processServiceCall(
+            serviceURL: url, parameters: params, showLoader: true, requestType: type,
+            successBlock: { (response) in
+                if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
                         DispatchQueue.main.async {
                             if let errormessage = response.value(forKey: "message") as? String{
                                 errorBlock(errormessage)
                             }
                         }
-                    }
-                    else {
+                    } else {
                         if let data = response.value(forKey: "data") as? [String: Any] {
                             if let order = data["number"] as? String  {
                                 DispatchQueue.main.async {
                                     successBlock(order)
                                 }
-                            }
-                            else {
+                            } else {
                                 DispatchQueue.main.async {
                                     errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
                                 }
                             }
                         }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    }
                 }
-            }
-            else {
+            },
+            errorBlock: { (error) in
+                print("error : \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    errorBlock(error.localizedDescription)
                 }
             }
-
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
+        )
     }
     
-    // MARK: Download stock balance
+    //MARK: - Download API
     func downloadStockBalance(successBlock :@escaping (_ fileURL : URL) -> (),
                               errorBlock :@escaping (_ error : String) -> ()) {
         
-        let url = String(format: "%@request/download/stock?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, Auth.shared.user.token])
+        let type = Constants.REQUEST_TYPE.GET
+        let url = Constants.SERVICES.DOWNLOAD_STOCK_BALANCE
 
-        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
-                if statusKey != 1 {
-                    DispatchQueue.main.async {
-                        if let errormessage = response.value(forKey: "message") as? String{
-                            errorBlock(errormessage)
-                        }
-                    }
-                }
-                else {
-                    
-                    if let data = response.value(forKey: "data") as? [String: Any] {
-                        if let filePath = data["product"] as? String, let url = URL(string: filePath)  {
-                            
-                            DispatchQueue.main.async {
-                                successBlock(url)
+        ServiceManager.shared.processServiceCall(
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            successBlock: { (response) in
+                if let statusKey = response.value(forKey: "success") as? Int {
+                    if statusKey != 1 {
+                        DispatchQueue.main.async {
+                            if let errormessage = response.value(forKey: "message") as? String{
+                                errorBlock(errormessage)
                             }
                         }
-                        else {
+                    } else {
+                        if let data = response.value(forKey: "data") as? [String: Any] {
+                            if let filePath = data["product"] as? String, let url = URL(string: filePath)  {
+                                DispatchQueue.main.async {
+                                    successBlock(url)
+                                }
+                            } else {
+                                DispatchQueue.main.async {
+                                    errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
+                                }
+                            }
+                        } else {
                             DispatchQueue.main.async {
                                 errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
                             }
                         }
                     }
-                    else {
-                        DispatchQueue.main.async {
-                            errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
-                        }
+                } else {
+                    DispatchQueue.main.async {
+                        errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
                     }
                 }
-            }
-            else {
+            },
+            errorBlock: { (error) in
+                print("error : \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    errorBlock(error.localizedDescription)
                 }
             }
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
+        )
     }
 
-    // MARK: Download table example
     func downloadExample(successBlock :@escaping (_ fileURL : URL) -> (),
-                              errorBlock :@escaping (_ error : String) -> ()) {
+                         errorBlock :@escaping (_ error : String) -> ()) {
         
-        let url = String(format: "%@request/download/example?user-token=%@", arguments: [Constants.SERVICES.BASE_URL, Auth.shared.user.token])
+        let type = Constants.REQUEST_TYPE.GET
+        let url = Constants.SERVICES.DOWNLOAD_EXAMPLE
 
-        ServiceManager.shared.processServiceCall(serviceURL: url, parameters: nil, showLoader: true, requestType: Constants.REQUEST_TYPE.GET, successBlock: { (response) in
-            
-            if let statusKey = response.value(forKey: "success") as? Int {
-                if statusKey != 1 {
-                    DispatchQueue.main.async {
-                        if let errormessage = response.value(forKey: "message") as? String{
-                            errorBlock(errormessage)
-                        }
-                    }
-                }
-                else {
-                    
-                    if let data = response.value(forKey: "data") as? [String: Any] {
-                        if let filePath = data["product"] as? String, let url = URL(string: filePath)  {
-                            
-                            DispatchQueue.main.async {
-                                successBlock(url)
+        ServiceManager.shared.processServiceCall(
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            successBlock: { (response) in
+                if let statusKey = response.value(forKey: "success") as? Int {
+                    if statusKey != 1 {
+                        DispatchQueue.main.async {
+                            if let errormessage = response.value(forKey: "message") as? String{
+                                errorBlock(errormessage)
                             }
                         }
-                        else {
+                    } else {
+                        if let data = response.value(forKey: "data") as? [String: Any] {
+                            if let filePath = data["product"] as? String, let url = URL(string: filePath)  {
+                                DispatchQueue.main.async {
+                                    successBlock(url)
+                                }
+                            } else {
+                                DispatchQueue.main.async {
+                                    errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
+                                }
+                            }
+                        } else {
                             DispatchQueue.main.async {
                                 errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
                             }
                         }
                     }
-                    else {
-                        DispatchQueue.main.async {
-                            errorBlock(Constants.MESSAGES.FILE_NOT_AVAILABLE)
-                        }
+                } else {
+                    DispatchQueue.main.async {
+                        errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
                     }
                 }
-            }
-            else {
+            },
+            errorBlock: { (error) in
+                print("error : \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    errorBlock(Constants.MESSAGES.SOMETHING_WENT_WRONG)
+                    errorBlock(error.localizedDescription)
                 }
             }
-
-        }) { (error) in
-            print("error : \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                errorBlock(error.localizedDescription)
-            }
-        }
+        )
     }
 }

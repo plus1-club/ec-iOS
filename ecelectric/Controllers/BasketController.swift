@@ -49,7 +49,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     
     //MARK: - API
     func getBucket(isShowLoader: Bool) {
-        Basket().getBucket(isShowLoader: isShowLoader,
+        Basket().getBasket(isShowLoader: isShowLoader,
            successBlock: { (basketArray) in
             
             self.basketArray = basketArray
@@ -82,7 +82,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
 
     //MARK: - Action
     @IBAction func clearTapped(_ sender: Button) {
-        Basket().clearBucket(successBlock: {
+        Basket().clearBasket(successBlock: {
             self.basketArray.removeAll()
             self.basketTableView.reloadData()
             self.calculateGrandTotal()
@@ -99,14 +99,14 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func checkoutTapped(_ sender: Button) {
-        Basket().createOrder(buckets: self.basketArray, comment: comment.text ?? "",
+        Basket().createOrder(basketArray: self.basketArray, comment: comment.text ?? "",
         successBlock: { (order) in
             Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: String(format: "Заказ %@ размещен", arguments: [order]))
         }) { (error) in
             Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
         }
         
-        Basket().clearBucket(
+        Basket().clearBasket(
             successBlock: {
             self.basketArray.removeAll()
             self.basketTableView.reloadData()

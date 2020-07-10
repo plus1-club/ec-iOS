@@ -40,7 +40,7 @@ class CanceledDetailsController: UIViewController {
         
     //MARK: - API
     func getCanceledOrderDetails() {
-        Details().getCancelOrderDetails(accountNo: invoice.number, successBlock: { (invoices) in
+        Details().getCanceledDetails(accountNo: invoice.number, successBlock: { (invoices) in
             
             self.accountNoAndDate.text = String(format: "Счет № %@ от %@", arguments: [self.invoice.number, self.invoice.date])
             self.totalAmount.text = String(format: "Итого: %@ pyб.", arguments: [self.invoice.sum])

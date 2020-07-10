@@ -44,7 +44,7 @@ class ShippedController: UIViewController, UITableViewDataSource, UITableViewDel
     
     //MARK: - API
     func getShippedOrders(isShowLoader: Bool) {
-        Invoice().getShippedItemList(isShowLoader: isShowLoader, successBlock: { (invoices) in
+        Invoice().getShippedList(isShowLoader: isShowLoader, successBlock: { (invoices) in
             self.invoices = invoices
             self.shippedTableView.reloadData()
             self.refreshControl.endRefreshing()

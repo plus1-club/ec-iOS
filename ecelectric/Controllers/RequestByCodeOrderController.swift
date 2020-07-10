@@ -66,7 +66,7 @@ class RequestByCodeOrderController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "OrderByCode") && isValidInput() {
-            Basket().getProductByCode(product: product.text!,
+            Basket().searchByCode(product: product.text!,
                                       count: quantity.text!,
                                       fullSearch: !isAdvanceSearch.isSelected,
               successBlock: { (searchArray) in

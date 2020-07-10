@@ -44,7 +44,7 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
     
     //MARK: - API
     func getCancelledOrders(isShowLoader: Bool) {
-        Invoice().getCanceledOrders(isShowLoader: isShowLoader, successBlock: { (invoices) in
+        Invoice().getCanceledList(isShowLoader: isShowLoader, successBlock: { (invoices) in
             self.canceledOrders = invoices
             self.canceledTableView.reloadData()
             self.refreshControl.endRefreshing()

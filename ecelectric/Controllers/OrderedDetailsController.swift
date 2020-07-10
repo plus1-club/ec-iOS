@@ -40,7 +40,7 @@
 
     //MARK: - API
     func getOrderedItemDetails() {
-        Details().getOrderedItemDetails(accountNo: invoice.number, successBlock: { (invoices) in
+        Details().getOrderedDetails(accountNo: invoice.number, successBlock: { (invoices) in
             
             self.accountNoAndDate.text = String(format: "Счет № %@ от %@", arguments: [self.invoice.number, self.invoice.date])
             self.totalAmount.text = String(format: "Итого: %@ pyб.", arguments: [self.invoice.sum])
