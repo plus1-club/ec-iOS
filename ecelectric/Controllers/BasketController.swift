@@ -34,6 +34,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
 
         setupSideMenu()
         
+        self.refreshControl.beginRefreshing()
         getBucket(isShowLoader: true)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
@@ -86,10 +87,12 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
 
     //MARK: - Action
     @IBAction func clearTapped(_ sender: Button) {
+        refreshControl.beginRefreshing()
         Basket().clearBasket(successBlock: {
             self.basketArray.removeAll()
             self.basketTableView.reloadData()
             self.calculateGrandTotal()
+            self.refreshControl.endRefreshing()
             
             Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "Корзина очищена")
         }) { (error) in
@@ -103,6 +106,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func checkoutTapped(_ sender: Button) {
+        refreshControl.beginRefreshing()
         Basket().createOrder(basketArray: self.basketArray, comment: comment.text ?? "",
         successBlock: { (order) in
             Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: String(format: "Заказ %@ размещен", arguments: [order]))
@@ -116,6 +120,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
             self.basketTableView.reloadData()
             self.calculateGrandTotal()
             self.comment.text = ""
+            self.refreshControl.endRefreshing()
         }) { (error) in
             Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
         }
@@ -123,16 +128,32 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     
     @IBAction func deleteTapped(_ sender: UIButton) {
         self.view.endEditing(false)
+        refreshControl.beginRefreshing()
         basketArray.remove(at: sender.tag)
-        Basket().updateBasket(
-            basketArray: basketArray,
-            successBlock: {
-                self.basketTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+        if basketArray.count > 0 {
+            Basket().updateBasket(
+                basketArray: basketArray,
+                successBlock: {
+                    self.basketTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+                    self.basketTableView.reloadData()
+                    self.calculateGrandTotal()
+                    self.refreshControl.endRefreshing()
+                },
+                errorBlock: { (error) in
+                    Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+            })
+        } else {
+            Basket().clearBasket(
+                successBlock: {
+                self.basketArray.removeAll()
+                self.basketTableView.reloadData()
                 self.calculateGrandTotal()
-            },
-            errorBlock: { (error) in
+                self.comment.text = ""
+                self.refreshControl.endRefreshing()
+            }) { (error) in
                 Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
-        })
+            }
+        }
     }
     
     //MARK: - TableView
@@ -197,15 +218,17 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
 
 //MARK: - Delegate
 extension BasketController: UITextFieldDelegate {
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
+        refreshControl.beginRefreshing()
         let basket = self.basketArray[textField.tag]
         basket.requestCount = textField.text
         basket.sum = String((Double(basket.requestCount) ?? 0) * (Double(basket.price) ?? 0))
         Basket().updateBasket(
             basketArray: basketArray,
             successBlock: {
-                //self.basketTableView.reloadData()
                 self.basketTableView.reloadRows(at: [IndexPath(row: textField.tag, section: 0)], with: .automatic)
+                self.basketTableView.reloadData()
                 self.calculateGrandTotal()
                 self.refreshControl.endRefreshing()
             },

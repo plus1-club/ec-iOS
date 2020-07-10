@@ -34,7 +34,8 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     func setupBackButton(){
         let button = UIButton(type: .custom)
         button.setTitle("Назад", for: .normal)
-        button.addTarget(self, action: #selector(back(sender:)), for: .touchDragInside)
+        button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(back(sender:)), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
 
@@ -48,6 +49,9 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func refreshData() {
+        for item in searchArray {
+            item.isSelected = false
+        }
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         searchTableView.addSubview(refreshControl) // not required when using UITableViewController
@@ -79,7 +83,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - Action
     @IBAction func isCheckedTapped(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        let selected = self.searchArray[sender.tag]
+        let selected = searchArray[sender.tag]
         selected.isSelected = sender.isSelected
     }
     
@@ -96,15 +100,18 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
         if (selectedArray.count > 0) {
             self.view.endEditing(true)
-            Basket().addToBasket(basketArray: selectedArray,
-            successBlock: {
-                let navigation = segue.destination as! UINavigationController
-                let controller = navigation.viewControllers.first as! BasketController
-                controller.basketTableView.reloadData()
-                controller.refreshControl.endRefreshing()
-            },
-            errorBlock: { (error) in
-                Utilities.tableMessage(table: self.searchTableView, refresh: self.refreshControl, message: error)
+            self.refreshControl.beginRefreshing()
+            Basket().addToBasket(
+                basketArray: selectedArray,
+                successBlock: { (basketArray) in
+                    let navigation = segue.destination as! UINavigationController
+                    let controller = navigation.viewControllers.first as! BasketController
+                    controller.basketArray = basketArray
+                    controller.basketTableView.reloadData()
+                    controller.refreshControl.endRefreshing()
+                },
+                errorBlock: { (error) in
+                    Utilities.tableMessage(table: self.searchTableView, refresh: self.refreshControl, message: error)
             })
         }
     }

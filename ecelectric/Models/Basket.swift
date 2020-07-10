@@ -206,7 +206,7 @@ class Basket: Codable  {
     }
     
     func addToBasket(basketArray : [Basket],
-                     successBlock :@escaping () -> (),
+                     successBlock :@escaping (_ baskets : [Basket]) -> (),
                      errorBlock :@escaping (_ error : String) -> ())  {
         
         let type = Constants.REQUEST_TYPE.POST
@@ -224,8 +224,13 @@ class Basket: Codable  {
                             }
                         }
                     } else {
+                        let basket = self.basketFromResponse(response: response)
                         DispatchQueue.main.async {
-                            successBlock()
+                            if (basket != nil) {
+                                successBlock(basket!)
+                            } else {
+                                errorBlock(Constants.MESSAGES.ERROR_ON_READ_DATA_FROM_RESPONSE)
+                            }
                         }
                     }
                 } else {
