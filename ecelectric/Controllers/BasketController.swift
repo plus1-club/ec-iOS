@@ -119,10 +119,16 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     
     @IBAction func deleteTapped(_ sender: UIButton) {
         self.view.endEditing(false)
-        self.basketArray.remove(at: sender.tag)
-//        requestTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
-        basketTableView.reloadData()
-        calculateGrandTotal()
+        basketArray.remove(at: sender.tag)
+        Basket().updateBasket(
+            basketArray: basketArray,
+            successBlock: {
+                self.basketTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+                self.calculateGrandTotal()
+            },
+            errorBlock: { (error) in
+                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+        })
     }
     
     //MARK: - TableView
