@@ -72,6 +72,10 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
     
+    func updateRow() {
+        
+    }
+    
     func calculateGrandTotal() {
         var total: Double = 0
         for basket in basketArray {
@@ -196,8 +200,18 @@ extension BasketController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         let basket = self.basketArray[textField.tag]
         basket.requestCount = textField.text
-        basketTableView.reloadData()
-        calculateGrandTotal()
-        refreshControl.endRefreshing()
+        basket.sum = String((Double(basket.requestCount) ?? 0) * (Double(basket.price) ?? 0))
+        Basket().updateBasket(
+            basketArray: basketArray,
+            successBlock: {
+                //self.basketTableView.reloadData()
+                self.basketTableView.reloadRows(at: [IndexPath(row: textField.tag, section: 0)], with: .automatic)
+                self.calculateGrandTotal()
+                self.refreshControl.endRefreshing()
+            },
+            errorBlock: { (error) in
+                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
 }
