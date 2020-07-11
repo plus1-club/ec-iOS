@@ -80,13 +80,6 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         _ = navigationController?.popViewController(animated: true)
     }
 
-    //MARK: - Action
-    @IBAction func isCheckedTapped(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        let selected = searchArray[sender.tag]
-        selected.isSelected = sender.isSelected
-    }
-    
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier != "AddToBasket"){
@@ -94,7 +87,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
         var selectedArray: [Basket] = []
         for search in searchArray {
-            if ((search.isSelected) != nil && search.isSelected == true) {
+            if (search.isSelected == true) {
                 selectedArray.append(search)
             }
         }
@@ -151,7 +144,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath as IndexPath) as! SearchView
 
-        let search = self.searchArray[indexPath.row]
+        let search = searchArray[indexPath.row]
         var stockStatus: String
         var stockColor: UIColor
         (stockStatus, stockColor) = Utilities.stockColor(request: search)
@@ -171,8 +164,6 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
 
         cell.isChecked.isSelected = search.isSelected ?? false
-        cell.isChecked.removeTarget(self, action: #selector(isCheckedTapped(_:)), for: .touchUpInside)
-        cell.isChecked.addTarget(self, action: #selector(isCheckedTapped(_:)), for: .touchUpInside)
 
         cell.count.delegate = self
         cell.count.tag = indexPath.row
@@ -189,6 +180,15 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         cell.status.textColor = stockColor
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (searchArray[indexPath.row].isSelected == true) {
+            searchArray[indexPath.row].isSelected = false
+        } else {
+            searchArray[indexPath.row].isSelected = true
+        }
+        tableView.reloadData()
     }
 }
 
