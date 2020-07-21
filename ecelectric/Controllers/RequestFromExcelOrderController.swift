@@ -12,6 +12,10 @@ import UIKit
 class RequestFromExcelOrderController: UIViewController {
 
     // MARK: - Outlet
+    @IBOutlet weak var file: UITextField!
+    @IBOutlet weak var productColumn: UITextField!
+    @IBOutlet weak var countColumn: UILabel!
+    @IBOutlet weak var fillsearch: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
 
     let document = UIDocumentInteractionController()
@@ -31,6 +35,11 @@ class RequestFromExcelOrderController: UIViewController {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SearchController") as! SearchController
         self.navigationController?.pushViewController(controller, animated: true)
      }
+    
+    
+    @IBAction func selectFile(_ sender: UIButton) {
+        
+    }
     
     @IBAction func downloadExample(_ sender: UIButton) {
         Basket().downloadExample(successBlock: { (fileURL) in
