@@ -48,7 +48,7 @@ class Details: Codable {
                          arguments: [accountNo])
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -91,7 +91,7 @@ class Details: Codable {
                          arguments: [accountNo])
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -134,7 +134,7 @@ class Details: Codable {
                          arguments: [accountNo])
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -177,7 +177,7 @@ class Details: Codable {
                          arguments: [accountNo])
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -220,7 +220,7 @@ class Details: Codable {
                          arguments: [accountNo])
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -263,7 +263,7 @@ class Details: Codable {
                          arguments: [accountNo])
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {

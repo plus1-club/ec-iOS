@@ -10,59 +10,20 @@
 import UIKit
 import MobileCoreServices
 
-class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegate {
-
-    @available(iOS 11.0, *)
-    private func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAs urls: [URL]){
-        print("== Urls : \(urls)")
-        guard let myUrl = urls.first else {
-            return
-        }
-        let shouldStopAccessing = myUrl.startAccessingSecurityScopedResource()
-        defer {
-            if shouldStopAccessing {
-                myUrl.stopAccessingSecurityScopedResource()
-            }
-        }
-        print("== URL:",myUrl)
-        print("== URL adress:", myUrl.absoluteString)
-        self.file.text = myUrl.absoluteString
-    }
-    
-    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController){
-        print("== Close file dialog ==")
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @available(iOS, introduced: 8.0, deprecated: 11.0)
-    private func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAs url: URL){
-        print("== URL:",url)
-        print("== URL adress:", url.absoluteString)
-        self.file.text = url.absoluteString
-    }
-    
-    
-    
-    
+class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Outlet
     @IBOutlet weak var file: UITextField!
     @IBOutlet weak var productColumn: UITextField!
     @IBOutlet weak var countColumn: UITextField!
-    @IBOutlet weak var fullsearch: UILabel!
+    @IBOutlet weak var fullsearch: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
 
     let document = UIDocumentInteractionController()
-    var fileDialog = UIDocumentPickerViewController(documentTypes: [
-        kUTTypePDF as String,
-        "com.microsoft.excel.xls",
-        "org.openxmlformats.spreadsheetml.sheet"
-    ] as [String], in: .open)
 
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
-        document.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,18 +37,9 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
      }
     
     @IBAction func selectFile(_ sender: UIButton) {        
-        if #available(iOS 11.0, *){
-            fileDialog.allowsMultipleSelection = false
-        }
-        if #available(iOS 13.0, *){
-            fileDialog.shouldShowFileExtensions = true
-        }
-        fileDialog.delegate = self
-        fileDialog.modalPresentationStyle = .formSheet
-        self.present(fileDialog, animated: true,
-             completion:{
-                print("== File Dialog open ==")
-        })
+        let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.excel.xls","org.openxmlformats.spreadsheetml.sheet"], in: .import)
+        documentPicker.delegate = self
+        self.present(documentPicker, animated: true)
     }
     
     @IBAction func downloadExample(_ sender: UIButton) {
@@ -95,6 +47,35 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
             self.storeAndShare(url: fileURL)
         }) { (error) in
             Utilities.alertMessage(parent: self, message: error)
+        }
+    }
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        let myURL = urls.first?.path
+        file.text = myURL
+    }
+
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+                dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "CheckFromExcel") {
+            Basket().searchFromExcel(
+                excelPath: file.text!,
+                productColumn: productColumn.text!,
+                countColumn: countColumn.text!,
+                fullSearch: !fullsearch.isSelected,
+                successBlock: { (searchArray) in
+                    let navigation = segue.destination as! UINavigationController
+                    let controller = navigation.viewControllers.first as! SearchController
+                    controller.searchArray = searchArray
+                    controller.searchTableView.reloadData()
+                    controller.refreshControl.endRefreshing()},
+                errorBlock: { (error) in
+                    Utilities.alertMessage(parent: self, message: error)
+                }
+            )
         }
     }
 }
@@ -130,15 +111,5 @@ extension RequestFromExcelCheckController {
     
     func localizedName(url: URL) -> String? {
         return (try? url.resourceValues(forKeys: [.localizedNameKey]))?.localizedName
-    }
-}
-
-// MARK: -
-extension RequestFromExcelCheckController: UIDocumentInteractionControllerDelegate {
-    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
-        guard let navVC = self.navigationController else {
-            return self
-        }
-        return navVC
     }
 }

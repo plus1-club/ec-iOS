@@ -44,7 +44,7 @@ class Invoice: Codable {
         let url = Constants.SERVICES.GET_UNCONFIRMED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -86,7 +86,7 @@ class Invoice: Codable {
         let url = Constants.SERVICES.GET_RESERVED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -128,7 +128,7 @@ class Invoice: Codable {
         let url = Constants.SERVICES.GET_ORDERED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -170,7 +170,7 @@ class Invoice: Codable {
         let url = Constants.SERVICES.GET_CANCELED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -212,7 +212,7 @@ class Invoice: Codable {
         let url = Constants.SERVICES.GET_SHIPPED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {

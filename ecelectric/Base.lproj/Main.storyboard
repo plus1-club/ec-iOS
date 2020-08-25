@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rU0-7E-l4v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rU0-7E-l4v">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -1245,7 +1245,7 @@
                     <connections>
                         <outlet property="countColumn" destination="Pvn-Oc-oon" id="vK1-FL-T4j"/>
                         <outlet property="file" destination="gdn-Sd-Psw" id="khF-we-00N"/>
-                        <outlet property="fullsearch" destination="mLH-ne-1Ss" id="j72-Ug-RUM"/>
+                        <outlet property="fullsearch" destination="gLf-Ok-EVC" id="TPu-i8-t6h"/>
                         <outlet property="productColumn" destination="cvW-8E-vRb" id="iC1-SK-Wsh"/>
                         <outlet property="scrollView" destination="7JP-xM-mN8" id="zrC-zZ-hPo"/>
                     </connections>
@@ -1838,9 +1838,9 @@
                         <viewLayoutGuide key="safeArea" id="NdQ-dg-Swb"/>
                     </view>
                     <connections>
-                        <outlet property="countColumn" destination="Iby-Iy-F09" id="dbQ-FG-82G"/>
+                        <outlet property="countColumn" destination="dAF-4t-siB" id="jdi-Fp-eKd"/>
                         <outlet property="file" destination="i44-mc-FLp" id="Sa5-9P-iaU"/>
-                        <outlet property="fillsearch" destination="Jaa-4G-0wc" id="nEz-kf-xPG"/>
+                        <outlet property="fillsearch" destination="jxR-Hf-bwd" id="1zo-qJ-UW6"/>
                         <outlet property="productColumn" destination="hRn-Rx-4Tl" id="woq-lN-R93"/>
                         <outlet property="scrollView" destination="46G-Dc-Gre" id="T9w-xJ-16y"/>
                     </connections>

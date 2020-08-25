@@ -9,13 +9,13 @@
 
 import UIKit
 
-class RequestFromExcelOrderController: UIViewController {
+class RequestFromExcelOrderController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate {
 
     // MARK: - Outlet
     @IBOutlet weak var file: UITextField!
     @IBOutlet weak var productColumn: UITextField!
-    @IBOutlet weak var countColumn: UILabel!
-    @IBOutlet weak var fillsearch: UILabel!
+    @IBOutlet weak var countColumn: UITextField!
+    @IBOutlet weak var fillsearch: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
 
     let document = UIDocumentInteractionController()
@@ -38,7 +38,9 @@ class RequestFromExcelOrderController: UIViewController {
     
     
     @IBAction func selectFile(_ sender: UIButton) {
-        
+        let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.excel.xls","org.openxmlformats.spreadsheetml.sheet"], in: .import)
+        documentPicker.delegate = self
+        self.present(documentPicker, animated: true)
     }
     
     @IBAction func downloadExample(_ sender: UIButton) {
@@ -46,6 +48,35 @@ class RequestFromExcelOrderController: UIViewController {
             self.storeAndShare(url: fileURL)
         }) { (error) in
             Utilities.alertMessage(parent: self, message: error)
+        }
+    }
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        let myURL = urls.first?.path
+        file.text = myURL
+    }
+
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+                dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "OrderFromExcel") {
+            Basket().searchFromExcel(
+                excelPath: file.text!,
+                productColumn: productColumn.text!,
+                countColumn: countColumn.text!,
+                fullSearch: !fillsearch.isSelected,
+                successBlock: { (searchArray) in
+                    let navigation = segue.destination as! UINavigationController
+                    let controller = navigation.viewControllers.first as! SearchController
+                    controller.searchArray = searchArray
+                    controller.searchTableView.reloadData()
+                    controller.refreshControl.endRefreshing()},
+                errorBlock: { (error) in
+                    Utilities.alertMessage(parent: self, message: error)
+                }
+            )
         }
     }
 }

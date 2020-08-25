@@ -79,7 +79,7 @@ class Basket: Codable  {
                      arguments: [product, count, (fullSearch ? "true" : "false")])
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -113,7 +113,8 @@ class Basket: Codable  {
         )
     }
     
-    func searchFromExcel(productColumn: String,
+    func searchFromExcel(excelPath: String,
+                         productColumn: String,
                          countColumn: String,
                          fullSearch: Bool,
                          successBlock :@escaping (_ buckets : [Basket]) -> (),
@@ -128,7 +129,7 @@ class Basket: Codable  {
         ] as AnyObject
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: params, showLoader: true, requestType: type,
+            serviceURL: url, parameters: params, showLoader: true, requestType: type, filePath: excelPath,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -171,7 +172,7 @@ class Basket: Codable  {
         let url = Constants.SERVICES.GET_BUCKET
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -214,7 +215,7 @@ class Basket: Codable  {
         let params = paramsFromBasket(basket: basketArray, comment: nil)
         
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: params, showLoader: true, requestType: type,
+            serviceURL: url, parameters: params, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -257,7 +258,7 @@ class Basket: Codable  {
         let params = paramsFromBasket(basket: basketArray, comment: nil)
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: params, showLoader: true, requestType: type,
+            serviceURL: url, parameters: params, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -293,7 +294,7 @@ class Basket: Codable  {
         let url = Constants.SERVICES.CLEAR_BUCKET
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -332,7 +333,7 @@ class Basket: Codable  {
         let params = paramsFromBasket(basket: basketArray, comment: comment)
         
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: params, showLoader: true, requestType: type,
+            serviceURL: url, parameters: params, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -377,7 +378,7 @@ class Basket: Codable  {
         let url = Constants.SERVICES.DOWNLOAD_STOCK_BALANCE
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -425,7 +426,7 @@ class Basket: Codable  {
         let url = Constants.SERVICES.DOWNLOAD_EXAMPLE
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {

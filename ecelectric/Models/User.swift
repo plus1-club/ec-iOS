@@ -24,7 +24,7 @@ class User {
             + String(format: "?login=%@&password=%@", arguments: [id, password])
         
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -69,7 +69,7 @@ class User {
         let url = Constants.SERVICES.LOGOUT
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: true, requestType: type,
+            serviceURL: url, parameters: nil, showLoader: true, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                         if statusKey != 1 {
