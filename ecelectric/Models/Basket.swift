@@ -21,6 +21,7 @@ class Basket: Codable  {
     var isSelected: Bool!
     var multiplicity: String!
     var requestProduct: String!
+    var variantsCount: Int!
     
     //MARK: - Method
     func paramsFromBasket(basket: [Basket], comment: String?) -> AnyObject{

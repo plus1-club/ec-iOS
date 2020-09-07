@@ -18,6 +18,8 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - Variable
     var searchArray: [Basket] = []
     var refreshControl = UIRefreshControl()
+    var variants = [String : Int]()
+    var variantNames = [String]()
     
     //MARK: - Override
     override func viewDidLoad() {
@@ -28,9 +30,24 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         setupBackButton()
         setupSideMenu()
         refreshData()
+        setVariants()
     }
     
     //MARK: - Method
+    func setVariants(){
+        for item in searchArray{
+            if variants.keys.contains(item.requestProduct){
+                let newCount = variants[item.requestProduct] ?? 0 + 1;
+                variants.updateValue(newCount, forKey: item.requestProduct)
+                item.variantsCount += 1;
+            } else {
+                variants[item.requestProduct] = 1
+                item.variantsCount += 1;
+                variantNames.append(item.requestProduct)
+            }
+        }
+    }
+    
     func setupBackButton(){
         let button = UIButton(type: .custom)
         button.setTitle("Назад", for: .normal)
@@ -128,13 +145,24 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     //MARK: - TableView
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return variants.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return variantNames[section]
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchArray.count
+        //return searchArray.count
+        return variants[variantNames[section]] ?? 1;
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let basket = self.searchArray[indexPath.row]
-        if ((Int(basket.multiplicity) ?? 0) > 1){
+        if (Int.init(basket.requestCount) == 0) {
+            return 0
+        } else if ((Int(basket.multiplicity) ?? 0) > 1){
             return 170
         } else {
             return 120
@@ -178,6 +206,16 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
 
         cell.status.text = String(format: "%@", arguments: [stockStatus])
         cell.status.textColor = stockColor
+        
+        if (Int.init(search.stockCount) == -3){
+            cell.isChecked.isHidden = true;
+            cell.count.isHidden = true;
+            cell.unit.isHidden = true;
+            cell.status.text = "Не найден";
+        }
+        if (Int.init(search.variantsCount) > 1){
+            // TODO: Change check box to radio button
+        }
 
         return cell
     }
