@@ -73,9 +73,11 @@ class RequestByCodeOrderController: UIViewController {
                 let navigation = segue.destination as! UINavigationController
                 let controller = navigation.viewControllers.first as! SearchController
                 controller.searchArray = searchArray
+                controller.setVariants()
                 controller.searchTableView.reloadData()
                 controller.refreshControl.endRefreshing()
-            },
+                controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
+              },
               errorBlock: { (error) in
                 Utilities.alertMessage(parent: self, message: error)});
         }

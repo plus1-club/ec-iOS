@@ -9,7 +9,7 @@
 
 import UIKit
 
-class RequestByCodeCheckController: UIViewController {
+class RequestByCodeCheckController: UIViewController, UINavigationControllerDelegate {
 
     // MARK: - Outlet
     @IBOutlet weak var product: UITextField!
@@ -21,6 +21,7 @@ class RequestByCodeCheckController: UIViewController {
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.delegate = self
         document.delegate = self
     }
 
@@ -71,8 +72,11 @@ class RequestByCodeCheckController: UIViewController {
                     let navigation = segue.destination as! UINavigationController
                     let controller = navigation.viewControllers.first as! SearchController
                     controller.searchArray = searchArray
+                    controller.setVariants()
                     controller.searchTableView.reloadData()
-                    controller.refreshControl.endRefreshing()},
+                    controller.refreshControl.endRefreshing()
+                    controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
+                },
                 errorBlock: { (error) in
                     Utilities.alertMessage(parent: self, message: error)
                 }

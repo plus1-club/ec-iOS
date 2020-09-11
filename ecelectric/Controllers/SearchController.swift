@@ -16,10 +16,11 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     @IBOutlet weak var searchTableView: UITableView!
 
     //MARK: - Variable
-    var searchArray: [Basket] = []
+    var searchArray = [Basket]()
     var refreshControl = UIRefreshControl()
     var variants = [String : Int]()
     var variantNames = [String]()
+    var backNavigation = UINavigationController()
     
     //MARK: - Override
     override func viewDidLoad() {
@@ -30,30 +31,27 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         setupBackButton()
         setupSideMenu()
         refreshData()
-        setVariants()
     }
     
     //MARK: - Method
     func setVariants(){
-        for item in searchArray{
+        for item in searchArray {
             if variants.keys.contains(item.requestProduct){
-                let newCount = variants[item.requestProduct] ?? 0 + 1;
+                let newCount = (variants[item.requestProduct] ?? 0) + 1;
                 variants.updateValue(newCount, forKey: item.requestProduct)
-                item.variantsCount += 1;
             } else {
                 variants[item.requestProduct] = 1
-                item.variantsCount += 1;
                 variantNames.append(item.requestProduct)
             }
+        }
+        for item in searchArray {
+            item.variantsCount = variants[item.requestProduct]
         }
     }
     
     func setupBackButton(){
-        let button = UIButton(type: .custom)
-        button.setTitle("Назад", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.addTarget(self, action: #selector(back(sender:)), for: .touchUpInside)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+        let backButton = UIBarButtonItem(title: "Назад", style: UIBarButtonItem.Style.plain, target: self, action: #selector(back(sender:)))
+        self.navigationItem.leftBarButtonItem = backButton
     }
 
     func setupSideMenu() {
@@ -94,7 +92,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @objc func back(sender:AnyObject){
-        _ = navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
 
     //MARK: - Navigation
@@ -147,14 +145,17 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - TableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return variants.count
+        //return searchArray.count
+        //return 0
     }
     
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        //return "test"
         return variantNames[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return searchArray.count
+        //return 1
         return variants[variantNames[section]] ?? 1;
     }
     
@@ -172,7 +173,11 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath as IndexPath) as! SearchView
 
-        let search = searchArray[indexPath.row]
+        let sectionName = variantNames[indexPath.section]
+        let filteredArray = searchArray.filter(){
+            return $0.requestProduct == sectionName
+        }
+        let search = filteredArray[indexPath.row]
         var stockStatus: String
         var stockColor: UIColor
         (stockStatus, stockColor) = Utilities.stockColor(request: search)
@@ -213,18 +218,23 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.unit.isHidden = true;
             cell.status.text = "Не найден";
         }
-        if (Int.init(search.variantsCount) > 1){
+        //if (Int.init(search.variantsCount) > 1){
             // TODO: Change check box to radio button
-        }
+        //}
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (searchArray[indexPath.row].isSelected == true) {
-            searchArray[indexPath.row].isSelected = false
+        let sectionName = variantNames[indexPath.section]
+        let filteredArray = searchArray.filter(){
+            return $0.requestProduct == sectionName
+        }
+        let search = filteredArray[indexPath.row]
+        if (search.isSelected == true) {
+            search.isSelected = false
         } else {
-            searchArray[indexPath.row].isSelected = true
+            search.isSelected = true
         }
         tableView.reloadData()
     }

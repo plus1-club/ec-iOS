@@ -37,7 +37,7 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
      }
     
     @IBAction func selectFile(_ sender: UIButton) {        
-        let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.excel.xls","org.openxmlformats.spreadsheetml.sheet"], in: .import)
+        let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeSpreadsheet as String, "com.microsoft.excel.xls","org.openxmlformats.spreadsheetml.sheet"], in: .import)
         documentPicker.delegate = self
         self.present(documentPicker, animated: true)
     }
@@ -70,8 +70,11 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
                     let navigation = segue.destination as! UINavigationController
                     let controller = navigation.viewControllers.first as! SearchController
                     controller.searchArray = searchArray
+                    controller.setVariants()
                     controller.searchTableView.reloadData()
-                    controller.refreshControl.endRefreshing()},
+                    controller.refreshControl.endRefreshing()
+                    controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
+                },
                 errorBlock: { (error) in
                     Utilities.alertMessage(parent: self, message: error)
                 }
