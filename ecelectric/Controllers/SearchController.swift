@@ -14,7 +14,9 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - Outlet
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var searchTableView: UITableView!
-
+    @IBOutlet weak var selectAllButton: UIButton!
+    @IBOutlet weak var clearAllButton: UIButton!
+    
     //MARK: - Variable
     var searchArray = [Basket]()
     var refreshControl = UIRefreshControl()
@@ -237,6 +239,33 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             search.isSelected = true
         }
         tableView.reloadData()
+    }
+    
+    @IBAction func onSelectAll(_ sender: Button) {
+        for section in 0..<searchTableView.numberOfSections{
+            let filteredArray = searchArray.filter(){
+                return $0.requestProduct == variantNames[section]
+            }
+            for row in 1..<searchTableView.numberOfRows(inSection: section)-1 {
+                filteredArray[row-1].isSelected = true
+            }
+        }
+        searchTableView.reloadData()
+    }
+    
+    @IBAction func onClearAll(_ sender: Button) {
+        for section in 0..<searchTableView.numberOfSections{
+            let filteredArray = searchArray.filter(){
+                return $0.requestProduct == variantNames[section]
+            }
+            for row in 1..<searchTableView.numberOfRows(inSection: section)-1 {
+                filteredArray[row-1].isSelected = false
+                print(filteredArray[row-1].number!, "/", filteredArray.count)
+                print(filteredArray[row-1].product!)
+                //print(filteredArray[row-1].isSelected!)
+            }
+        }
+        searchTableView.reloadData()
     }
 }
 

@@ -1263,7 +1263,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a7u-ii-Ebb">
-                                <rect key="frame" x="0.0" y="44" width="414" height="573"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="555"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" rowHeight="150" id="TiN-Oo-ipv" customClass="SearchView" customModule="EC_online" customModuleProvider="target">
@@ -1375,9 +1375,65 @@
                                     <outlet property="delegate" destination="i3Z-WT-xEw" id="gjg-90-P6G"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrY-ov-RKs" customClass="Button" customModule="EC_online" customModuleProvider="target">
-                                <rect key="frame" x="50" y="637" width="314" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qT-o1-fUe" customClass="Button" customModule="EC_online" customModuleProvider="target">
+                                <rect key="frame" x="20" y="619" width="48" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="AoT-Zs-bYS"/>
+                                    <constraint firstAttribute="height" constant="48" id="Lzd-0G-ohu"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" image="select_all">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onSelectAll:" destination="i3Z-WT-xEw" eventType="touchUpInside" id="MhN-1P-8cN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8S-0o-cBE" customClass="Button" customModule="EC_online" customModuleProvider="target">
+                                <rect key="frame" x="88" y="619" width="48" height="48"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="6uQ-f7-VzZ"/>
+                                    <constraint firstAttribute="height" constant="48" id="TUu-uo-yRe"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" image="select_none"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClearAll:" destination="i3Z-WT-xEw" eventType="touchUpInside" id="3AV-zY-faY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrY-ov-RKs" customClass="Button" customModule="EC_online" customModuleProvider="target">
+                                <rect key="frame" x="156" y="619" width="238" height="48"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="zoP-TS-tYK"/>
+                                </constraints>
                                 <state key="normal" title="В корзину">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1400,12 +1456,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="a7u-ii-Ebb" firstAttribute="leading" secondItem="xsR-lG-gU7" secondAttribute="leading" id="Cgg-L7-XI4"/>
-                            <constraint firstItem="xsR-lG-gU7" firstAttribute="bottom" secondItem="rrY-ov-RKs" secondAttribute="bottom" constant="20" id="D3q-4A-xAx"/>
-                            <constraint firstItem="xsR-lG-gU7" firstAttribute="trailing" secondItem="rrY-ov-RKs" secondAttribute="trailing" constant="50" id="Hkd-Mw-IzC"/>
-                            <constraint firstItem="rrY-ov-RKs" firstAttribute="leading" secondItem="xsR-lG-gU7" secondAttribute="leading" constant="50" id="LWo-Fv-hK4"/>
                             <constraint firstItem="a7u-ii-Ebb" firstAttribute="top" secondItem="xsR-lG-gU7" secondAttribute="top" id="M3Q-YW-6Xd"/>
-                            <constraint firstItem="rrY-ov-RKs" firstAttribute="top" secondItem="a7u-ii-Ebb" secondAttribute="bottom" constant="20" id="ZCV-fo-szf"/>
+                            <constraint firstItem="rrY-ov-RKs" firstAttribute="top" secondItem="a7u-ii-Ebb" secondAttribute="bottom" constant="20" id="Mns-iM-jJy"/>
+                            <constraint firstItem="xsR-lG-gU7" firstAttribute="bottom" secondItem="8qT-o1-fUe" secondAttribute="bottom" constant="20" id="Rlr-ui-l9M"/>
+                            <constraint firstItem="8qT-o1-fUe" firstAttribute="leading" secondItem="xsR-lG-gU7" secondAttribute="leading" constant="20" id="aLS-AU-sjc"/>
                             <constraint firstItem="xsR-lG-gU7" firstAttribute="trailing" secondItem="a7u-ii-Ebb" secondAttribute="trailing" id="cX1-vc-ABz"/>
+                            <constraint firstItem="xsR-lG-gU7" firstAttribute="bottom" secondItem="u8S-0o-cBE" secondAttribute="bottom" constant="20" id="gyv-k1-k5f"/>
+                            <constraint firstItem="rrY-ov-RKs" firstAttribute="leading" secondItem="u8S-0o-cBE" secondAttribute="trailing" constant="20" id="hfe-v2-whD"/>
+                            <constraint firstItem="u8S-0o-cBE" firstAttribute="leading" secondItem="8qT-o1-fUe" secondAttribute="trailing" constant="20" id="qlj-Ez-UTK"/>
+                            <constraint firstItem="xsR-lG-gU7" firstAttribute="trailing" secondItem="rrY-ov-RKs" secondAttribute="trailing" constant="20" id="tK7-xQ-mxq"/>
+                            <constraint firstItem="xsR-lG-gU7" firstAttribute="bottom" secondItem="rrY-ov-RKs" secondAttribute="bottom" constant="20" id="x1p-xH-OgD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xsR-lG-gU7"/>
                     </view>
@@ -3217,11 +3277,13 @@
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="checkmark.square.fill" catalog="system" width="128" height="114"/>
         <image name="icons8-back-48" width="48" height="48"/>
-        <image name="menu" width="24" height="24"/>
+        <image name="menu" width="8" height="8"/>
         <image name="order" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ordered" width="33.333332061767578" height="33.333332061767578"/>
         <image name="request" width="33.333332061767578" height="33.333332061767578"/>
         <image name="reserved" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="select_all" width="64" height="64"/>
+        <image name="select_none" width="64" height="64"/>
         <image name="shipped" width="33.333332061767578" height="33.333332061767578"/>
         <image name="splash" width="853.33331298828125" height="270"/>
         <image name="square" catalog="system" width="128" height="114"/>
