@@ -76,6 +76,7 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
                     controller.searchTableView.reloadData()
                     controller.refreshControl.endRefreshing()
                     controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
+                    controller.title = "Проверка наличия товара"
                 },
                 errorBlock: { (error) in
                     Utilities.alertMessage(parent: self, message: error)

@@ -101,7 +101,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func addTapped(_ sender: Button) {
-        let navController = self.storyboard?.instantiateViewController(withIdentifier: "RequestCheckNavigation") as! UINavigationController
+        let navController = self.storyboard?.instantiateViewController(withIdentifier: "RequestOrderNavigation") as! UINavigationController
         self.revealViewController()?.setFront(navController, animated: true)
     }
     

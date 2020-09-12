@@ -1262,14 +1262,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Проверка наличия товара" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeN-u9-viZ">
-                                <rect key="frame" x="46" y="64" width="322" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a7u-ii-Ebb">
-                                <rect key="frame" x="0.0" y="116.66666666666666" width="414" height="480.33333333333337"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" rowHeight="150" id="TiN-Oo-ipv" customClass="SearchView" customModule="EC_online" customModuleProvider="target">
@@ -1382,7 +1376,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrY-ov-RKs" customClass="Button" customModule="EC_online" customModuleProvider="target">
-                                <rect key="frame" x="50" y="617" width="314" height="30"/>
+                                <rect key="frame" x="50" y="637" width="314" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="В корзину">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1406,15 +1400,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="a7u-ii-Ebb" firstAttribute="leading" secondItem="xsR-lG-gU7" secondAttribute="leading" id="Cgg-L7-XI4"/>
-                            <constraint firstItem="xsR-lG-gU7" firstAttribute="bottom" secondItem="rrY-ov-RKs" secondAttribute="bottom" constant="40" id="D3q-4A-xAx"/>
+                            <constraint firstItem="xsR-lG-gU7" firstAttribute="bottom" secondItem="rrY-ov-RKs" secondAttribute="bottom" constant="20" id="D3q-4A-xAx"/>
                             <constraint firstItem="xsR-lG-gU7" firstAttribute="trailing" secondItem="rrY-ov-RKs" secondAttribute="trailing" constant="50" id="Hkd-Mw-IzC"/>
                             <constraint firstItem="rrY-ov-RKs" firstAttribute="leading" secondItem="xsR-lG-gU7" secondAttribute="leading" constant="50" id="LWo-Fv-hK4"/>
-                            <constraint firstItem="GeN-u9-viZ" firstAttribute="top" secondItem="xsR-lG-gU7" secondAttribute="top" constant="20" id="LlJ-FL-hmy"/>
-                            <constraint firstItem="a7u-ii-Ebb" firstAttribute="top" secondItem="GeN-u9-viZ" secondAttribute="bottom" constant="35.5" id="Y6T-kp-c7t"/>
+                            <constraint firstItem="a7u-ii-Ebb" firstAttribute="top" secondItem="xsR-lG-gU7" secondAttribute="top" id="M3Q-YW-6Xd"/>
                             <constraint firstItem="rrY-ov-RKs" firstAttribute="top" secondItem="a7u-ii-Ebb" secondAttribute="bottom" constant="20" id="ZCV-fo-szf"/>
-                            <constraint firstItem="xsR-lG-gU7" firstAttribute="trailing" secondItem="GeN-u9-viZ" secondAttribute="trailing" constant="46" id="aEm-bg-KW6"/>
                             <constraint firstItem="xsR-lG-gU7" firstAttribute="trailing" secondItem="a7u-ii-Ebb" secondAttribute="trailing" id="cX1-vc-ABz"/>
-                            <constraint firstItem="GeN-u9-viZ" firstAttribute="leading" secondItem="xsR-lG-gU7" secondAttribute="leading" constant="46" id="sIg-V3-NnC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xsR-lG-gU7"/>
                     </view>
@@ -1466,7 +1457,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Количество" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-Ij-ipB">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" placeholder="Количество" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-Ij-ipB">
                                 <rect key="frame" x="144.33333333333334" y="95" width="259.66666666666663" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -3212,8 +3203,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9w2-vZ-cyY"/>
-        <segue reference="Ckr-8K-y0Q"/>
+        <segue reference="Phj-6F-QEV"/>
+        <segue reference="d1J-uU-m9Q"/>
         <segue reference="7Uf-94-zww"/>
         <segue reference="MsC-ey-s1o"/>
         <segue reference="igX-ck-7fJ"/>

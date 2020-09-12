@@ -76,6 +76,7 @@ class RequestFromExcelOrderController: UIViewController, UIDocumentPickerDelegat
                     controller.searchTableView.reloadData()
                     controller.refreshControl.endRefreshing()
                     controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
+                    controller.title = "Сделать заказ"
                 },
                 errorBlock: { (error) in
                     Utilities.alertMessage(parent: self, message: error)
