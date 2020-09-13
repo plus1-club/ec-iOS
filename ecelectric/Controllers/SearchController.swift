@@ -14,8 +14,6 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - Outlet
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var searchTableView: UITableView!
-    @IBOutlet weak var selectAllButton: UIButton!
-    @IBOutlet weak var clearAllButton: UIButton!
     
     //MARK: - Variable
     var searchArray = [Basket]()
@@ -94,7 +92,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @objc func back(sender:AnyObject){
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.setViewControllers(backNavigation.viewControllers, animated: true)
     }
 
     //MARK: - Navigation
@@ -142,6 +140,34 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             Utilities.alertMessage(parent: self, message: "Не выбран товар для добавления в корзину")
             return false
         }
+    }
+    
+    //MARK: - Action
+    @IBAction func onSelectAll(_ sender: Button) {
+        for section in 0..<searchTableView.numberOfSections{
+            let filteredArray = searchArray.filter(){
+                return $0.requestProduct == variantNames[section]
+            }
+            for row in 1..<searchTableView.numberOfRows(inSection: section)-1 {
+                filteredArray[row-1].isSelected = true
+            }
+        }
+        searchTableView.reloadData()
+    }
+    
+    @IBAction func onClearAll(_ sender: Button) {
+        for section in 0..<searchTableView.numberOfSections{
+            let filteredArray = searchArray.filter(){
+                return $0.requestProduct == variantNames[section]
+            }
+            for row in 1..<searchTableView.numberOfRows(inSection: section)-1 {
+                filteredArray[row-1].isSelected = false
+                print(filteredArray[row-1].number!, "/", filteredArray.count)
+                print(filteredArray[row-1].product!)
+                //print(filteredArray[row-1].isSelected!)
+            }
+        }
+        searchTableView.reloadData()
     }
     
     //MARK: - TableView
@@ -240,33 +266,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
         tableView.reloadData()
     }
-    
-    @IBAction func onSelectAll(_ sender: Button) {
-        for section in 0..<searchTableView.numberOfSections{
-            let filteredArray = searchArray.filter(){
-                return $0.requestProduct == variantNames[section]
-            }
-            for row in 1..<searchTableView.numberOfRows(inSection: section)-1 {
-                filteredArray[row-1].isSelected = true
-            }
-        }
-        searchTableView.reloadData()
-    }
-    
-    @IBAction func onClearAll(_ sender: Button) {
-        for section in 0..<searchTableView.numberOfSections{
-            let filteredArray = searchArray.filter(){
-                return $0.requestProduct == variantNames[section]
-            }
-            for row in 1..<searchTableView.numberOfRows(inSection: section)-1 {
-                filteredArray[row-1].isSelected = false
-                print(filteredArray[row-1].number!, "/", filteredArray.count)
-                print(filteredArray[row-1].product!)
-                //print(filteredArray[row-1].isSelected!)
-            }
-        }
-        searchTableView.reloadData()
-    }
+
 }
 
 //MARK: - Delegate

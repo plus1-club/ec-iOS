@@ -74,6 +74,8 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
                     controller.searchTableView.reloadData()
                     controller.refreshControl.endRefreshing()
                     controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
+                    let backController = self.storyboard?.instantiateViewController(withIdentifier: "RequestCheckController") ?? RequestCheckController()
+                    controller.backNavigation.pushViewController(backController, animated: true)
                     controller.title = "Проверка наличия товара"
                 },
                 errorBlock: { (error) in

@@ -77,6 +77,8 @@ class RequestByCodeOrderController: UIViewController {
                 controller.searchTableView.reloadData()
                 controller.refreshControl.endRefreshing()
                 controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
+                let backController = self.storyboard?.instantiateViewController(withIdentifier: "RequestOrderController") ?? RequestOrderController()
+                controller.backNavigation.pushViewController(backController, animated: true)
                 controller.title = "Сделать заказ"
               },
               errorBlock: { (error) in
