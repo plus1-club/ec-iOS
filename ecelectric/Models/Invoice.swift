@@ -36,15 +36,14 @@ class Invoice: Codable {
     }
     
     //MARK: - API
-    func getUnconfirmedList(isShowLoader: Bool,
-                            successBlock :@escaping (_ invoices : [Invoice]) -> (),
+    func getUnconfirmedList(successBlock :@escaping (_ invoices : [Invoice]) -> (),
                             errorBlock :@escaping (_ error : String) -> ())  {
                 
         let type = Constants.REQUEST_TYPE.GET
         let url = Constants.SERVICES.GET_UNCONFIRMED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
+            serviceURL: url, parameters: nil, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -78,15 +77,14 @@ class Invoice: Codable {
         )
     }
     
-    func getReservedList(isShowLoader: Bool,
-                         successBlock :@escaping (_ invoices : [Invoice]) -> (),
+    func getReservedList(successBlock :@escaping (_ invoices : [Invoice]) -> (),
                          errorBlock :@escaping (_ error : String) -> ())  {
                 
         let type = Constants.REQUEST_TYPE.GET
         let url = Constants.SERVICES.GET_RESERVED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
+            serviceURL: url, parameters: nil, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -120,15 +118,14 @@ class Invoice: Codable {
         )
     }
     
-    func getOrderedList(isShowLoader: Bool,
-                        successBlock :@escaping (_ invoices : [Invoice]) -> (),
+    func getOrderedList(successBlock :@escaping (_ invoices : [Invoice]) -> (),
                         errorBlock :@escaping (_ error : String) -> ())  {
                 
         let type = Constants.REQUEST_TYPE.GET
         let url = Constants.SERVICES.GET_ORDERED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
+            serviceURL: url, parameters: nil, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -162,15 +159,14 @@ class Invoice: Codable {
         )
     }
     
-    func getCanceledList(isShowLoader: Bool,
-                         successBlock :@escaping (_ invoices : [Invoice]) -> (),
+    func getCanceledList(successBlock :@escaping (_ invoices : [Invoice]) -> (),
                          errorBlock :@escaping (_ error : String) -> ())  {
                 
         let type = Constants.REQUEST_TYPE.GET
         let url = Constants.SERVICES.GET_CANCELED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
+            serviceURL: url, parameters: nil, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {
@@ -204,15 +200,14 @@ class Invoice: Codable {
         )
     }
     
-    func getShippedList(isShowLoader: Bool,
-                        successBlock :@escaping (_ invoices : [Invoice]) -> (),
+    func getShippedList(successBlock :@escaping (_ invoices : [Invoice]) -> (),
                         errorBlock :@escaping (_ error : String) -> ())  {
                 
         let type = Constants.REQUEST_TYPE.GET
         let url = Constants.SERVICES.GET_SHIPPED_LIST
 
         ServiceManager.shared.processServiceCall(
-            serviceURL: url, parameters: nil, showLoader: isShowLoader, requestType: type, filePath: nil,
+            serviceURL: url, parameters: nil, requestType: type, filePath: nil,
             successBlock: { (response) in
                 if let statusKey = response.value(forKey: "success") as? Int {
                     if statusKey != 1 {

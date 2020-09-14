@@ -44,14 +44,20 @@ class SideMenuController: UITableViewController {
         if indexPath.row == exit {
             if  let app = UIApplication.shared.delegate as? AppDelegate,
                 let window = app.window {
-                Auth.shared.user.logout(successBlock: {
-                    Auth.resetValuesOnLogout()
-                    window.rootViewController = self.storyboard?.instantiateInitialViewController()
-                    window.makeKeyAndVisible()
-                }) { (error) in
-                    Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+                LoadingOverlay.shared.showOverlay(view: self.view)
+                    Auth.shared.user.logout(
+                        successBlock: {
+                            Auth.resetValuesOnLogout()
+                            window.rootViewController = self.storyboard?.instantiateInitialViewController()
+                            window.makeKeyAndVisible()
+                            LoadingOverlay.shared.hideOverlayView()
+                        },
+                        errorBlock: { (error) in
+                            LoadingOverlay.shared.hideOverlayView()
+                            Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
+                        }
+                    )
                 }
-            }
         }
     }
 }

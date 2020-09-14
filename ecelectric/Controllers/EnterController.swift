@@ -31,16 +31,24 @@ class EnterController: UIViewController {
     
     //MARK: - API
     func performLogin(id: String, password: String) {
-        Auth.shared.user.login(id: id, password: password, successBlock: {
-            Constants.DEFAULTS.SELF.set(id, forKey: Constants.DEFAULTS.ID)
-            Constants.DEFAULTS.SELF.set(password, forKey: Constants.DEFAULTS.PASSWORD)
-            Constants.DEFAULTS.SELF.synchronize()
-            self.performSegue(withIdentifier: "pushToDashBoard", sender: self)
-        }) { (error) in
-            Utilities.showAlert(strTitle: error, strMessage: nil, parent: self,
-                                OKButtonTitle: nil, CancelButtonTitle: nil,
-                                okBlock: nil, cancelBlock: nil)
-        }
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        Auth.shared.user.login(
+            id: id,
+            password: password,
+            successBlock: {
+                Constants.DEFAULTS.SELF.set(id, forKey: Constants.DEFAULTS.ID)
+                Constants.DEFAULTS.SELF.set(password, forKey: Constants.DEFAULTS.PASSWORD)
+                Constants.DEFAULTS.SELF.synchronize()
+                LoadingOverlay.shared.hideOverlayView()
+                self.performSegue(withIdentifier: "pushToDashBoard", sender: self)
+            },
+            errorBlock: {(error) in
+                LoadingOverlay.shared.hideOverlayView()
+                Utilities.showAlert(strTitle: error, strMessage: nil, parent: self,
+                                    OKButtonTitle: nil, CancelButtonTitle: nil,
+                                    okBlock: nil, cancelBlock: nil)
+            }
+        )
     }
     
     //MARK: - Method

@@ -50,17 +50,20 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     
     //MARK: - API
     func getBucket(isShowLoader: Bool) {
-        Basket().getBasket(isShowLoader: isShowLoader,
-           successBlock: { (basketArray) in
-            
-            self.basketArray = basketArray
-            self.basketTableView.reloadData()
-            self.calculateGrandTotal()
-            self.refreshControl.endRefreshing()
-                            
-        }) { (error) in
-            Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
-        }
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        Basket().getBasket(
+            successBlock: { (basketArray) in
+                self.basketArray = basketArray
+                self.basketTableView.reloadData()
+                self.calculateGrandTotal()
+                self.refreshControl.endRefreshing()
+                LoadingOverlay.shared.hideOverlayView()
+            },
+            errorBlock: { (error) in
+                LoadingOverlay.shared.hideOverlayView()
+                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
     
     //MARK: - Method
@@ -88,16 +91,20 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - Action
     @IBAction func clearTapped(_ sender: Button) {
         refreshControl.beginRefreshing()
-        Basket().clearBasket(successBlock: {
-            self.basketArray.removeAll()
-            self.basketTableView.reloadData()
-            self.calculateGrandTotal()
-            self.refreshControl.endRefreshing()
-            
-            Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "Корзина очищена")
-        }) { (error) in
-            Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
-        }
+        Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "")
+        Basket().clearBasket(
+            successBlock: {
+                self.basketArray.removeAll()
+                self.basketTableView.reloadData()
+                self.calculateGrandTotal()
+                self.refreshControl.endRefreshing()
+                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "Корзина очищена")
+            },
+            errorBlock: { (error) in
+                self.refreshControl.endRefreshing()
+                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
     
     @IBAction func addTapped(_ sender: Button) {
@@ -107,29 +114,39 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     
     @IBAction func checkoutTapped(_ sender: Button) {
         refreshControl.beginRefreshing()
-        Basket().createOrder(basketArray: self.basketArray, comment: comment.text ?? "",
-        successBlock: { (order) in
-            Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: String(format: "Заказ %@ размещен", arguments: [order]))
-        }) { (error) in
-            Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
-        }
+        Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "")
+        Basket().createOrder(
+            basketArray: self.basketArray,
+            comment: comment.text ?? "",
+            successBlock: { (order) in
+                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: String(format: "Заказ %@ размещен", arguments: [order]))
+            },
+            errorBlock: { (error) in
+                self.refreshControl.endRefreshing()
+                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+            }
+        )
         
         Basket().clearBasket(
             successBlock: {
-            self.basketArray.removeAll()
-            self.basketTableView.reloadData()
-            self.calculateGrandTotal()
-            self.comment.text = ""
-            self.refreshControl.endRefreshing()
-        }) { (error) in
-            Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
-        }
+                self.basketArray.removeAll()
+                self.basketTableView.reloadData()
+                self.calculateGrandTotal()
+                self.comment.text = ""
+                self.refreshControl.endRefreshing()
+            },
+            errorBlock: { (error) in
+                self.refreshControl.endRefreshing()
+                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
     
     @IBAction func deleteTapped(_ sender: UIButton) {
         self.view.endEditing(false)
         refreshControl.beginRefreshing()
         basketArray.remove(at: sender.tag)
+        Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "")
         if basketArray.count > 0 {
             Basket().updateBasket(
                 basketArray: basketArray,
@@ -140,19 +157,23 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
                     self.refreshControl.endRefreshing()
                 },
                 errorBlock: { (error) in
+                    self.refreshControl.endRefreshing()
                     Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
             })
         } else {
             Basket().clearBasket(
                 successBlock: {
-                self.basketArray.removeAll()
-                self.basketTableView.reloadData()
-                self.calculateGrandTotal()
-                self.comment.text = ""
-                self.refreshControl.endRefreshing()
-            }) { (error) in
-                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
-            }
+                    self.basketArray.removeAll()
+                    self.basketTableView.reloadData()
+                    self.calculateGrandTotal()
+                    self.comment.text = ""
+                    self.refreshControl.endRefreshing()
+                },
+                errorBlock: { (error) in
+                    self.refreshControl.endRefreshing()
+                    Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+                }
+            )
         }
     }
     
@@ -220,6 +241,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
 extension BasketController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "")
         refreshControl.beginRefreshing()
         let basket = self.basketArray[textField.tag]
         basket.requestCount = textField.text
@@ -233,6 +255,7 @@ extension BasketController: UITextFieldDelegate {
                 self.refreshControl.endRefreshing()
             },
             errorBlock: { (error) in
+                self.refreshControl.endRefreshing()
                 Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
             }
         )

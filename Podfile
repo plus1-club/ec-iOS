@@ -6,7 +6,6 @@ target 'EC-online' do
   use_frameworks!
 
   # Pods for EC-online
-  pod 'iLoader'
   pod 'IQKeyboardManagerSwift'
 
   target 'EC-onlineTests' do

@@ -56,16 +56,21 @@ class MenuController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: - Action
     @IBAction func logoutTapped(_ sender: UIButton) {
         if let app = UIApplication.shared.delegate as? AppDelegate, let window = app.window {
+            LoadingOverlay.shared.showOverlay(view: self.view)
             Auth.shared.user.logout(
                 successBlock: {
                     Auth.resetValuesOnLogout()
                     window.rootViewController = self.storyboard?.instantiateInitialViewController()
                     window.makeKeyAndVisible()
-                }) { (error) in
+                    LoadingOverlay.shared.hideOverlayView()
+                },
+                errorBlock: { (error) in
+                    LoadingOverlay.shared.hideOverlayView()
                     Utilities.showAlert(strTitle: error, strMessage: nil, parent: self,
                                         OKButtonTitle: nil, CancelButtonTitle: nil,
                                         okBlock: nil, cancelBlock: nil)
-            }
+                }
+            )
         }
     }
     

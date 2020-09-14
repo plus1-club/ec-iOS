@@ -18,7 +18,8 @@ class RequestFromExcelOrderController: UIViewController, UIDocumentPickerDelegat
     @IBOutlet weak var countColumn: UITextField!
     @IBOutlet weak var fullSearch: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-
+    @IBOutlet weak var exampleLink: UIButton!
+    
     //MARK: - Variable
     var vExcelPath: String = ""
     var vProductColumn: String = "1"
@@ -38,6 +39,7 @@ class RequestFromExcelOrderController: UIViewController, UIDocumentPickerDelegat
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "OrderFromExcel") {
+            LoadingOverlay.shared.showOverlay(view: self.view)
             Basket().searchFromExcel(
                 excelPath: file.text!,
                 productColumn: productColumn.text!,
@@ -59,8 +61,10 @@ class RequestFromExcelOrderController: UIViewController, UIDocumentPickerDelegat
                     controller.countColumn = self.countColumn.text!
                     controller.fullSearch = self.fullSearch.isSelected
                     controller.title = "Сделать заказ"
+                    LoadingOverlay.shared.hideOverlayView()
                 },
                 errorBlock: { (error) in
+                    LoadingOverlay.shared.hideOverlayView()
                     Utilities.alertMessage(parent: self, message: error)
                 }
             )
@@ -95,11 +99,12 @@ class RequestFromExcelOrderController: UIViewController, UIDocumentPickerDelegat
     }
     
     @IBAction func downloadExample(_ sender: UIButton) {
-        Basket().downloadExample(successBlock: { (fileURL) in
-            self.storeAndShare(url: fileURL)
-        }) { (error) in
-            Utilities.alertMessage(parent: self, message: error)
-        }
+        self.exampleLink.isEnabled = false
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        Basket().downloadExample(
+            successBlock: { (fileURL) in self.storeAndShare(url: fileURL)},
+            errorBlock: { (error) in Utilities.alertMessage(parent: self, message: error)}
+        )
     }
 }
 
@@ -111,6 +116,8 @@ extension RequestFromExcelOrderController {
         //document.uti = typeIdentifier(url: url) ?? "public.data, public.content"
         document.name = localizedName(url: url) ?? url.lastPathComponent
         document.presentPreview(animated: true)
+        LoadingOverlay.shared.hideOverlayView()
+        self.exampleLink.isEnabled = true
     }
     
     func storeAndShare(url: URL){

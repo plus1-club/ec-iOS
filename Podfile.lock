@@ -1,20 +1,16 @@
 PODS:
-  - iLoader (1.0.2)
   - IQKeyboardManagerSwift (6.5.5)
 
 DEPENDENCIES:
-  - iLoader
   - IQKeyboardManagerSwift
 
 SPEC REPOS:
   trunk:
-    - iLoader
     - IQKeyboardManagerSwift
 
 SPEC CHECKSUMS:
-  iLoader: ef405e3c459e15df4f26fed2834f57bb262f67aa
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
 
-PODFILE CHECKSUM: 070a41dbd97923cd42aee62c1846e8cab6ba5ae4
+PODFILE CHECKSUM: 173251c3a15f7583322939fbd3e23f308adc91b2
 
 COCOAPODS: 1.9.3

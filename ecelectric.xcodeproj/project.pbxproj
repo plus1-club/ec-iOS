@@ -62,6 +62,7 @@
 		84F888432309E6FD00F38085 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F888422309E6FD00F38085 /* Tests.swift */; };
 		84F8884B2309EE5F00F38085 /* UnconfirmedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884A2309EE5F00F38085 /* UnconfirmedView.swift */; };
 		84F8884D2309F0B100F38085 /* UnconfirmedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8884C2309F0B100F38085 /* UnconfirmedController.swift */; };
+		E2202B08250F065F00A00341 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2202B07250F065F00A00341 /* LoadingOverlay.swift */; };
 		E2715DD324C718ED00636EAA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2715DD224C718ED00636EAA /* CloudKit.framework */; };
 		E2E2FF5D249756F600955F1C /* LinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E2FF5C249756F600955F1C /* LinkLabel.swift */; };
 		E2E6C6172494A43C00C9252B /* set_version.sh in Resources */ = {isa = PBXBuildFile; fileRef = E2E6C6162494A43C00C9252B /* set_version.sh */; };
@@ -154,6 +155,7 @@
 		C9123CF7FFE2D2A1BDE4250E /* Pods-EC-onlineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-onlineTests.release.xcconfig"; path = "Target Support Files/Pods-EC-onlineTests/Pods-EC-onlineTests.release.xcconfig"; sourceTree = "<group>"; };
 		D0199659D2F46B6C50DEFF81 /* Pods_EC_online.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EC_online.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20EE7F0BF62C5CC3281C9AB /* Pods-EC-online-EC-onlineUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC-online-EC-onlineUITests.debug.xcconfig"; path = "Target Support Files/Pods-EC-online-EC-onlineUITests/Pods-EC-online-EC-onlineUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E2202B07250F065F00A00341 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		E248A47724BF2BD0000C4491 /* EC-online.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EC-online.entitlements"; sourceTree = "<group>"; };
 		E2715DD224C718ED00636EAA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E2E2FF5C249756F600955F1C /* LinkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkLabel.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				84EF429E230ED14500A402C8 /* SWRevealViewController.h */,
 				84EF429C230ED0D100A402C8 /* SWRevealViewController.m */,
 				84B5C166230D795800D776A2 /* ecelectric-Bridging-Header.h */,
+				E2202B07250F065F00A00341 /* LoadingOverlay.swift */,
 			);
 			path = Addons;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				8473E1602328A64300D394A0 /* CanceledView.swift in Sources */,
 				84931BCB2302E033009501B6 /* OrderedView.swift in Sources */,
 				84172B222302C6AE008FA9EE /* EnterController.swift in Sources */,
+				E2202B08250F065F00A00341 /* LoadingOverlay.swift in Sources */,
 				7F7F3A8F237B9B2E001BFFC9 /* User.swift in Sources */,
 				7F7F3A94237B9CA0001BFFC9 /* NetworkManager.swift in Sources */,
 				7F4500F823967D7F00A58E4E /* ReservedDetailsView.swift in Sources */,
@@ -853,6 +857,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 73YTWX53N5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
 				INFOPLIST_PREPROCESS = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -882,6 +891,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 73YTWX53N5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/ecelectric/Info.plist";
 				INFOPLIST_PREPROCESS = NO;
 				LD_RUNPATH_SEARCH_PATHS = (

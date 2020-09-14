@@ -1246,6 +1246,7 @@
                     </view>
                     <connections>
                         <outlet property="countColumn" destination="Pvn-Oc-oon" id="vK1-FL-T4j"/>
+                        <outlet property="exampleLink" destination="9e4-A1-O7J" id="J41-Gj-kHM"/>
                         <outlet property="file" destination="gdn-Sd-Psw" id="khF-we-00N"/>
                         <outlet property="fullSearch" destination="gLf-Ok-EVC" id="13C-1h-CdZ"/>
                         <outlet property="productColumn" destination="cvW-8E-vRb" id="iC1-SK-Wsh"/>
@@ -1615,6 +1616,7 @@
                         <outlet property="count" destination="JR3-Ij-ipB" id="O62-Lz-Akm"/>
                         <outlet property="fullSearch" destination="azw-pN-VJg" id="1hM-vR-7a0"/>
                         <outlet property="product" destination="o5g-du-VgQ" id="Qjo-HQ-QPM"/>
+                        <outlet property="storeLink" destination="hGm-pS-wjE" id="0m2-FZ-OQK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iib-bb-fYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1894,6 +1896,7 @@
                     </view>
                     <connections>
                         <outlet property="countColumn" destination="dAF-4t-siB" id="jdi-Fp-eKd"/>
+                        <outlet property="exampleLink" destination="krD-gH-SAS" id="i4W-aP-fPN"/>
                         <outlet property="file" destination="i44-mc-FLp" id="Sa5-9P-iaU"/>
                         <outlet property="fullSearch" destination="jxR-Hf-bwd" id="tD2-Lw-msU"/>
                         <outlet property="productColumn" destination="hRn-Rx-4Tl" id="woq-lN-R93"/>
@@ -2048,6 +2051,7 @@
                         <outlet property="count" destination="RUu-7G-xjU" id="kdg-dN-8Jl"/>
                         <outlet property="fullSearch" destination="emR-qj-mUT" id="jvX-KZ-fwI"/>
                         <outlet property="product" destination="kB0-l6-AIv" id="Tml-lW-lDw"/>
+                        <outlet property="storeLink" destination="1Ch-B7-6O8" id="xat-6n-jV4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="06c-yk-Qne" userLabel="First Responder" sceneMemberID="firstResponder"/>

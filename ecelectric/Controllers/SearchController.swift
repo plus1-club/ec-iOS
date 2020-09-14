@@ -141,6 +141,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         if (selectedArray.count > 0) {
             self.view.endEditing(true)
             self.refreshControl.beginRefreshing()
+            LoadingOverlay.shared.showOverlay(view: self.view)
             Basket().addToBasket(
                 basketArray: selectedArray,
                 successBlock: { (basketArray) in
@@ -149,8 +150,10 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
                     controller.basketArray = basketArray
                     controller.basketTableView.reloadData()
                     controller.refreshControl.endRefreshing()
+                    LoadingOverlay.shared.hideOverlayView()
                 },
                 errorBlock: { (error) in
+                    LoadingOverlay.shared.hideOverlayView()
                     Utilities.tableMessage(table: self.searchTableView, refresh: self.refreshControl, message: error)
             })
         }

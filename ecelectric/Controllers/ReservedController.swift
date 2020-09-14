@@ -33,13 +33,13 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         reservedTableView.addSubview(refreshControl) // not required when using UITableViewController
 
-        getReservedItemList(isShowLoader: true)
+        getReservedItemList()
     }
     
     //MARK: - Selector
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
-        getReservedItemList(isShowLoader: false)
+        getReservedItemList()
     }
     
     //MARK: - Action
@@ -54,32 +54,39 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func printInvoiceTapped(_ sender: UIButton) {
         let selectedInvoice = self.invoices[sender.tag]
-
-        Details().getInvoicePrint(accountNo: selectedInvoice.number, successBlock: { (fileURL) in
-            
-            let controller = PrintController()
-            controller.pdfFilePath = fileURL
-            controller.number = selectedInvoice.number
-            self.navigationController?.pushViewController(controller, animated: true)
-
-            
-        }) { (error) in
-            Utilities.tableMessage(table: self.reservedTableView, refresh: self.refreshControl, message: error)
-        }
-
+        Utilities.tableMessage(table: self.reservedTableView, refresh: self.refreshControl, message: "")
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        Details().getInvoicePrint(
+            accountNo: selectedInvoice.number,
+            successBlock: { (fileURL) in
+                let controller = PrintController()
+                controller.pdfFilePath = fileURL
+                controller.number = selectedInvoice.number
+                LoadingOverlay.shared.hideOverlayView()
+                self.navigationController?.pushViewController(controller, animated: true)
+            },
+            errorBlock: { (error) in
+                LoadingOverlay.shared.hideOverlayView()
+                Utilities.tableMessage(table: self.reservedTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
     
     //MARK: - API
-    func getReservedItemList(isShowLoader: Bool) {
-        Invoice().getReservedList(isShowLoader: isShowLoader, successBlock: { (invoices) in
-            
-            self.invoices = invoices
-            self.reservedTableView.reloadData()
-            self.refreshControl.endRefreshing()
-            
-        }) { (error) in
-            Utilities.tableMessage(table: self.reservedTableView, refresh: self.refreshControl, message: error)
-        }
+    func getReservedItemList() {
+        Utilities.tableMessage(table: self.reservedTableView, refresh: self.refreshControl, message: "")
+        refreshControl.beginRefreshing()
+        Invoice().getReservedList(
+            successBlock: { (invoices) in
+                self.invoices = invoices
+                self.reservedTableView.reloadData()
+                self.refreshControl.endRefreshing()
+            },
+            errorBlock: { (error) in
+                self.refreshControl.endRefreshing()
+                Utilities.tableMessage(table: self.reservedTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
     
     //MARK: - TableView

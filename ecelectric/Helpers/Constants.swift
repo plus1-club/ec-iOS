@@ -60,7 +60,7 @@ class Constants {
         static let GET_ORDERED_DETAILS = BASE_URL + "invoices/%@/ordered"
         static let GET_CANCELED_DETAILS = BASE_URL + "invoices/%@/canceled"
         static let GET_SHIPPED_DETAILS = BASE_URL + "invoices/%@/shipped"
-        static let DOWNLOAD_INVOICE_PRINT = BASE_URL + "invoices/%@/download"
+        static let DOWNLOAD_INVOICE_PRINT = BASE_URL + "invoices/%@/print"
     }
     
     struct MESSAGES {

@@ -29,7 +29,7 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
 
         Utilities.sideMenu(window: self, menuButton: menuButton)
 
-        getCancelledOrders(isShowLoader: true)
+        getCancelledOrders()
         
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
@@ -39,19 +39,24 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: - Selector
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
-        getCancelledOrders(isShowLoader: false)
+        getCancelledOrders()
     }
     
     //MARK: - API
-    func getCancelledOrders(isShowLoader: Bool) {
-        Invoice().getCanceledList(isShowLoader: isShowLoader, successBlock: { (invoices) in
-            self.canceledOrders = invoices
-            self.canceledTableView.reloadData()
-            self.refreshControl.endRefreshing()
-
-        }) { (error) in
-            Utilities.tableMessage(table: self.canceledTableView, refresh: self.refreshControl, message: error)
-        }
+    func getCancelledOrders() {
+        Utilities.tableMessage(table: self.canceledTableView, refresh: self.refreshControl, message: "")
+        refreshControl.beginRefreshing()
+        Invoice().getCanceledList(
+            successBlock: { (invoices) in
+                self.canceledOrders = invoices
+                self.canceledTableView.reloadData()
+                self.refreshControl.endRefreshing()
+            },
+            errorBlock: { (error) in
+                self.refreshControl.endRefreshing()
+                Utilities.tableMessage(table: self.canceledTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
     
     //MARK: - Action

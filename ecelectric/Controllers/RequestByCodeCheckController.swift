@@ -15,6 +15,7 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
     @IBOutlet weak var product: UITextField!
     @IBOutlet weak var count: UITextField!
     @IBOutlet weak var fullSearch: UIButton!
+    @IBOutlet weak var storeLink: UIButton!
     
     //MARK: - Variable
     var vProduct: String = ""
@@ -34,6 +35,7 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "CheckByCode") && isValidInput() {
+            LoadingOverlay.shared.showOverlay(view: self.view)
             Basket().searchByCode(
                 product: product.text!,
                 count: count.text!,
@@ -53,8 +55,10 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
                     controller.count = self.count.text!
                     controller.fullSearch = self.fullSearch.isSelected
                     controller.title = "Проверка наличия товара"
+                    LoadingOverlay.shared.hideOverlayView()
                 },
                 errorBlock: { (error) in
+                    LoadingOverlay.shared.hideOverlayView()
                     Utilities.alertMessage(parent: self, message: error)
                 }
             )
@@ -85,11 +89,12 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
     @IBAction func checkTapped(_ sender: Button) {}
     
     @IBAction func downloadStock(_ sender: UIButton) {
-        Basket().downloadStockBalance(successBlock: { (fileURL) in
-            self.storeAndShare(url: fileURL)
-        }) { (error) in
-            Utilities.alertMessage(parent: self, message: error)
-        }
+        self.storeLink.isEnabled = false
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        Basket().downloadStockBalance(
+            successBlock: {(fileURL) in self.storeAndShare(url: fileURL)},
+            errorBlock: {(error) in Utilities.alertMessage(parent: self, message: error)}
+        )
     }
 }
 
@@ -100,6 +105,8 @@ extension RequestByCodeCheckController {
         document.uti = typeIdentifier(url: url) ?? "public.data, public.content"
         document.name = localizedName(url: url) ?? url.lastPathComponent
         document.presentPreview(animated: true)
+        LoadingOverlay.shared.hideOverlayView()
+        self.storeLink.isEnabled = true
     }
     
     func storeAndShare(url: URL){

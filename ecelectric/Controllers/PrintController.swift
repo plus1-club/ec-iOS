@@ -9,7 +9,6 @@
 
 import UIKit
 import WebKit
-import iLoader
 
 class PrintController: UIViewController {
 
@@ -32,7 +31,7 @@ class PrintController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        iLoader.shared.show()
+        LoadingOverlay.shared.showOverlay(view: self.view)
         let myRequest = URLRequest(url: pdfFilePath!)
         webView.load(myRequest)
         savePdf()
@@ -93,6 +92,6 @@ class PrintController: UIViewController {
 // MARK: -
 extension PrintController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        iLoader.shared.hide()
+        LoadingOverlay.shared.hideOverlayView()
     }
 }

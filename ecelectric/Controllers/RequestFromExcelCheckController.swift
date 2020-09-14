@@ -18,6 +18,7 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
     @IBOutlet weak var countColumn: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var fullSearch: UIButton!
+    @IBOutlet weak var exampleLink: UIButton!
     
     //MARK: - Variable
     var vExcelPath: String = ""
@@ -38,6 +39,7 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "CheckFromExcel") {
+            LoadingOverlay.shared.showOverlay(view: self.view)
             Basket().searchFromExcel(
                 excelPath: file.text!,
                 productColumn: productColumn.text!,
@@ -59,8 +61,10 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
                     controller.countColumn = self.countColumn.text!
                     controller.fullSearch = self.fullSearch.isSelected
                     controller.title = "Проверка наличия товара"
+                    LoadingOverlay.shared.hideOverlayView()
                 },
                 errorBlock: { (error) in
+                    LoadingOverlay.shared.hideOverlayView()
                     Utilities.alertMessage(parent: self, message: error)
                 }
             )
@@ -94,11 +98,12 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
     }
     
     @IBAction func downloadExample(_ sender: UIButton) {
-        Basket().downloadExample(successBlock: { (fileURL) in
-            self.storeAndShare(url: fileURL)
-        }) { (error) in
-            Utilities.alertMessage(parent: self, message: error)
-        }
+        self.exampleLink.isEnabled = false
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        Basket().downloadExample(
+            successBlock: { (fileURL) in self.storeAndShare(url: fileURL)},
+            errorBlock: { (error) in Utilities.alertMessage(parent: self, message: error)}
+        )
     }
 }
 
@@ -109,6 +114,8 @@ extension RequestFromExcelCheckController {
         document.uti = typeIdentifier(url: url) ?? "public.data, public.content"
         document.name = localizedName(url: url) ?? url.lastPathComponent
         document.presentPreview(animated: true)
+        LoadingOverlay.shared.hideOverlayView()
+        self.exampleLink.isEnabled = true
     }
     
     func storeAndShare(url: URL){

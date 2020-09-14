@@ -29,7 +29,7 @@ class ShippedController: UIViewController, UITableViewDataSource, UITableViewDel
         
         Utilities.sideMenu(window: self, menuButton: menuButton)
 
-        getShippedOrders(isShowLoader: true)
+        getShippedOrders()
         
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
@@ -39,19 +39,24 @@ class ShippedController: UIViewController, UITableViewDataSource, UITableViewDel
     //MARK: - Selector
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
-        getShippedOrders(isShowLoader: false)
+        getShippedOrders()
     }
     
     //MARK: - API
-    func getShippedOrders(isShowLoader: Bool) {
-        Invoice().getShippedList(isShowLoader: isShowLoader, successBlock: { (invoices) in
-            self.invoices = invoices
-            self.shippedTableView.reloadData()
-            self.refreshControl.endRefreshing()
-                                                                    		
-        }) { (error) in
-            Utilities.tableMessage(table: self.shippedTableView, refresh: self.refreshControl, message: error)
-        }
+    func getShippedOrders() {
+        Utilities.tableMessage(table: self.shippedTableView, refresh: self.refreshControl, message: "")
+        refreshControl.beginRefreshing()
+        Invoice().getShippedList(
+            successBlock: { (invoices) in
+                self.invoices = invoices
+                self.shippedTableView.reloadData()
+                self.refreshControl.endRefreshing()
+            },
+            errorBlock: { (error) in
+                self.refreshControl.endRefreshing()
+                Utilities.tableMessage(table: self.shippedTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
     
     //MARK: - Action

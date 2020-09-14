@@ -33,13 +33,13 @@ class UnconfirmedController: UIViewController, UITableViewDelegate, UITableViewD
         
         Utilities.sideMenu(window: self, menuButton: menuButton)
 
-        getUnconfirmedOrders(isShowLoader: true)
+        getUnconfirmedOrders()
     }
         
     //MARK: - Selector
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
-        getUnconfirmedOrders(isShowLoader: false)
+        getUnconfirmedOrders()
     }
     
     //MARK: - Action
@@ -51,14 +51,20 @@ class UnconfirmedController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     //MARK: - API
-    func getUnconfirmedOrders(isShowLoader: Bool) {
-        Invoice().getUnconfirmedList(isShowLoader: isShowLoader, successBlock: { (invoices) in
-            self.invoices = invoices
-            self.unconfirmedTableView.reloadData()
-            self.refreshControl.endRefreshing()
-        }) { (error) in
-            Utilities.tableMessage(table: self.unconfirmedTableView, refresh: self.refreshControl, message: error)
-        }
+    func getUnconfirmedOrders() {
+        Utilities.tableMessage(table: self.unconfirmedTableView, refresh: self.refreshControl, message: "")
+        refreshControl.beginRefreshing()
+        Invoice().getUnconfirmedList(
+            successBlock: { (invoices) in
+                self.invoices = invoices
+                self.unconfirmedTableView.reloadData()
+                self.refreshControl.endRefreshing()
+            },
+            errorBlock: { (error) in
+                self.refreshControl.endRefreshing()
+                Utilities.tableMessage(table: self.unconfirmedTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
     
     //MARK: - TableView

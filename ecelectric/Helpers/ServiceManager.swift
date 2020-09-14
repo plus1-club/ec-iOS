@@ -8,7 +8,6 @@
 //
 
 import Foundation
-import iLoader
 import MobileCoreServices
 
 class ServiceManager: NSObject {
@@ -17,7 +16,6 @@ class ServiceManager: NSObject {
     
     func processServiceCall(serviceURL: String,
                             parameters: AnyObject?,
-                            showLoader : Bool,
                             requestType : String,
                             filePath : String?,
                             successBlock: @escaping (_ responseDict:NSDictionary) -> (),
@@ -25,11 +23,11 @@ class ServiceManager: NSObject {
     {
         if Reachability.isConnectedToNetwork() {
             
-            if showLoader == true {
-                DispatchQueue.main.async(execute: { () -> Void in
-                    iLoader.shared.show()
-                })
-            }
+//            if showLoader == true {
+//                DispatchQueue.main.async(execute: { () -> Void in
+//                    iLoader.shared.show()
+//                })
+//            }
             
             var headers = [
                 "content-type": "application/json",
@@ -88,9 +86,6 @@ class ServiceManager: NSObject {
                     if (error != nil) {
                         print(error ?? "")
                         DispatchQueue.main.async(execute: { () -> Void in
-                            if showLoader == true {
-                                iLoader.shared.hide()
-                            }
                             errorBlock(error! as NSError)
                         })
                     } else {
@@ -100,17 +95,11 @@ class ServiceManager: NSObject {
                             let jsonDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                             print("Response as Dictionary : \(jsonDictionary)")
                             DispatchQueue.main.async(execute: { () -> Void in
-                                if showLoader == true {
-                                    iLoader.shared.hide()
-                                }
                                 successBlock(jsonDictionary)
                             })
                         } catch let myJSONError {
                             print("\((serviceURL as NSString).lastPathComponent) myJSONError : \(myJSONError)")
                             DispatchQueue.main.async(execute: { () -> Void in
-                                if showLoader == true {
-                                    iLoader.shared.hide()
-                                }
                                 errorBlock(myJSONError as NSError)
                             })
                         }
@@ -119,9 +108,6 @@ class ServiceManager: NSObject {
                 dataTask.resume()
             }
             catch let error {
-                if showLoader == true {
-                    iLoader.shared.hide()
-                }
                 print("Error in service call : \(error)")
             }
         }

@@ -48,18 +48,22 @@ class UnconfirmedDetailsController: UIViewController {
     
     //MARK: - API
     func getUnconfirmedOrderDetails() {
-        Details().getUnconfirmedDetails(accountNo: invoice.number, successBlock: { (invoices) in
-            
-            self.accountNoAndDate.text = String(format: "Счет № %@ от %@", arguments: [self.invoice.number, self.invoice.date])
-            self.totalAmount.text = String(format: "Итого: %@ pyб.", arguments: [self.invoice.sum])
-            
-            self.invoiceDetails = invoices
-            self.detailsTableView.reloadData()
-            self.refreshControl.endRefreshing()
-
-        }) { (error) in
-            Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: error)
-        }
+        Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: "")
+        refreshControl.beginRefreshing()
+        Details().getUnconfirmedDetails(
+            accountNo: invoice.number,
+            successBlock: { (invoices) in
+                self.accountNoAndDate.text = String(format: "Счет № %@ от %@", arguments: [self.invoice.number, self.invoice.date])
+                self.totalAmount.text = String(format: "Итого: %@ pyб.", arguments: [self.invoice.sum])
+                self.invoiceDetails = invoices
+                self.detailsTableView.reloadData()
+                self.refreshControl.endRefreshing()
+            },
+            errorBlock: { (error) in
+                self.refreshControl.endRefreshing()
+                Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: error)
+            }
+        )
     }
  
     //MARK: - Action
