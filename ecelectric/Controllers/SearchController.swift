@@ -33,12 +33,14 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
+        LoadingOverlay.shared.showOverlay(view: self.view)
         searchTableView.delegate = self
         searchTableView.dataSource = self
 
         setupBackButton()
         setupSideMenu()
         refreshData()
+        LoadingOverlay.shared.hideOverlayView()
     }
     
     //MARK: - Method
@@ -183,10 +185,12 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - Action
     @IBAction func onSelectAll(_ sender: Button) {
         for section in 0..<searchTableView.numberOfSections{
+            print("section=",section)
             let filteredArray = searchArray.filter(){
                 return $0.requestProduct == variantNames[section]
             }
             for row in 1..<searchTableView.numberOfRows(inSection: section)-1 {
+                print("row=",row)
                 filteredArray[row-1].isSelected = true
             }
         }
@@ -229,6 +233,8 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         let basket = self.searchArray[indexPath.row]
         if (Int.init(basket.requestCount) == 0) {
             return 0
+        } else if (Int.init(basket.stockCount) == -3){
+            return 50
         } else if ((Int(basket.multiplicity) ?? 0) > 1){
             return 170
         } else {
@@ -282,7 +288,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.isChecked.isHidden = true;
             cell.count.isHidden = true;
             cell.unit.isHidden = true;
-            cell.status.text = "Не найден";
+            cell.status.isHidden = true;
         }
         //if (Int.init(search.variantsCount) > 1){
             // TODO: Change check box to radio button

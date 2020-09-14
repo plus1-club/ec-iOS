@@ -35,7 +35,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         setupSideMenu()
         
         self.refreshControl.beginRefreshing()
-        getBucket(isShowLoader: true)
+        getBucket()
         
         refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
@@ -45,11 +45,11 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - Selector
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
-        getBucket(isShowLoader: false)
+        getBucket()
     }
     
     //MARK: - API
-    func getBucket(isShowLoader: Bool) {
+    func getBucket() {
         LoadingOverlay.shared.showOverlay(view: self.view)
         Basket().getBasket(
             successBlock: { (basketArray) in
@@ -74,10 +74,6 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
             revealViewController().rightViewRevealWidth = 275
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-    }
-    
-    func updateRow() {
-        
     }
     
     func calculateGrandTotal() {
@@ -150,10 +146,20 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
             Basket().updateBasket(
                 basketArray: basketArray,
                 successBlock: {
-                    self.basketTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
-                    self.basketTableView.reloadData()
-                    self.calculateGrandTotal()
-                    self.refreshControl.endRefreshing()
+                    Basket().getBasket(
+                        successBlock: { (basketArray) in
+                            self.basketArray = basketArray
+                            self.basketTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+                            self.basketTableView.reloadData()
+                            self.calculateGrandTotal()
+                            self.refreshControl.endRefreshing()
+                            LoadingOverlay.shared.hideOverlayView()
+                        },
+                        errorBlock: { (error) in
+                            LoadingOverlay.shared.hideOverlayView()
+                            Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+                        }
+                    )
                 },
                 errorBlock: { (error) in
                     self.refreshControl.endRefreshing()
@@ -248,10 +254,20 @@ extension BasketController: UITextFieldDelegate {
         Basket().updateBasket(
             basketArray: basketArray,
             successBlock: {
-                self.basketTableView.reloadRows(at: [IndexPath(row: textField.tag, section: 0)], with: .automatic)
-                self.basketTableView.reloadData()
-                self.calculateGrandTotal()
-                self.refreshControl.endRefreshing()
+                Basket().getBasket(
+                    successBlock: { (basketArray) in
+                        self.basketArray = basketArray
+                        self.basketTableView.reloadRows(at: [IndexPath(row: textField.tag, section: 0)], with: .automatic)
+                        self.basketTableView.reloadData()
+                        self.calculateGrandTotal()
+                        self.refreshControl.endRefreshing()
+                        LoadingOverlay.shared.hideOverlayView()
+                    },
+                    errorBlock: { (error) in
+                        LoadingOverlay.shared.hideOverlayView()
+                        Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+                    }
+                )
             },
             errorBlock: { (error) in
                 self.refreshControl.endRefreshing()
