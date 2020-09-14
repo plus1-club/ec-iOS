@@ -13,9 +13,13 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
 
     // MARK: - Outlet
     @IBOutlet weak var product: UITextField!
-    @IBOutlet weak var quantity: UITextField!
-    @IBOutlet weak var isAdvanceSearch: Button!
-
+    @IBOutlet weak var count: UITextField!
+    @IBOutlet weak var fullSearch: UIButton!
+    
+    //MARK: - Variable
+    var vProduct: String = ""
+    var vCount: String = "1"
+    var vFullSearch: Bool = false
     let document = UIDocumentInteractionController()
 
     // MARK: - Override
@@ -23,8 +27,40 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
         super.viewDidLoad()
         navigationController?.delegate = self
         document.delegate = self
+        self.product.text = vProduct
+        self.count.text = vCount
+        self.fullSearch.isSelected = vFullSearch
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "CheckByCode") && isValidInput() {
+            Basket().searchByCode(
+                product: product.text!,
+                count: count.text!,
+                fullSearch: !fullSearch.isSelected,
+                successBlock: { (searchArray) in
+                    let navigation = segue.destination as! UINavigationController
+                    let controller = navigation.viewControllers.first as! SearchController
+                    controller.searchArray = searchArray
+                    controller.setVariants()
+                    controller.searchTableView.reloadData()
+                    controller.refreshControl.endRefreshing()
+                    controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
+                    let backController = self.storyboard?.instantiateViewController(withIdentifier: "RequestCheckController") ?? RequestCheckController()
+                    controller.backNavigation.pushViewController(backController, animated: true)
+                    controller.searchType = 10
+                    controller.product = self.product.text!
+                    controller.count = self.count.text!
+                    controller.fullSearch = self.fullSearch.isSelected
+                    controller.title = "Проверка наличия товара"
+                },
+                errorBlock: { (error) in
+                    Utilities.alertMessage(parent: self, message: error)
+                }
+            )
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -32,7 +68,7 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
     // MARK: - Method
     func isValidInput() -> Bool {
         if Utilities.isValidString(str: product.text) &&
-            Utilities.isValidString(str: quantity.text) {
+            Utilities.isValidString(str: count.text) {
             return true
         }
         else {
@@ -46,46 +82,7 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
         sender.isSelected = !sender.isSelected
     }
     
-    @IBAction func checkTapped(_ sender: Button) {
-        /*
-        if isValidInput() {
-            Basket().getProductByCode(product: product.text!, count: quantity.text!, fullSearch: !isAdvanceSearch.isSelected, successBlock: { (searchArray) in
-
-                let controller = self.storyboard?.instantiateViewController(withIdentifier: "SearchController") as! SearchController
-                controller.searchArray = searchArray
-                self.navigationController?.pushViewController(controller, animated: true)
-                
-            }) { (error) in
-                 Utilities.showAlert(strTitle: error, strMessage: nil, parent: self, OKButtonTitle: nil, CancelButtonTitle: nil, okBlock: nil, cancelBlock: nil)
-            }
-        }
-         */
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "CheckByCode") && isValidInput() {
-            Basket().searchByCode(
-                product: product.text!,
-                count: quantity.text!,
-                fullSearch: !isAdvanceSearch.isSelected,
-                successBlock: { (searchArray) in
-                    let navigation = segue.destination as! UINavigationController
-                    let controller = navigation.viewControllers.first as! SearchController
-                    controller.searchArray = searchArray
-                    controller.setVariants()
-                    controller.searchTableView.reloadData()
-                    controller.refreshControl.endRefreshing()
-                    controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
-                    let backController = self.storyboard?.instantiateViewController(withIdentifier: "RequestCheckController") ?? RequestCheckController()
-                    controller.backNavigation.pushViewController(backController, animated: true)
-                    controller.title = "Проверка наличия товара"
-                },
-                errorBlock: { (error) in
-                    Utilities.alertMessage(parent: self, message: error)
-                }
-            )
-        }
-    }
+    @IBAction func checkTapped(_ sender: Button) {}
     
     @IBAction func downloadStock(_ sender: UIButton) {
         Basket().downloadStockBalance(successBlock: { (fileURL) in

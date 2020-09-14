@@ -997,9 +997,11 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="menu" id="rga-nM-weu"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="contentView" destination="OAH-Dv-rbM" id="zx3-er-dPY"/>
                         <outlet property="firstView" destination="OAH-Dv-rbM" id="5Dl-aW-Goc"/>
                         <outlet property="menuButton" destination="rga-nM-weu" id="59s-Ja-W9l"/>
                         <outlet property="secondView" destination="Dmi-Vm-SOk" id="cik-Tp-vCQ"/>
+                        <outlet property="segmentedControl" destination="HJ6-wN-zSA" id="N9Z-xm-bjL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFQ-Sj-3yf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1245,7 +1247,7 @@
                     <connections>
                         <outlet property="countColumn" destination="Pvn-Oc-oon" id="vK1-FL-T4j"/>
                         <outlet property="file" destination="gdn-Sd-Psw" id="khF-we-00N"/>
-                        <outlet property="fullsearch" destination="gLf-Ok-EVC" id="TPu-i8-t6h"/>
+                        <outlet property="fullSearch" destination="gLf-Ok-EVC" id="13C-1h-CdZ"/>
                         <outlet property="productColumn" destination="cvW-8E-vRb" id="iC1-SK-Wsh"/>
                         <outlet property="scrollView" destination="7JP-xM-mN8" id="zrC-zZ-hPo"/>
                     </connections>
@@ -1610,9 +1612,9 @@
                         <viewLayoutGuide key="safeArea" id="HXr-Jz-yHH"/>
                     </view>
                     <connections>
-                        <outlet property="isAdvanceSearch" destination="azw-pN-VJg" id="EYg-nf-fjD"/>
+                        <outlet property="count" destination="JR3-Ij-ipB" id="O62-Lz-Akm"/>
+                        <outlet property="fullSearch" destination="azw-pN-VJg" id="1hM-vR-7a0"/>
                         <outlet property="product" destination="o5g-du-VgQ" id="Qjo-HQ-QPM"/>
-                        <outlet property="quantity" destination="JR3-Ij-ipB" id="Glu-rT-wG5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iib-bb-fYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1680,9 +1682,11 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="menu" id="KIv-vg-iIg"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="contentView" destination="Neb-ty-WzH" id="1dA-x7-6Y4"/>
                         <outlet property="firstView" destination="Neb-ty-WzH" id="ILq-1X-awh"/>
                         <outlet property="menuButton" destination="KIv-vg-iIg" id="6p6-zL-Cps"/>
                         <outlet property="secondView" destination="OkN-2n-DUa" id="nvi-be-6mn"/>
+                        <outlet property="segmentedControl" destination="gBw-ph-yLe" id="zY7-ub-46d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Frg-94-2zz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1891,7 +1895,7 @@
                     <connections>
                         <outlet property="countColumn" destination="dAF-4t-siB" id="jdi-Fp-eKd"/>
                         <outlet property="file" destination="i44-mc-FLp" id="Sa5-9P-iaU"/>
-                        <outlet property="fillsearch" destination="jxR-Hf-bwd" id="1zo-qJ-UW6"/>
+                        <outlet property="fullSearch" destination="jxR-Hf-bwd" id="tD2-Lw-msU"/>
                         <outlet property="productColumn" destination="hRn-Rx-4Tl" id="woq-lN-R93"/>
                         <outlet property="scrollView" destination="46G-Dc-Gre" id="T9w-xJ-16y"/>
                     </connections>
@@ -2041,9 +2045,9 @@
                         <viewLayoutGuide key="safeArea" id="G9b-RU-U0i"/>
                     </view>
                     <connections>
-                        <outlet property="isAdvanceSearch" destination="emR-qj-mUT" id="UBz-Ar-FlQ"/>
+                        <outlet property="count" destination="RUu-7G-xjU" id="kdg-dN-8Jl"/>
+                        <outlet property="fullSearch" destination="emR-qj-mUT" id="jvX-KZ-fwI"/>
                         <outlet property="product" destination="kB0-l6-AIv" id="Tml-lW-lDw"/>
-                        <outlet property="quantity" destination="RUu-7G-xjU" id="521-eK-Mwz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="06c-yk-Qne" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3263,12 +3267,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Phj-6F-QEV"/>
+        <segue reference="9w2-vZ-cyY"/>
         <segue reference="d1J-uU-m9Q"/>
         <segue reference="7Uf-94-zww"/>
         <segue reference="MsC-ey-s1o"/>
         <segue reference="igX-ck-7fJ"/>
-        <segue reference="4bf-1d-W5J"/>
+        <segue reference="NYq-2f-MLH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name=" " width="16" height="16"/>

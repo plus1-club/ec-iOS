@@ -16,19 +16,69 @@ class RequestFromExcelOrderController: UIViewController, UIDocumentPickerDelegat
     @IBOutlet weak var file: UITextField!
     @IBOutlet weak var productColumn: UITextField!
     @IBOutlet weak var countColumn: UITextField!
-    @IBOutlet weak var fillsearch: UIButton!
+    @IBOutlet weak var fullSearch: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
 
+    //MARK: - Variable
+    var vExcelPath: String = ""
+    var vProductColumn: String = "1"
+    var vCountColumn: String = "2"
+    var vFullSearch: Bool = false
     let document = UIDocumentInteractionController()
 
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         document.delegate = self
+        file.text = vExcelPath
+        productColumn.text = vProductColumn
+        countColumn.text = vCountColumn
+        fullSearch.isSelected = vFullSearch
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "OrderFromExcel") {
+            Basket().searchFromExcel(
+                excelPath: file.text!,
+                productColumn: productColumn.text!,
+                countColumn: countColumn.text!,
+                fullSearch: !fullSearch.isSelected,
+                successBlock: { (searchArray) in
+                    let navigation = segue.destination as! UINavigationController
+                    let controller = navigation.viewControllers.first as! SearchController
+                    controller.searchArray = searchArray
+                    controller.setVariants()
+                    controller.searchTableView.reloadData()
+                    controller.refreshControl.endRefreshing()
+                    controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
+                    let backController = self.storyboard?.instantiateViewController(withIdentifier: "RequestOrderController") ?? RequestOrderController()
+                    controller.backNavigation.pushViewController(backController, animated: true)
+                    controller.searchType = 21
+                    controller.excelPath = self.file.text!
+                    controller.productColumn = self.productColumn.text!
+                    controller.countColumn = self.countColumn.text!
+                    controller.fullSearch = self.fullSearch.isSelected
+                    controller.title = "Сделать заказ"
+                },
+                errorBlock: { (error) in
+                    Utilities.alertMessage(parent: self, message: error)
+                }
+            )
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Method
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        let myURL = urls.first?.path
+        file.text = myURL
+    }
+
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+                dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Action
@@ -49,41 +99,6 @@ class RequestFromExcelOrderController: UIViewController, UIDocumentPickerDelegat
             self.storeAndShare(url: fileURL)
         }) { (error) in
             Utilities.alertMessage(parent: self, message: error)
-        }
-    }
-    
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        let myURL = urls.first?.path
-        file.text = myURL
-    }
-
-    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-                dismiss(animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "OrderFromExcel") {
-            Basket().searchFromExcel(
-                excelPath: file.text!,
-                productColumn: productColumn.text!,
-                countColumn: countColumn.text!,
-                fullSearch: !fillsearch.isSelected,
-                successBlock: { (searchArray) in
-                    let navigation = segue.destination as! UINavigationController
-                    let controller = navigation.viewControllers.first as! SearchController
-                    controller.searchArray = searchArray
-                    controller.setVariants()
-                    controller.searchTableView.reloadData()
-                    controller.refreshControl.endRefreshing()
-                    controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
-                    let backController = self.storyboard?.instantiateViewController(withIdentifier: "RequestOrderController") ?? RequestOrderController()
-                    controller.backNavigation.pushViewController(backController, animated: true)
-                    controller.title = "Сделать заказ"
-                },
-                errorBlock: { (error) in
-                    Utilities.alertMessage(parent: self, message: error)
-                }
-            )
         }
     }
 }

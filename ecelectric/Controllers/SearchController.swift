@@ -21,6 +21,14 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     var variants = [String : Int]()
     var variantNames = [String]()
     var backNavigation = UINavigationController()
+    var searchType = 0
+    
+    var product: String = ""
+    var count: String = "1"
+    var excelPath: String = ""
+    var productColumn: String = "1"
+    var countColumn: String = "2"
+    var fullSearch: Bool = true
     
     //MARK: - Override
     override func viewDidLoad() {
@@ -92,6 +100,30 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @objc func back(sender:AnyObject){
+        if searchType >= 20 {
+            let switchView = backNavigation.viewControllers.first as! RequestOrderController
+            switchView.searchType = self.searchType
+            switchView.product = self.product
+            switchView.count = self.count
+            switchView.excelPath = self.excelPath
+            switchView.productColumn = self.productColumn
+            switchView.countColumn = self.countColumn
+            switchView.fullSearch = self.fullSearch
+            backNavigation.viewControllers.removeAll()
+            backNavigation.viewControllers.append(switchView)
+        } else {
+            let switchView = backNavigation.viewControllers.first as! RequestCheckController
+            switchView.searchType = self.searchType
+            switchView.searchType = self.searchType
+            switchView.product = self.product
+            switchView.count = self.count
+            switchView.excelPath = self.excelPath
+            switchView.productColumn = self.productColumn
+            switchView.countColumn = self.countColumn
+            switchView.fullSearch = self.fullSearch
+            backNavigation.viewControllers.removeAll()
+            backNavigation.viewControllers.append(switchView)
+        }
         self.navigationController?.setViewControllers(backNavigation.viewControllers, animated: true)
     }
 
