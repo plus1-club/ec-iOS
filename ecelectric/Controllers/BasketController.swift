@@ -113,30 +113,29 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func checkoutTapped(_ sender: Button) {
-        refreshControl.beginRefreshing()
+        LoadingOverlay.shared.showOverlay(view: self.view)
         Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "")
         Basket().createOrder(
             basketArray: self.basketArray,
             comment: comment.text ?? "",
             successBlock: { (order) in
                 Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: String(format: "Заказ %@ размещен", arguments: [order]))
+                Basket().clearBasket(
+                    successBlock: {
+                        self.basketArray.removeAll()
+                        self.basketTableView.reloadData()
+                        self.calculateGrandTotal()
+                        self.comment.text = ""
+                        LoadingOverlay.shared.hideOverlayView()
+                    },
+                    errorBlock: { (error) in
+                        LoadingOverlay.shared.hideOverlayView()
+                        Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
+                    }
+                )
             },
             errorBlock: { (error) in
-                self.refreshControl.endRefreshing()
-                Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
-            }
-        )
-        
-        Basket().clearBasket(
-            successBlock: {
-                self.basketArray.removeAll()
-                self.basketTableView.reloadData()
-                self.calculateGrandTotal()
-                self.comment.text = ""
-                self.refreshControl.endRefreshing()
-            },
-            errorBlock: { (error) in
-                self.refreshControl.endRefreshing()
+                LoadingOverlay.shared.hideOverlayView()
                 Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
             }
         )

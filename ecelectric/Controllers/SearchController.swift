@@ -72,6 +72,8 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func refreshData() {
+        LoadingOverlay.shared.showOverlay(view: self.view)
+
         for item in searchArray {
             item.isSelected = false
         }
@@ -80,6 +82,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         searchTableView.addSubview(refreshControl) // not required when using UITableViewController
         searchTableView.reloadData()
         refreshControl.endRefreshing()
+        LoadingOverlay.shared.hideOverlayView()
     }
 
     func changeStatus(cell: SearchView, selected: Basket){
