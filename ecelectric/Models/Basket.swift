@@ -328,7 +328,10 @@ class Basket: Codable  {
                      errorBlock :@escaping (_ error : String) -> ())  {
         
         let type = Constants.REQUEST_TYPE.POST
-        let url = Constants.SERVICES.CREATE_ORDER
+        var url = Constants.SERVICES.CREATE_ORDER
+        if (!comment.isEmpty){
+            url += String(format:"?comment=%@", arguments: [comment])
+        }
         let params = paramsFromBasket(basket: basketArray, comment: comment)
         
         ServiceManager.shared.processServiceCall(
