@@ -35,18 +35,17 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "CheckByCode") && isValidInput() {
-            LoadingOverlay.shared.showOverlay(view: self.view)
+            let navigation = segue.destination as! UINavigationController
+            let controller = navigation.viewControllers.first as! SearchController
+            LoadingOverlay.shared.showOverlay(view: controller.view)
             Basket().searchByCode(
                 product: product.text!,
                 count: count.text!,
                 fullSearch: !fullSearch.isSelected,
                 successBlock: { (searchArray) in
-                    let navigation = segue.destination as! UINavigationController
-                    let controller = navigation.viewControllers.first as! SearchController
                     controller.searchArray = searchArray
                     controller.setVariants()
                     controller.searchTableView.reloadData()
-                    controller.refreshControl.endRefreshing()
                     controller.backNavigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController ?? UINavigationController()
                     let backController = self.storyboard?.instantiateViewController(withIdentifier: "RequestCheckController") ?? RequestCheckController()
                     controller.backNavigation.pushViewController(backController, animated: true)

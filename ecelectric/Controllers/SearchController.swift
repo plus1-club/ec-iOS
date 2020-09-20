@@ -33,14 +33,17 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
-        LoadingOverlay.shared.showOverlay(view: self.view)
         searchTableView.delegate = self
         searchTableView.dataSource = self
+
+        refreshControl.beginRefreshing()
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+        searchTableView.addSubview(refreshControl)
 
         setupBackButton()
         setupSideMenu()
         refreshData()
-        LoadingOverlay.shared.hideOverlayView()
     }
     
     //MARK: - Method

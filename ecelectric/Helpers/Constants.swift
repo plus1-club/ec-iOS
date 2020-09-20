@@ -65,7 +65,7 @@ class Constants {
     
     struct MESSAGES {
         static let SOMETHING_WENT_WRONG = "Что-то пошло не так"
-        static let INTERNET_NOT_AVAILABLE = "Limited or no internet connectivity. Please try again."
+        static let INTERNET_NOT_AVAILABLE = "Соединение с интернетом нестабильно. Попробуйте ещё раз."
         static let ERROR_ON_READ_DATA_FROM_RESPONSE   = "При получении данных произошёл сбой. Пожалуйста попробуйте снова"
         static let ENTER_VALID_LOGIN_DETAILS = "Пожалуйста введите корректные логин и пароль"
         static let ENTER_VALID_DETAILS = "Пожалуйста введите корректные данные"
