@@ -46,6 +46,7 @@ class ShippedController: UIViewController, UITableViewDataSource, UITableViewDel
     func getShippedOrders() {
         Utilities.tableMessage(table: self.shippedTableView, refresh: self.refreshControl, message: "")
         refreshControl.beginRefreshing()
+        self.invoices.removeAll()
         Invoice().getShippedList(
             successBlock: { (invoices) in
                 self.invoices = invoices

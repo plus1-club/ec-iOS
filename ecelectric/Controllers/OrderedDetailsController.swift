@@ -42,6 +42,7 @@
     func getOrderedItemDetails() {
         Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: "")
         refreshControl.beginRefreshing()
+        self.invoiceDetails.removeAll()
         Details().getOrderedDetails(
             accountNo: invoice.number,
             successBlock: { (invoices) in

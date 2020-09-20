@@ -76,6 +76,7 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
     func getReservedItemList() {
         Utilities.tableMessage(table: self.reservedTableView, refresh: self.refreshControl, message: "")
         refreshControl.beginRefreshing()
+        self.invoices.removeAll()
         Invoice().getReservedList(
             successBlock: { (invoices) in
                 self.invoices = invoices

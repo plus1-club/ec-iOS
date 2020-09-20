@@ -42,6 +42,7 @@ class CanceledDetailsController: UIViewController {
     func getCanceledOrderDetails() {
         Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: "")
            refreshControl.beginRefreshing()
+           self.invoiceDetails.removeAll()
            Details().getCanceledDetails(
                accountNo: invoice.number,
                successBlock: { (invoices) in

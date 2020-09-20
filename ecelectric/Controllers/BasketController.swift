@@ -113,7 +113,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "")
         Basket().createOrder(
             basketArray: self.basketArray,
-            comment: comment.text ?? "",
+            comment: comment?.text ?? "Пустой комментарий",
             successBlock: { (order) in
                 Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: String(format: "Заказ %@ размещен", arguments: [order]))
                 Basket().clearBasket(

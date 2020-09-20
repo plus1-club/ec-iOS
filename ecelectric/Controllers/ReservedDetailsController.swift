@@ -42,6 +42,7 @@ class ReservedDetailsController: UIViewController {
     func getReservedItemDetails() {
         Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: "")
         refreshControl.beginRefreshing()
+        self.invoiceDetails.removeAll()
         Details().getReservedDetails(
             accountNo: invoice.number,
             successBlock: { (invoices) in

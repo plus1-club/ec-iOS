@@ -43,6 +43,7 @@ class ShippedDetailsController: UIViewController {
     func getShippedItemDetails() {
         Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: "")
            refreshControl.beginRefreshing()
+           self.invoiceDetails.removeAll()
            Details().getShippedDetails(
                accountNo: invoice.number,
                successBlock: { (invoices) in

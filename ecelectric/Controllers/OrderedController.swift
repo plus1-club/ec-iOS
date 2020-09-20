@@ -75,6 +75,7 @@ class OrderedController: UIViewController, UITableViewDelegate, UITableViewDataS
     func getOrderedItemList() {
         Utilities.tableMessage(table: self.orderTableView, refresh: self.refreshControl, message: "")
         refreshControl.beginRefreshing()
+        self.invoices.removeAll()
         Invoice().getOrderedList(
             successBlock: { (invoices) in
                 self.invoices = invoices
