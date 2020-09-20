@@ -54,6 +54,7 @@ class ShippedDetailsController: UIViewController {
                    self.refreshControl.endRefreshing()
                },
                errorBlock: { (error) in
+                   self.detailsTableView.reloadData()
                    self.refreshControl.endRefreshing()
                    Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: error)
                }

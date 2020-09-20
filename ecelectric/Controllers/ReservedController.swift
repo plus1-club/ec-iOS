@@ -84,6 +84,7 @@ class ReservedController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.refreshControl.endRefreshing()
             },
             errorBlock: { (error) in
+                self.reservedTableView.reloadData()
                 self.refreshControl.endRefreshing()
                 Utilities.tableMessage(table: self.reservedTableView, refresh: self.refreshControl, message: error)
             }

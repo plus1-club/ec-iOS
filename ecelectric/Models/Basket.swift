@@ -42,7 +42,6 @@ class Basket: Codable  {
             ]
         } else {
             params = [
-                "requests" : dict,
                 "comment" : comment!
             ]
         }

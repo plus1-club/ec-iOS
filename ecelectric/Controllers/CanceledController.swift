@@ -54,6 +54,7 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
                 self.refreshControl.endRefreshing()
             },
             errorBlock: { (error) in
+                self.canceledTableView.reloadData()
                 self.refreshControl.endRefreshing()
                 Utilities.tableMessage(table: self.canceledTableView, refresh: self.refreshControl, message: error)
             }

@@ -54,6 +54,7 @@ class ShippedController: UIViewController, UITableViewDataSource, UITableViewDel
                 self.refreshControl.endRefreshing()
             },
             errorBlock: { (error) in
+                self.shippedTableView.reloadData()
                 self.refreshControl.endRefreshing()
                 Utilities.tableMessage(table: self.shippedTableView, refresh: self.refreshControl, message: error)
             }

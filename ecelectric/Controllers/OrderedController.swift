@@ -83,6 +83,7 @@ class OrderedController: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.refreshControl.endRefreshing()
             },
             errorBlock: { (error) in
+                self.orderTableView.reloadData()
                 self.refreshControl.endRefreshing()
                 Utilities.tableMessage(table: self.orderTableView, refresh: self.refreshControl, message: error)
             }

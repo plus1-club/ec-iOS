@@ -62,6 +62,7 @@ class UnconfirmedController: UIViewController, UITableViewDelegate, UITableViewD
                 self.refreshControl.endRefreshing()
             },
             errorBlock: { (error) in
+                self.unconfirmedTableView.reloadData()
                 self.refreshControl.endRefreshing()
                 Utilities.tableMessage(table: self.unconfirmedTableView, refresh: self.refreshControl, message: error)
             }

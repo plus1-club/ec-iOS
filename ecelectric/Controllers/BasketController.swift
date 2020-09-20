@@ -125,6 +125,8 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
                         LoadingOverlay.shared.hideOverlayView()
                     },
                     errorBlock: { (error) in
+                        self.basketArray.removeAll()
+                        self.basketTableView.reloadData()
                         LoadingOverlay.shared.hideOverlayView()
                         Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
                     }
