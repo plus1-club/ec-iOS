@@ -189,9 +189,9 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             let filteredArray = searchArray.filter(){
                 return $0.requestProduct == variantNames[section]
             }
-            for row in 1..<searchTableView.numberOfRows(inSection: section)-1 {
+            for row in 0..<searchTableView.numberOfRows(inSection: section) {
                 print("row=",row)
-                filteredArray[row-1].isSelected = true
+                filteredArray[row].isSelected = true
             }
         }
         searchTableView.reloadData()
@@ -202,10 +202,10 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             let filteredArray = searchArray.filter(){
                 return $0.requestProduct == variantNames[section]
             }
-            for row in 1..<searchTableView.numberOfRows(inSection: section)-1 {
-                filteredArray[row-1].isSelected = false
-                print(filteredArray[row-1].number!, "/", filteredArray.count)
-                print(filteredArray[row-1].product!)
+            for row in 0..<searchTableView.numberOfRows(inSection: section) {
+                filteredArray[row].isSelected = false
+                print(filteredArray[row].number!, "/", filteredArray.count)
+                print(filteredArray[row].product!)
                 //print(filteredArray[row-1].isSelected!)
             }
         }
