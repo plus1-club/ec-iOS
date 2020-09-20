@@ -43,6 +43,7 @@ class RequestOrderController: UIViewController {
         
         if let vc = self.viewForSegmentIndex(index: index) {
             self.addChild(vc)
+            vc.view.frame = self.contentView.bounds
             self.contentView.addSubview(vc.view)
             self.currentViewController = vc
         }
@@ -83,12 +84,18 @@ class RequestOrderController: UIViewController {
     //MARK: - Action
     @IBAction func switchViews(_ sender: UISegmentedControl) {
         if let vc = viewForSegmentIndex(index: sender.selectedSegmentIndex) {
+            var index: Int
+            if (type(of: vc).isEqual(type(of:RequestFromExcelOrderController()))){
+                index = 1
+            } else {
+                index = 0
+            }
             self.addChild(vc)
             self.transition(
                 from: self.currentViewController!,
                 to: vc,
                 duration: 0.5,
-                options: UIView.AnimationOptions.transitionFlipFromRight,
+                options: (index == 1) ? UIView.AnimationOptions.transitionFlipFromLeft : UIView.AnimationOptions.transitionFlipFromRight,
                 animations: {
                     self.currentViewController!.view.removeFromSuperview()
                     vc.view.frame = self.contentView.bounds
