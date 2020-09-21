@@ -81,8 +81,8 @@ class RequestByCodeCheckController: UIViewController, UINavigationControllerDele
     }
     
     // MARK: - Action
-    @IBAction func isAdvanceSearchTapped(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+    @IBAction func fullsearchTapped(_ sender: Any) {
+        fullSearch.isSelected = !fullSearch.isSelected
     }
     
     @IBAction func checkTapped(_ sender: Button) {}

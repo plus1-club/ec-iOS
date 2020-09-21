@@ -85,11 +85,14 @@ class RequestFromExcelOrderController: UIViewController, UIDocumentPickerDelegat
     }
 
     // MARK: - Action
+    @IBAction func fullsearchTapped(_ sender: Any) {
+        fullSearch.isSelected = !fullSearch.isSelected
+    }
+    
     @IBAction func checkTapped(_ sender: Button) {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SearchController") as! SearchController
         self.navigationController?.pushViewController(controller, animated: true)
      }
-    
     
     @IBAction func selectFile(_ sender: UIButton) {
         let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeSpreadsheet as String, "com.microsoft.excel.xls","org.openxmlformats.spreadsheetml.sheet"], in: .import)

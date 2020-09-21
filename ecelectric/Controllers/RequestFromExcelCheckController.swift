@@ -85,6 +85,10 @@ class RequestFromExcelCheckController: UIViewController, UIDocumentPickerDelegat
     }
 
     // MARK: - Action
+    @IBAction func fullsearchTapped(_ sender: Any) {
+        fullSearch.isSelected = !fullSearch.isSelected
+    }
+    
     @IBAction func checkTapped(_ sender: Button) {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SearchController") as! SearchController
         self.navigationController?.pushViewController(controller, animated: true)
