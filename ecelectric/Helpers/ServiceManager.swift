@@ -69,13 +69,8 @@ class ServiceManager: NSObject {
                 {
                     let boundary = generateBoundaryString()
                     request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-
-                    var fileURL = URL(string: filePath!)!;
-                    if fileURL.isFileURL == false {
-                        fileURL = URL(fileURLWithPath: fileURL.absoluteString)
-                    }
                     
-                    request.httpBody = try createBody(with: parameters as? [String : String], filePathKey: "excel", urls: [fileURL], boundary: boundary)
+                    request.httpBody = try createBody(with: parameters as? [String : String], filePathKey: "excel", paths: [filePath!], boundary: boundary)
 
                 }
                 
@@ -127,7 +122,7 @@ class ServiceManager: NSObject {
     ///
     /// - returns:                The `Data` of the body of the request.
 
-    private func createBody(with parameters: [String: String]?, filePathKey: String, urls: [URL], boundary: String) throws -> Data {
+    private func createBody(with parameters: [String: String]?, filePathKey: String, paths: [String], boundary: String) throws -> Data {
         var body = Data()
 
         parameters?.forEach { (key, value) in
@@ -136,9 +131,9 @@ class ServiceManager: NSObject {
             body.append("\(value)\r\n")
         }
 
-        for url in urls {
-            let filename = url.lastPathComponent
-            let data = try Data(contentsOf: url)
+        for path in paths {
+            let filename = (path as NSString).lastPathComponent
+            let data = try Data.init(referencing: NSData.init(contentsOfFile: path))
             let mimetype = mimeType(for: filename)
 
             body.append("--\(boundary)\r\n")
