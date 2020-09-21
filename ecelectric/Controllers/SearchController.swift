@@ -29,6 +29,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     var productColumn: String = "1"
     var countColumn: String = "2"
     var fullSearch: Bool = true
+    var selected: [Int: IndexPath] = [:]
     
     //MARK: - Override
     override func viewDidLoad() {
@@ -135,20 +136,6 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         self.navigationController?.setViewControllers(backNavigation.viewControllers, animated: true)
     }
     
-    @objc func check(sender:AnyObject, indexPath: IndexPath) {
-//        let filteredArray = searchArray.filter(){
-//            return $0.requestProduct == variantNames[indexPath.section]
-//        }
-//        for row in 0..<searchTableView.numberOfRows(inSection: indexPath.section) {
-//            if (row != indexPath.row) {
-//                filteredArray[row].isSelected = false
-//                print(filteredArray[row].number!, "/", filteredArray.count)
-//                print(filteredArray[row].product!)
-//            }
-//        }
-//        searchTableView.reloadData()
-    }
-
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier != "AddToBasket"){
@@ -259,7 +246,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             return 120
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath as IndexPath) as! SearchView
 
@@ -287,10 +274,26 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
 
         cell.isChecked.isSelected = search.isSelected ?? false
-        cell.isChecked.addTarget(self, action: #selector(check(sender:indexPath:)), for: .touchUpInside)
+        if (search.isSelected == true && Int.init(search.variantsCount) > 1) {
+            if (selected[indexPath.section] == nil){
+                selected[indexPath.section] = indexPath
+            } else {
+                if (selected[indexPath.section]! != indexPath) {
+
+                    for row in 0..<searchTableView.numberOfRows(inSection: indexPath.section) {
+                        filteredArray[row].isSelected = false
+                        tableView.reloadRows(at: [IndexPath(row: row, section: indexPath.section)], with: .top)
+                    }
+
+                    selected[indexPath.section] = indexPath
+                }
+            }
+        }
+        cell.isChecked.isSelected = search.isSelected ?? false
 
         cell.count.delegate = self
         cell.count.tag = indexPath.row
+        
         cell.count.text = search.requestCount
         cell.count.textColor = stockColor
         cell.count.layer.borderColor = stockColor.cgColor
