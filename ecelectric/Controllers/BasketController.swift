@@ -140,20 +140,19 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func deleteTapped(_ sender: UIButton) {
-        self.view.endEditing(false)
         refreshControl.beginRefreshing()
-        basketArray.remove(at: sender.tag)
+        LoadingOverlay.shared.showOverlay(view: basketTableView)
         Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: "")
         if basketArray.count > 0 {
+            basketArray.remove(at: sender.tag)
+            basketTableView.deleteRows(at: [ IndexPath(row: sender.tag, section: 0) ], with: .fade)
+            self.calculateGrandTotal()
             Basket().updateBasket(
                 basketArray: basketArray,
                 successBlock: {
                     Basket().getBasket(
                         successBlock: { (basketArray) in
-                            self.basketArray = basketArray
-                            self.basketTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
                             self.basketTableView.reloadData()
-                            self.calculateGrandTotal()
                             self.refreshControl.endRefreshing()
                             LoadingOverlay.shared.hideOverlayView()
                         },
@@ -164,6 +163,7 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
                     )
                 },
                 errorBlock: { (error) in
+                    LoadingOverlay.shared.hideOverlayView()
                     self.refreshControl.endRefreshing()
                     Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
             })
@@ -175,8 +175,10 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
                     self.calculateGrandTotal()
                     self.comment.text = ""
                     self.refreshControl.endRefreshing()
+                    LoadingOverlay.shared.hideOverlayView()
                 },
                 errorBlock: { (error) in
+                    LoadingOverlay.shared.hideOverlayView()
                     self.refreshControl.endRefreshing()
                     Utilities.tableMessage(table: self.basketTableView, refresh: self.refreshControl, message: error)
                 }
