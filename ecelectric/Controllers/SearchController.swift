@@ -233,12 +233,16 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let basket = self.searchArray[indexPath.row]
-        if (Int.init(basket.requestCount) == 0) {
+        let sectionName = variantNames[indexPath.section]
+        let filteredArray = searchArray.filter(){
+            return $0.requestProduct == sectionName
+        }
+        let search = filteredArray[indexPath.row]
+        if (Int.init(search.requestCount) == 0) {
             return 0
-        } else if (Int.init(basket.stockCount) == -3){
+        } else if (Int.init(search.stockCount) == -3){
             return 50
-        } else if ((Int(basket.multiplicity) ?? 0) > 1){
+        } else if ((Int(search.multiplicity) ?? 0) > 1){
             return 170
         } else {
             return 120
@@ -292,6 +296,11 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.count.isHidden = true;
             cell.unit.isHidden = true;
             cell.status.isHidden = true;
+        } else {
+            cell.isChecked.isHidden = false;
+            cell.count.isHidden = false;
+            cell.unit.isHidden = false;
+            cell.status.isHidden = false;
         }
         //if (Int.init(search.variantsCount) > 1){
             // TODO: Change check box to radio button
