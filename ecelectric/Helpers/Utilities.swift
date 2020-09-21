@@ -131,7 +131,7 @@ class Utilities: NSObject {
         } else if (request.stockCount == "0"){
             status = String(format: "Нет")
             color = Constants.COLORS.RED
-        } else if (request.stockCount >= request.requestCount){
+        } else if (Int.init(request.stockCount)! >= Int.init(request.requestCount)!){
             status = String(format: "В наличии")
             color = Constants.COLORS.GREEN
         } else if ((Int(request.stockCount) ?? 0) > 500 || request.stockCount == "-1"){
