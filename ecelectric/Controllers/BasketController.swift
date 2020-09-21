@@ -197,8 +197,8 @@ class BasketController: UIViewController, UITableViewDataSource, UITableViewDele
         var stockColor: UIColor
         (stockStatus, stockColor) = Utilities.stockColor(request: basket)
                 
-       let multiplicity = Int(basket.multiplicity)!
-       if (multiplicity > 1){
+        let multiplicity = Int(basket.multiplicity == "" ? "0" : basket.multiplicity)!
+        if (multiplicity > 1){
            var count = Int(basket.requestCount)!
            if (count % multiplicity) > 0 {
                count += multiplicity - (count % multiplicity)

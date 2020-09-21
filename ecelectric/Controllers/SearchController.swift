@@ -135,8 +135,18 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         self.navigationController?.setViewControllers(backNavigation.viewControllers, animated: true)
     }
     
-    @objc func check(sender:AnyObject) {
-        
+    @objc func check(sender:AnyObject, indexPath: IndexPath) {
+//        let filteredArray = searchArray.filter(){
+//            return $0.requestProduct == variantNames[indexPath.section]
+//        }
+//        for row in 0..<searchTableView.numberOfRows(inSection: indexPath.section) {
+//            if (row != indexPath.row) {
+//                filteredArray[row].isSelected = false
+//                print(filteredArray[row].number!, "/", filteredArray.count)
+//                print(filteredArray[row].product!)
+//            }
+//        }
+//        searchTableView.reloadData()
     }
 
     //MARK: - Navigation
@@ -198,7 +208,9 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             }
             for row in 0..<searchTableView.numberOfRows(inSection: section) {
                 print("row=",row)
-                filteredArray[row].isSelected = true
+                if (Int.init(filteredArray[row].stockCount) != -3) {
+                    filteredArray[row].isSelected = true
+                }
             }
         }
         searchTableView.reloadData()
@@ -210,10 +222,9 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
                 return $0.requestProduct == variantNames[section]
             }
             for row in 0..<searchTableView.numberOfRows(inSection: section) {
-                filteredArray[row].isSelected = false
-                print(filteredArray[row].number!, "/", filteredArray.count)
-                print(filteredArray[row].product!)
-                //print(filteredArray[row-1].isSelected!)
+                if (Int.init(filteredArray[row].stockCount) != -3) {
+                    filteredArray[row].isSelected = false
+                }
             }
         }
         searchTableView.reloadData()
@@ -276,7 +287,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
 
         cell.isChecked.isSelected = search.isSelected ?? false
-        cell.isChecked.addTarget(self, action: #selector(check(sender:)), for: .touchUpInside)
+        cell.isChecked.addTarget(self, action: #selector(check(sender:indexPath:)), for: .touchUpInside)
 
         cell.count.delegate = self
         cell.count.tag = indexPath.row
