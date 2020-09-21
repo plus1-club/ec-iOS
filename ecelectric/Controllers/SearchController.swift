@@ -194,9 +194,11 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
                 return $0.requestProduct == variantNames[section]
             }
             for row in 0..<searchTableView.numberOfRows(inSection: section) {
-                print("row=",row)
-                if (Int.init(filteredArray[row].stockCount) != -3) {
-                    filteredArray[row].isSelected = true
+                if filteredArray[row].variantsCount == 1 {
+                    print("row=",row)
+                    if (Int.init(filteredArray[row].stockCount) != -3) {
+                        filteredArray[row].isSelected = true
+                    }
                 }
             }
         }
