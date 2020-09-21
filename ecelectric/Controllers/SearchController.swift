@@ -276,7 +276,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
 
         cell.isChecked.isSelected = search.isSelected ?? false
-        cell.isChecked.addTarget(self, action: #selector(<#T##@objc method#>), for: .touchUpInside)
+        cell.isChecked.addTarget(self, action: #selector(check(sender:)), for: .touchUpInside)
 
         cell.count.delegate = self
         cell.count.tag = indexPath.row
