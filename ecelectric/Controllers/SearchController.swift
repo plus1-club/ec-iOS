@@ -134,6 +134,10 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
         self.navigationController?.setViewControllers(backNavigation.viewControllers, animated: true)
     }
+    
+    @objc func check(sender:AnyObject) {
+        
+    }
 
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -218,17 +222,13 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     //MARK: - TableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return variants.count
-        //return searchArray.count
-        //return 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        //return "test"
         return variantNames[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return 1
         return variants[variantNames[section]] ?? 1;
     }
     
@@ -276,6 +276,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         }
 
         cell.isChecked.isSelected = search.isSelected ?? false
+        cell.isChecked.addTarget(self, action: #selector(<#T##@objc method#>), for: .touchUpInside)
 
         cell.count.delegate = self
         cell.count.tag = indexPath.row
@@ -302,9 +303,23 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.unit.isHidden = false;
             cell.status.isHidden = false;
         }
-        //if (Int.init(search.variantsCount) > 1){
-            // TODO: Change check box to radio button
-        //}
+        if #available(iOS 13.0, *) {
+            if (Int.init(search.variantsCount) > 1){
+                cell.isChecked.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
+                cell.isChecked.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .selected)
+            } else {
+                cell.isChecked.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
+                cell.isChecked.setBackgroundImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+            }
+        } else {
+            if (Int.init(search.variantsCount) > 1){
+                cell.isChecked.setBackgroundImage(UIImage(named: "unchecked-circle"), for: .normal)
+                cell.isChecked.setBackgroundImage(UIImage(named: "checked-circle"), for: .selected)
+            } else {
+                cell.isChecked.setBackgroundImage(UIImage(named: "unchecked-square"), for: .normal)
+                cell.isChecked.setBackgroundImage(UIImage(named: "checked-square"), for: .selected)
+            }
+        }
 
         return cell
     }
