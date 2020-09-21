@@ -179,7 +179,35 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             }
         }
         if (selectedArray.count > 0) {
-            return true
+            var notSelected = [String]()
+            for variant in 0..<variantNames.count {
+                var isSelected = false
+                for index in 0..<selectedArray.count {
+                    if selectedArray[index].requestProduct == variantNames[variant] {
+                        isSelected = true
+                    }
+                }
+                if !isSelected {
+                    let filteredArray = searchArray.filter(){
+                        return $0.requestProduct == variantNames[variant]
+                    }
+                    var isValuable = false
+                    for i in 0..<filteredArray.count {
+                        if Int.init(filteredArray[i].stockCount) != -3 {
+                            isValuable = true
+                        }
+                    }
+                    if isValuable {
+                        notSelected.append(variantNames[variant])
+                    }
+                }
+            }
+            if notSelected.count > 0 {
+                Utilities.alertMessage(parent: self, message: "Не выбраны товары из:\n" + notSelected.joined(separator: "\n"))
+                return false
+            } else {
+                return true
+            }
         } else {
             Utilities.alertMessage(parent: self, message: "Не выбран товар для добавления в корзину")
             return false
