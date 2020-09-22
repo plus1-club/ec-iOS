@@ -74,7 +74,7 @@ class PrintController: UIViewController {
         print("Load: " + docPath)
         if fileManager.fileExists(atPath: docPath){
             let doc = NSData(contentsOfFile: docPath)
-            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [doc!], applicationActivities: nil)
+            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [self.number+".pdf", doc!], applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view
             self.present(activityViewController, animated: true, completion: nil)
         } else {
