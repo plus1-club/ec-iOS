@@ -54,7 +54,6 @@ class UnconfirmedController: UIViewController, UITableViewDelegate, UITableViewD
     func getUnconfirmedOrders() {
         Utilities.tableMessage(table: self.unconfirmedTableView, refresh: self.refreshControl, message: "")
         refreshControl.beginRefreshing()
-        self.invoices.removeAll()
         Invoice().getUnconfirmedList(
             successBlock: { (invoices) in
                 self.invoices = invoices
@@ -62,6 +61,7 @@ class UnconfirmedController: UIViewController, UITableViewDelegate, UITableViewD
                 self.refreshControl.endRefreshing()
             },
             errorBlock: { (error) in
+                self.invoices.removeAll()
                 self.unconfirmedTableView.reloadData()
                 self.refreshControl.endRefreshing()
                 Utilities.tableMessage(table: self.unconfirmedTableView, refresh: self.refreshControl, message: error)

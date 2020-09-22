@@ -50,7 +50,6 @@ class UnconfirmedDetailsController: UIViewController {
     func getUnconfirmedOrderDetails() {
         Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: "")
         refreshControl.beginRefreshing()
-        self.invoiceDetails.removeAll()
         Details().getUnconfirmedDetails(
             accountNo: invoice.number,
             successBlock: { (invoices) in
@@ -61,6 +60,7 @@ class UnconfirmedDetailsController: UIViewController {
                 self.refreshControl.endRefreshing()
             },
             errorBlock: { (error) in
+                self.invoiceDetails.removeAll()
                 self.detailsTableView.reloadData()
                 self.refreshControl.endRefreshing()
                 Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: error)

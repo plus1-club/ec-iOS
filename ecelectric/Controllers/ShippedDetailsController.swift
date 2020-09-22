@@ -43,7 +43,6 @@ class ShippedDetailsController: UIViewController {
     func getShippedItemDetails() {
         Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: "")
            refreshControl.beginRefreshing()
-           self.invoiceDetails.removeAll()
            Details().getShippedDetails(
                accountNo: invoice.number,
                successBlock: { (invoices) in
@@ -54,6 +53,7 @@ class ShippedDetailsController: UIViewController {
                    self.refreshControl.endRefreshing()
                },
                errorBlock: { (error) in
+                   self.invoiceDetails.removeAll()
                    self.detailsTableView.reloadData()
                    self.refreshControl.endRefreshing()
                    Utilities.tableMessage(table: self.detailsTableView, refresh: self.refreshControl, message: error)
