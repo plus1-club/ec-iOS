@@ -46,7 +46,6 @@ class CanceledController: UIViewController, UITableViewDelegate, UITableViewData
     func getCancelledOrders() {
         Utilities.tableMessage(table: self.canceledTableView, refresh: self.refreshControl, message: "")
         refreshControl.beginRefreshing()
-        self.invoices.removeAll()
         Invoice().getCanceledList(
             successBlock: { (invoices) in
                 self.invoices = invoices
