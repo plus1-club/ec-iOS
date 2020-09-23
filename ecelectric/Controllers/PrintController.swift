@@ -58,23 +58,30 @@ class PrintController: UIViewController {
     
     // MARK: - Method
     func savePdf(){
-        let fileManager = FileManager.default
         let docPath = (getDirectoryPath() as NSString).appendingPathComponent(number+".pdf")
         let docData = NSData(contentsOf: pdfFilePath)
+        FileManager.default.createFile(atPath: docPath as String, contents: docData as Data?, attributes: nil)
         print("Save: " + docPath)
-        fileManager.createFile(atPath: docPath as String, contents: docData as Data?, attributes: nil)
-        if fileManager.fileExists(atPath: docPath){
+
+        do {
+            try docData!.write(toFile: docPath)
+        } catch {
+            print(error)
+        }
+        
+        if FileManager.default.fileExists(atPath: docPath){
             isSaved = true
         }
     }
     
     func sharePdf(){
-        let fileManager = FileManager.default
-        let docPath = (self.getDirectoryPath() as NSString).appendingPathComponent(self.number+".pdf")
+        let docPath = (getDirectoryPath() as NSString).appendingPathComponent(self.number+".pdf")
         print("Load: " + docPath)
-        if fileManager.fileExists(atPath: docPath){
-            let doc = NSData(contentsOfFile: docPath)
-            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [self.number+".pdf", doc!], applicationActivities: nil)
+        if FileManager.default.fileExists(atPath: docPath){
+            let url = NSURL.fileURL(withPath: docPath)
+            print("Share: " + url.absoluteString)
+            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [url] , applicationActivities: nil)
+
             activityViewController.popoverPresentationController?.sourceView = self.view
             self.present(activityViewController, animated: true, completion: nil)
         } else {
